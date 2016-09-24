@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>simple calculator</title>
+    <style type="text/css">
+    #calc{
+		border:#000 1px solid;
+		width:300px;
+		margin:auto;
+		background-color:#999;
+		margin-top:70px;
+	}
+	#buttons-container{
+		margin-left:6px;
+		width:200px;
+		}
+		
+	#screen{
+		background-color:#FFF;
+		height:40px;
+		text-align:right;
+		margin:10px 10px 0px 10px;
+		font-size:26px;
+		font-weight:100;
+		padding-right:10px;
+	}
+
+	#steps{
+		font-size:14px;
+		background-color:#FFF;
+		text-align:right;
+		margin:-12px 10px 10px 10px;
+		padding-right:10px;
+		padding-bottom:2px;
+		}
+	#memo{
+		position:relative;
+		width:20px;
+		top:55px;
+		left:10px;
+		text-align:center;
+		
+		background-color:transparent;
+
+		}		
+		
+	#buttons-container{
+		padding:7px 0px;
+		width:300px;
+	}
+	.btn{
+		width:58px;
+		height:30p;
+		margin:4px;
+		
+		}
+	
+    </style>
+</head>
+<body style="background-color:#CCC;">
+<h2 style="text-align:center; margin-top:30px;">史上最简陋计算器——专注小学计算三十年</h2>
+<div id="calc"><div id="memo">　</div>
+<div id="screen"></div>
+<div id="steps">　</div>
+<div id="buttons-container">
+<input class="btn" id="store" type="button" value="存储" onClick="saveThisValue()">
+<input class="btn" id="getBack" type="button" value="存取" onClick="fetchThisValue()">
+<input class="btn" id="backspace" type="button" value="退格" onClick="backspace()">
+<input class="btn" id="clear-screen" type="button" value="清屏" onClick="clearScreen()">
+<input class="btn" id="accumulated-deposit" type="button" value="累存">
+<input class="btn" id="unname" type="button" value="积存">
+<input class="btn" id="clear" type="button" value="清存" onClick="clearThisValue()">
+<input class="btn" id="division" type="button" value="÷" onClick='nextStep("÷")'>
+<input class="btn" id="seven" type="button" value="7" onClick="getNumber(7)">
+<input class="btn" id="eight" type="button" value="8" onClick="getNumber(8)">
+<input class="btn" id="nine" type="button" value="9" onClick="getNumber(9)">
+<input class="btn" id="multiplication" type="button" value="×" onClick='nextStep("×")'>
+<input class="btn" id="four" type="button" value="4" onClick="getNumber(4)">
+<input class="btn" id="five" type="button" value="5" onClick="getNumber(5)">
+<input class="btn" id="six" type="button" value="6" onClick="getNumber(6)">
+<input class="btn" id="minus" type="button" value="-" onClick='nextStep("-")'>
+<input class="btn" id="one" type="button" value="1" onClick="getNumber(1)">
+<input class="btn" id="two" type="button" value="2" onClick="getNumber(2)">
+<input class="btn" id="three" type="button" value="3" onClick="getNumber(3)">
+<input class="btn" id="plus" type="button" value="+" onClick='nextStep("+")'>
+<input class="btn" id="zero" type="button" value="0" onClick="getNumber(0)">
+<input class="btn" id="point" type="button" value="." onClick="insertPoint()">
+<input class="btn" id="negate" type="button" value="+/-" onClick="getNegateValue()">
+<input class="btn" id="equal" type="button" value="=" onClick="equal()">
+
+</div>
+</div>
+
+
+
+<script type="text/javascript">
+var flag=0,lastValue=0,thisValue="",waitForInput=0,savedValue,thisStep,isM=0;
+u("screen").innerHTML="0";
+function u(elem){return document.getElementById(elem);}
+function getNumber(value){
+	var str=parseFloat(u("screen").value);
+	//alert(str);
+	{
+		if(waitForInput==1){
+			u("screen").innerHTML="";
+			//lastValue=u("screen").value;
+			lastValue=thisValue;
+			thisValue=value;
+			u("screen").innerHTML+=parseFloat(thisValue);
+			waitForInput=0;
+		}else{if(u("screen").innerHTML=="0"&&value==0){value=0;}
+			thisValue+=""+value;
+		u("screen").innerHTML=parseFloat(thisValue);}
+	}
+}
+function nextStep(value){//不能命名为step，坑爹啊，找了半天才发现
+	waitForInput=1;
+	lastValue=thisValue;
+	switch(value){
+		case "+":u("steps").innerHTML=parseFloat(thisValue)+value;break;
+		case "-":u("steps").innerHTML=parseFloat(thisValue)+value;break;
+		case "×":u("steps").innerHTML=parseFloat(thisValue)+value;break;
+		case "÷":u("steps").innerHTML=parseFloat(thisValue)+value;	
+	}
+	
+	thisStep=value;
+}
+function equal(){
+	//if(lastValue=="") lastValue=0;
+	var result
+	switch(thisStep){
+	case "+":
+		result=parseFloat(thisValue)+parseFloat(lastValue);
+		u("screen").innerHTML=result;
+		u("steps").innerHTML=result+"+"+parseFloat(lastValue);
+		break;
+	case "-":
+		result=parseFloat(lastValue)-parseFloat(thisValue);
+		u("screen").innerHTML=result;
+		//u("steps").innerHTML+=parseFloat(thisValue);
+		u("steps").innerHTML=result+"-"+parseFloat(lastValue);
+
+		break;
+	case "×":
+		result=parseFloat(thisValue)*parseFloat(lastValue);
+		u("screen").innerHTML=result;
+		//u("steps").innerHTML+=parseFloat(thisValue);
+		u("steps").innerHTML=result+"×"+parseFloat(lastValue);
+		break;
+	case "÷":
+		if(parseFloat(thisValue)==0){
+			u("screen").innerHTML="除数不能为零";
+		}else{
+			result=parseFloat(lastValue)/parseFloat(thisValue);
+			u("screen").innerHTML=result;
+			//u("steps").innerHTML+=parseFloat(thisValue);
+			u("steps").innerHTML=result+"÷"+parseFloat(lastValue);
+
+		}
+	}
+	
+	thisValue=result;
+	}
+	function getNegateValue(){thisValue=0-thisValue;u("screen").innerHTML=thisValue;}
+	function insertPoint(){
+		var points=thisValue.split('.').length-1;
+		if(thisValue!=""){if(points!=1){thisValue+=".";u("screen").innerHTML=thisValue;}}
+	}
+  function clearThisValue(){thisValue=0;u("screen").innerHTML=thisValue;}
+  function clearScreen(){
+	  lastValue=0;thisValue="";
+	  u("screen").innerHTML="0";u("steps").innerHTML="　";  
+	  }
+	function saveThisValue(){
+		if(thisValue!=""||parseInt())
+		savedValue=thisValue;
+		u("memo").innerHTML="M";
+		isM=1;
+	}	
+	function fetchThisValue(){
+		if(isM==1){
+			thisValue=savedValue;
+			u("memo").innerHTML="　";
+			u("screen").innerHTML=thisValue;
+		}
+	}
+	function backspace(){
+		//thisValue+="";
+		var thisStr=thisValue.split("");
+		thisStr.length--;
+		var value="";
+		for(var i=0;i<thisStr.length;i++){
+				value+=thisStr[i];
+			}
+			if(thisStr.length==0) value=0;
+			
+		thisValue=value;
+		u("screen").innerHTML=thisValue;
+		
+		}
+	  
+	  
+    </script>
+</body>
+</html>

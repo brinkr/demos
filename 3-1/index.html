@@ -34,7 +34,7 @@
 <div style="font-family:宋体;font-size:13px;text-align:center; margin-top:5px;"><span id="preMonth" onClick="getPreMonth()" style="font-size:16px;">&laquo;</span><span style="margin:0px 5px;">月</span><span id="nextMonth" onClick="getNextMonth()" style="font-size:16px;">&raquo;</span><span id="cusDate" style="margin:0px 12px;font-weight:bold;">2000-01-01</span><span id="preYear" onClick="getPreYear()" style="font-size:16px;">&laquo;</span><span style="margin:0px 5px">年</span><span id="nextYear" onClick="getNextYear()" style="font-size:16px;">&raquo;</span></div>
 </div></div>
 <div class="widgets">搜寻不老歌</div>
-<div><input type="text" id="search" value="王宝强喜登雷霆崖" style=" float:left;margin:10px 0px 0px 21px; color:#999; display:inline;" size="20"><div style=" float:right;width:22px; height:22px; font-size:14px; padding-left:1px; line-height:20px;color:#FFF; margin:10px 1px 0px 0px; text-align:center; font-weight:300; background-image:url(images/cuzbg2.png)"><a href="#">GO</a></div>
+<div><input type="text" id="search" value="王宝强喜登雷霆崖" style=" float:left;margin:10px 0px 0px 21px; color:#999; display:inline;" size="20" onFocus="selectAll()"><div id="go" style=" float:right;width:22px; height:22px; font-size:14px; padding-left:1px; line-height:20px;color:#FFF; margin:10px 1px 0px 0px; text-align:center; font-weight:300; background-image:url(images/cuzbg2.png)"><a href="#">GO</a></div>
  
   </div>
   <div><div class="widgets" style="margin-top:45px;">不老歌信息</div><div style="margin:0px 0px 0px 20px;">
@@ -144,7 +144,7 @@ function showTime(){
 	  document.getElementById("clock").innerHTML="当前的时间是："+hour+":"+minutes+":"+seconds;	 
 	  setTimeout("showTime()",1000);	  
 	}	
-
+	function selectAll(){document.getElementById("search").select();}
     </script>
 
 </body>

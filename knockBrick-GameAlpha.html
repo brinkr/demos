@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>knockBrick-Game Alpha</title>
+    <style type="text/css">
+	#main{
+		width:1024px;
+		height:600px;
+		margin:auto;
+		margin-top:50px;
+	}
+	#game-area{
+		float:left;
+		position:relative;
+		border:#00F 1px solid;
+		width:800px;
+		height:520px;
+		margin:auto;		
+		background-color:#999;
+	}
+	#info-area{
+		padding:250px 0px 0px 20px;
+		width:180px;
+		float:right;
+		color:#FFF;
+	}
+	.brick{
+		background-color:#930;
+		width:40px;
+		height:40px;
+		position:absolute;
+		border:#000 1px solid;
+		visibility:visible;
+	}
+	#slider{
+		position:absolute;
+		top:510px;
+		width:200px;
+		height:10px;
+		left:300px;
+		background-color:#F93;
+	}
+	#bullet{
+		position:absolute;
+		width:20px;
+		height:20px;
+		background-color:#F00;
+		top:490px;
+		left:390px;
+		z-index:99;
+	}
+
+    </style>
+</head>
+<body style="background-color:#000;">
+<div id="main">
+<div id="game-area">
+
+
+<div id="slider"></div>
+<div id="bullet"></div>
+
+</div><div id="info-area"><p>当前难度：</p>
+<ul><li style="color:#F00;">Easy</li><li>Normal</li><li>Hard</li><li>Nightmare</li></ul>
+<p>游戏信息：</p>
+<ul><li>滑板长度：200</li>
+<li>滑板速度：20</li>
+<li>子弹速度：10</li><li id="BrickNum">剩余砖块：</li></ul>
+
+</div>
+</div>
+<script type="text/javascript">
+function u(elem){return document.getElementById(elem);}
+//初始化游戏设置：行数、列数、水平分速度、垂直分速度、滑块速度、游戏是否开始
+var rows=5,columns=20,HorizSpeed=10,VertiSpeed=10,SliderSpeed=20,isStart=0;
+//定义常量：游戏区宽度、游戏区长度、子弹长度、子弹宽度、滑块宽度
+var GameAreaWidth=800,GameAreaHeight=520,BulletWidth=20,BulletHeight=20,SliderWidth=200,BrickWidth=40;//可以从css获取这些值
+var SliderLeft,BulletLeft,BulletTop,count=0;
+window.onload=function(){
+	for(var j=0;j<rows;j++){
+		for(var i=0;i<columns;i++){
+			u("game-area").innerHTML+="<div class=\"brick\" id=\"r"+j+"m"+i+"\" style=\"top:"+j*40+"px;left:"+i*40+"px;visibility:visible;\"></div>";	count++;	
+			u("BrickNum").innerHTML="剩余砖块："+count;	
+		}
+	}
+}
+function fetchPosition(){
+	var slider=u("slider");
+	if(slider.currentStyle){SliderLeft=parseInt(slider.currentStyle.left);}
+	else{
+		SliderLeft=parseInt(document.defaultView.getComputedStyle(slider,null).left);
+	}
+	var bullet=u("bullet");
+	if(bullet.currentStyle){
+		BulletLeft=parseInt(bullet.currentStyle.left);
+		BulletTop=parseInt(bullet.currentStyle.top);
+	}else{
+		BulletLeft=parseInt(document.defaultView.getComputedStyle(bullet,null).left);
+		BulletTop=parseInt(document.defaultView.getComputedStyle(bullet,null).top);
+	}
+}var row,column;
+function knockBrick(){//打砖块核心函数
+	if(BulletTop<=rows*BrickWidth){
+		if(VertiSpeed>0&&HorizSpeed>0){/*砖块从下往上从左往右打*/
+			row=Math.floor((BulletTop-1)/40);
+			column=Math.floor((BulletLeft+BulletWidth-1)/40);
+			if(u("r"+row+"m"+column).style.visibility=="visible"){
+				VertiSpeed=0-VertiSpeed;//HorizSpeed=0-HorizSpeed;					
+				u("r"+row+"m"+column).style.visibility="hidden";count--;
+				u("BrickNum").innerHTML="剩余砖块："+count;	
+			}
+		}
+		if(VertiSpeed>0&&HorizSpeed<0){/*砖块从下往上从右往左打*/
+			row=Math.floor((BulletTop-1)/40);
+			column=Math.floor((BulletLeft+BrickWidth-1)/40);
+			if(u("r"+row+"m"+column).style.visibility=="visible"){
+				u("r"+row+"m"+column).style.visibility="hidden";count--;
+				VertiSpeed=0-VertiSpeed;//HorizSpeed=0-HorizSpeed;
+				u("BrickNum").innerHTML="剩余砖块："+count;
+			}
+		}/*
+		if(VertiSpeed<0&&HorizSpeed>0){//砖块从上往下从左往右打
+			row=Math.floor((BulletTop+BulletWidth-1)/40);
+			column=Math.floor((BulletLeft+BulletWidth-1)/40);
+			if(u("r"+row+"m"+column).style.visibility=="visible"){
+				u("r"+row+"m"+column).visibility="hidden";
+				VertiSpeed=0-VertiSpeed;
+				//HorizSpeed=0-HorizSpeed;
+			}
+		}
+		if(HorizSpeed<0&&HorizSpeed<0){//砖块从上往下从右往左打
+			row=Math.floor((BulletTop+BulletWidth-1)/40);
+			column=Math.floor((BulletLeft+BrickWidth-1)/40);
+			if(u("r"+row+"m"+column).style.visibility=="visible"){
+				u("r"+row+"m"+column).visibility="hidden";	
+				//HorizSpeed=0-HorizSpeed;
+				VertiSpeed=0-VertiSpeed;
+			}
+		}*/
+	}
+}
+document.onkeydown=function(e){
+  e=window.event||e;
+  switch(e.keyCode){
+	case 32:if(isStart==1)moveBack();else{isStart=1;startGame();} break;//backspace   
+    case 37:moveToLeft();break; //left    
+    case 39:moveToRight();break; //right    
+  }
+}
+function moving(){
+	var slider=u("slider");
+	if(slider.currentStyle){var SliderLeft=parseInt(slider.currentStyle.left);}
+	else{
+		var SliderLeft=parseInt(document.defaultView.getComputedStyle(slider,null).left);
+	}return SliderLeft;
+}
+function moveToLeft(){if(moving()>0) slider.style.left=moving()-SliderSpeed+"px";}
+function moveToRight(){if(moving()+SliderWidth<=GameAreaWidth-20) slider.style.left=moving()+SliderSpeed+"px";}
+function moveBack(){slider.style.left=300+"px";}
+function startGame(){
+	if(count==0){alert("All Clear!");isStart=0;}
+	fetchPosition();var slider=u("slider");
+	if(BulletLeft<=0||BulletLeft>=GameAreaWidth-BulletWidth){HorizSpeed=0-HorizSpeed;}//左右墙壁
+	if(BulletTop<=0){VertiSpeed=0-VertiSpeed;} //上墙壁
+	if(BulletTop>GameAreaHeight-BulletWidth&&(BulletLeft>=SliderLeft&&BulletLeft<=SliderLeft+SliderWidth)){VertiSpeed=0-VertiSpeed;}
+	else if(BulletTop>GameAreaHeight-BulletWidth){isStart=0;alert("Game Over!");clearTimeout(timer);}
+	{knockBrick();
+		bullet.style.left=BulletLeft+HorizSpeed+"px";
+		bullet.style.top=BulletTop-VertiSpeed+"px";
+	}if(isStart==1)timer=setTimeout("startGame()",50);	
+}
+    </script>
+</body>
+</html>

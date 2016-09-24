@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>front-end demos navigator</title>
-    <style type="text/css">
-		#main{width:100%; height:100%; border-width:0px;}
-		#left{width:200px; float:left; height:100%;}
-		#right{ float:right; position:absolute; top:0px; left:200px;}
-		#tx{background-image:url(images/tx.png); width:150px; height:150px; margin:20px 0px 0px 10px;}
-		h5{margin:0px 0px 5px 10px; color:#FFF;}
-		ul{margin:0px 0px 0px 20px; color:#FFF; font-size:12px; padding-bottom:5px;}
-    </style>
-    
-    
-    
-    <script type="text/javascript">
+<style type="text/css">	
+ 	a{color: #FFF;text-decoration: none;}
+	a:hover{color: #F00;}
+	#main{width:100%; height:100%; border-width:0px;}
+	#left{width:200px; float:left; height:100%;}
+	#right{ float:right; position:absolute; top:0px; left:200px; width:1250px; height:760px;}
+	#tx{background-image:url(images/tx.png); width:150px; height:150px; margin:20px 0px 0px 10px;}
+	h5{margin:0px 0px 5px 10px; color:#FFF;}
+	ul{margin:0px 0px 0px 20px; color:#FFF; font-size:12px; padding-bottom:5px;}
+</style>   
+<script type="text/javascript">
 window.onload=function(){
 	var h=document.body.offsetHeight||document.documentElement.clientHeight||window.innerHeight;
 	var w=document.body.offsetWidth||document.documentElement.clientWidth||window.innerWidth;
+	//alert(h);IE下获取的高度值比FF和Chrome下低了差不多100px.
 	document.getElementById("right").style.width=w-200+getScrollbarWidth()+"px";
 	document.getElementById("right").style.height=h+"px";
-
-	
+	/*不知道为什么IE下面无法修改对象的大小
+	document.getElementById("dis").style.width=w-200+getScrollbarWidth()+"px";
+	document.getElementById("dis").style.height=h+"px";
+	*/
 	}
 	
 	
@@ -57,6 +59,7 @@ function getScrollbarWidth() {
   <li><a href="calendarAlpha.html" target="display">简易日历</a></li>
   <li><a href="timerecorder.html" target="display">计时器</a></li>
     <li><a href="rollinghelper.html" target="display">点名助手</a></li>
+    <li><a href="simpleCalculator.html" target="display">简易计算器</a></li>
 
 </ul>
 <h5>第三周</h5><ul><li><a href="3-1/index.html" target="display">3-1</a></li>
@@ -64,7 +67,7 @@ function getScrollbarWidth() {
   <li><a href="6-3/colse.html" target="display">6-3</a></li>
    <li><a href="6-1/pic.html" target="display">实训1</a></li>
 
-  <li><a href="calendarWidget.html" target="display">日历挂件</a></li><li><a href="calendarAdvance.html" target="display">日历进化版</a></li>
+  <li><a href="calendarWidget.html" target="display">日历挂件</a></li><li><a href="calendarAdvance.html" target="display">日历进化版</a></li><li><a href="knockBrick-GameAlpha.html" target="display">打砖块Alpha</a></li>
 </ul>
 <h5>第四周</h5><ul>
   <li><a href="4-1/index.html" target="display">4-1</a></li><li><a href="4-2/index.html" target="display">4-2</a></li>
@@ -79,7 +82,7 @@ function getScrollbarWidth() {
 
 
 
-<div id="right"><iframe name="display" width="100%" height="100%" src="calendarAdvance.html"></iframe></div>
+<div id="right"><iframe id="dis" name="display" width="100%" height="100%" src="calendarAdvance.html"></iframe></div>
 </div>
 
 </body>

@@ -1,10 +1,7 @@
-#banner a{
-	color: #FFF;
-	text-decoration: none;
-}
-#banner a:hover {
-	color: #F00;
-}
+#banner a{color: #FFF;text-decoration: none;}
+#banner a:hover {color: #F00;}
+#go a{color: #FFF;text-decoration: none;}
+#go a:hover {color: #F00;}
 a{
 	color: #000;
 	text-decoration: none;

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>×¢²áÒ³Ãæ</title>
+<title>æ³¨å†Œé¡µé¢</title>
 <style type="text/css">
 body{
 	margin:0;
@@ -47,7 +47,7 @@ div{color:#f00;}
     <td><img src="images/logo.jpg" width="150" height="57" alt="logo" /><img src="images/banner.jpg" width="375" height="57" alt="banner" /></td>
   </tr>
   <tr>
-    <td class="hr_1">ĞÂÓÃ»§×¢²á</td>
+    <td class="hr_1">æ–°ç”¨æˆ·æ³¨å†Œ</td>
   </tr>
   <tr>
     <td style="height:10px;"></td>
@@ -56,34 +56,34 @@ div{color:#f00;}
   <tr>
     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td class="left">ÓÃ»§Ãû£º</td>
+    <td class="left">ç”¨æˆ·åï¼š</td>
     <td class="center"><input id="user" type="text" class="inputClass" onblur="checkUser()" /></td>
-    <td><div id="user_prompt">ÓÃ»§ÃûÓÉ4-16Î»×Ö·û×é³É£¬²»ÄÜ°üº¬Êı×Ö</div></td>
+    <td><div id="user_prompt">ç”¨æˆ·åç”±4-16ä½å­—ç¬¦ç»„æˆï¼Œä¸èƒ½åŒ…å«æ•°å­—</div></td>
   </tr>
   <tr>
-    <td class="left">ÃÜÂë£º</td>
+    <td class="left">å¯†ç ï¼š</td>
     <td class="center"><input id="pwd" type="password" class="inputClass"  onblur="checkPwd()"/></td>
-    <td><div id="pwd_prompt">ÃÜÂëÓÉ4-10Î»×Ö·û×é³É</div></td>
+    <td><div id="pwd_prompt">å¯†ç ç”±4-10ä½å­—ç¬¦ç»„æˆ</div></td>
   </tr>
   <tr>
-    <td class="left">È·ÈÏÃÜÂë£º</td>
+    <td class="left">ç¡®è®¤å¯†ç ï¼š</td>
     <td class="center"><input id="repwd" type="password" class="inputClass"  onblur="checkRepwd()"/></td>
     <td><div id="repwd_prompt"></div></td>
   </tr>
    <tr>
-    <td class="left">µç×ÓÓÊÏä£º</td>
+    <td class="left">ç”µå­é‚®ç®±ï¼š</td>
     <td class="center"><input id="email" type="text" class="inputClass"  onblur="checkEmail()"/></td>
-    <td><div id="email_prompt">ÓÊÏä¸ñÊ½Ê¾Àı£ºweb@126.com</div></td>
+    <td><div id="email_prompt">é‚®ç®±æ ¼å¼ç¤ºä¾‹ï¼šweb@126.com</div></td>
   </tr>
     <tr>
-    <td class="left">ÊÖ»úºÅÂë£º</td>
+    <td class="left">æ‰‹æœºå·ç ï¼š</td>
     <td class="center"><input id="mobile" type="text" class="inputClass" onblur="checkMobile()" /></td>
     <td><div id="mobile_prompt"></div></td>
   </tr>
   <tr>
-    <td class="left">³öÉúÈÕÆÚ£º</td>
+    <td class="left">å‡ºç”Ÿæ—¥æœŸï¼š</td>
     <td class="center"><input id="birth" type="text" class="inputClass"  onblur="checkBirth()"/></td>
-    <td><div id="birth_prompt">Çë°´xxxx-xx-xxÊäÈë³öÉúÈÕÆÚ</div></td>
+    <td><div id="birth_prompt">è¯·æŒ‰xxxx-xx-xxè¾“å…¥å‡ºç”Ÿæ—¥æœŸ</div></td>
   </tr>
    <tr>
     <td class="left">&nbsp;</td>
@@ -106,12 +106,12 @@ function checkUser(){
 	var userId=$("user_prompt");
 	userId.innerHTML="";
 	if(user.length<4||user.length>16){
-		userId.innerHTML="ÇëÊäÈë4-16Î»ÓÃ»§Ãû";
+		userId.innerHTML="è¯·è¾“å…¥4-16ä½ç”¨æˆ·å";
 		return false;		
 	}
 	for(var i=0;i<user.length;i++){
 		if(!isNaN(user.charAt(i))){
-				userId.innerHTML="ÓÃ»§ÃûÖĞ²»ÄÜ°üº¬Êı×Ö";
+				userId.innerHTML="ç”¨æˆ·åä¸­ä¸èƒ½åŒ…å«æ•°å­—";
 				return false;
 			}
 		}
@@ -122,7 +122,7 @@ function checkPwd(){
 	var pwdId=$("pwd_prompt");
 	pwdId.innerHTML="";
 	if(pwd.length<4||pwd.length>10){
-		pwdId.innerHTML="ÃÜÂë³¤¶ÈÔÚ4-10Ö®¼ä";
+		pwdId.innerHTML="å¯†ç é•¿åº¦åœ¨4-10ä¹‹é—´";
 		return false
 		}return true;	
 	}
@@ -132,7 +132,7 @@ function checkRepwd(){
 	var repwdId=$("repwd_prompt");
 	repwdId.innerHTML="";
 	if(pwd!=repwd){
-		repwdId.innerHTML="Á½´ÎÊäÈëµÄÃÜÂë²»Ò»ÖÂ";
+		repwdId.innerHTML="ä¸¤æ¬¡è¾“å…¥çš„å¯†ç ä¸ä¸€è‡´";
 		return false;
 		}return true;	
 	}
@@ -143,12 +143,12 @@ function checkEmail(){
 	var index=email.indexOf("@",1);
 	var index_at=email.indexOf(".",1);
 	if(index==-1){
-		email_prompt.innerHTML="ÊäÈëµÄÓÊÏä¸ñÊ½ÖĞÓ¦¸Ã°üº¬'@'·ûºÅ";
+		email_prompt.innerHTML="è¾“å…¥çš„é‚®ç®±æ ¼å¼ä¸­åº”è¯¥åŒ…å«'@'ç¬¦å·";
 	return false;		
 	}
 	//var domain=email.split("@");
 	if(index_at<=index+1||index_at==email.length-1){
-		email_prompt.innerHTML="'@'·ûºÅºóÃæÓòÃû¸ñÊ½²»ÕıÈ·";
+		email_prompt.innerHTML="'@'ç¬¦å·åé¢åŸŸåæ ¼å¼ä¸æ­£ç¡®";
 		return false;	
 	}
 	return true;
@@ -158,16 +158,16 @@ function checkMobile(){
 		var mobileId=$("mobile_prompt");
 		mobileId.innerHTML="";
 		if(mobile.charAt(0)!=1){
-			mobileId.innerHTML="ÊÖ»úºÅ¿ªÊ¼µÄÎ»ÖÃÓ¦¸ÃÎª1";
+			mobileId.innerHTML="æ‰‹æœºå·å¼€å§‹çš„ä½ç½®åº”è¯¥ä¸º1";
 			return false;
 		}
 		if(mobile.length!=11){
-			mobileId.innerHTML="ÊÖ»úºÅµÄ³¤¶ÈÓ¦¸ÃµÈÓÚ11Î»";
+			mobileId.innerHTML="æ‰‹æœºå·çš„é•¿åº¦åº”è¯¥ç­‰äº11ä½";
 			return false;
 		}
 		for(var i=0;i<mobile.length;i++){
 			if(isNaN(mobile.charAt(i))){
-				mobileId.innerHTML="ÊÖ»úºÅÂë²»ÄÜ°üº¬×Ö·û";
+				mobileId.innerHTML="æ‰‹æœºå·ç ä¸èƒ½åŒ…å«å­—ç¬¦";
 				return false;				
 				}		
 			}return true;	
@@ -177,7 +177,7 @@ function checkBirth(){
 	var birthId=$("birth_prompt");
 	birthId.innerHTML="";
 	if(birth.length!=10||birth.charAt(4)!="-"||birth.charAt(7)!="-"){
-			birthId.innerHTML="³öÉúÈÕÆÚÊäÈë¸ñÊ½²»ÕıÈ·";
+			birthId.innerHTML="å‡ºç”Ÿæ—¥æœŸè¾“å…¥æ ¼å¼ä¸æ­£ç¡®";
 			return false;
 		}
 var birthdays=birth.split("-");
@@ -187,21 +187,21 @@ day=parseInt(birthdays[2],10);
 var now=new Date();
 nowYear=now.getFullYear();
 if(isNaN(year)||isNaN(month)||isNaN(day)){
-	birthId.innerHTML="³öÉúÄêÔÂ²»ÄÜ°üº¬×Ö·û";
+	birthId.innerHTML="å‡ºç”Ÿå¹´æœˆä¸èƒ½åŒ…å«å­—ç¬¦";
 	return false;
 	
 }
 if(year<1900||year>nowYear){
-	birthId.innerHTML="³öÉúÄê·İÊäÈëÓĞÎó";	
+	birthId.innerHTML="å‡ºç”Ÿå¹´ä»½è¾“å…¥æœ‰è¯¯";	
 	return false;
 	
 	}
 	if(month<=0||month>12){
-		birthId.innerHTML="³öÉúÔÂ·İÊäÈëÓĞÎó";
+		birthId.innerHTML="å‡ºç”Ÿæœˆä»½è¾“å…¥æœ‰è¯¯";
 		return false;
 	}
 	if(day<=0||day>31){
-			birthId.innerHTML="³öÉúÈÕÆÚÊäÈëÓĞÎó";
+			birthId.innerHTML="å‡ºç”Ÿæ—¥æœŸè¾“å…¥æœ‰è¯¯";
 			return false;
 		
 		}return true;

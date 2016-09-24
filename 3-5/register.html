@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>×¢²áÒ³Ãæ</title>
+<title>æ³¨å†Œé¡µé¢</title>
 <style type="text/css">
 body{
 	margin:0;
@@ -47,7 +47,7 @@ div{color:#f00;}
     <td><img src="images/logo.jpg" width="150" height="57" alt="logo" /><img src="images/banner.jpg" width="375" height="57" alt="banner" /></td>
   </tr>
   <tr>
-    <td class="hr_1">ĞÂÓÃ»§×¢²á</td>
+    <td class="hr_1">æ–°ç”¨æˆ·æ³¨å†Œ</td>
   </tr>
   <tr>
     <td style="height:10px;"></td>
@@ -56,34 +56,34 @@ div{color:#f00;}
   <tr>
     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td class="left">ÓÃ»§Ãû£º</td>
+    <td class="left">ç”¨æˆ·åï¼š</td>
     <td class="center"><input id="user" type="text" class="inputClass" onblur="checkUser()" /></td>
-    <td><div id="user_prompt">ÓÃ»§ÃûÓÉÓ¢ÎÄ×ÖÄ¸ºÍÊı×Ö×é³ÉµÄ4-16Î»×Ö·û£¬ÒÔ×ÖÄ¸¿ªÍ·</div></td>
+    <td><div id="user_prompt">ç”¨æˆ·åç”±è‹±æ–‡å­—æ¯å’Œæ•°å­—ç»„æˆçš„4-16ä½å­—ç¬¦ï¼Œä»¥å­—æ¯å¼€å¤´</div></td>
   </tr>
   <tr>
-    <td class="left">ÃÜÂë£º</td>
+    <td class="left">å¯†ç ï¼š</td>
     <td class="center"><input id="pwd" type="password" class="inputClass"  onblur="checkPwd()"/></td>
-    <td><div id="pwd_prompt">ÃÜÂëÓÉ4-10Î»×Ö·û×é³É</div></td>
+    <td><div id="pwd_prompt">å¯†ç ç”±4-10ä½å­—ç¬¦ç»„æˆ</div></td>
   </tr>
   <tr>
-    <td class="left">È·ÈÏÃÜÂë£º</td>
+    <td class="left">ç¡®è®¤å¯†ç ï¼š</td>
     <td class="center"><input id="repwd" type="password" class="inputClass"  onblur="checkRepwd()"/></td>
     <td><div id="repwd_prompt"></div></td>
   </tr>
    <tr>
-    <td class="left">µç×ÓÓÊÏä£º</td>
+    <td class="left">ç”µå­é‚®ç®±ï¼š</td>
     <td class="center"><input id="email" type="text" class="inputClass"  onblur="checkEmail()"/></td>
-    <td><div id="email_prompt">ÓÊÏä¸ñÊ½Ê¾Àı:web@126.com</div></td>
+    <td><div id="email_prompt">é‚®ç®±æ ¼å¼ç¤ºä¾‹:web@126.com</div></td>
   </tr>
     <tr>
-    <td class="left">ÊÖ»úºÅÂë£º</td>
+    <td class="left">æ‰‹æœºå·ç ï¼š</td>
     <td class="center"><input id="mobile" type="text" class="inputClass" onblur="checkMobile()" /></td>
     <td><div id="mobile_prompt"></div></td>
   </tr>
   <tr>
-    <td class="left">ÉúÈÕ£º</td>
+    <td class="left">ç”Ÿæ—¥ï¼š</td>
     <td class="center"><input id="birth" type="text" class="inputClass"  onblur="checkBirth()"/></td>
-    <td><div id="birth_prompt">Çë°´xxxx-xx-xxÊäÈë³öÉúÈÕÆÚ</div></td>
+    <td><div id="birth_prompt">è¯·æŒ‰xxxx-xx-xxè¾“å…¥å‡ºç”Ÿæ—¥æœŸ</div></td>
   </tr>
    <tr>
     <td class="left">&nbsp;</td>
@@ -105,7 +105,7 @@ function $(elementId){
 		userId.innerHTML="";
 		var reg=/^[a-zA-Z][a-zA-Z0-0]{3,15}$/;
 		if(reg.test(user)==false){
-			userId.innerHTML="ÓÃ»§Ãû²»ÕıÈ·";
+			userId.innerHTML="ç”¨æˆ·åä¸æ­£ç¡®";
 			return false;			
 			}return true;		
 		}
@@ -115,7 +115,7 @@ function $(elementId){
 			pwdId.innerHTML="";
 			var reg=/^[a-zA-Z0-9]{4,10}$/;
 			if(reg.test(pwd)==false){
-			pwdId.innerHTML="ÃÜÂë³¤¶ÈÔÚ4-10Ö®¼ä";
+			pwdId.innerHTML="å¯†ç é•¿åº¦åœ¨4-10ä¹‹é—´";
 			return false;			
 		}return true;}
 function checkRepwd(){
@@ -124,7 +124,7 @@ function checkRepwd(){
 	var repwdId=$("repwd_prompt");
 	repwdId.innerHTML="";
 	if(pwd!=repwd){
-		repwdId.innerHTML="Á½´ÎÊäÈëµÄÃÜÂë²»Ò»ÖÂ";
+		repwdId.innerHTML="ä¸¤æ¬¡è¾“å…¥çš„å¯†ç ä¸ä¸€è‡´";
 		return false;
 		}return true;	
 	}
@@ -134,7 +134,7 @@ function checkRepwd(){
 			email_prompt.innerHTML="";
 			var reg=/^\w+@\w+\.\w+[(com)|(cn)]$/;
 			if(reg.test(email)==false){
-					email_prompt.innerHTML="Email¸ñÊ½²»ÕıÈ·£¬ÀıÈçweb@sohu.com";
+					email_prompt.innerHTML="Emailæ ¼å¼ä¸æ­£ç¡®ï¼Œä¾‹å¦‚web@sohu.com";
 					return false;
 				}return true;			
 			}
@@ -143,7 +143,7 @@ function checkMobile(){
 	var mobileId=$("mobile_prompt");
 	var regMobile=/^1\d{10}$/;
 	if(regMobile.test(mobile)==false){
-		mobileId.innerHTML="ÊÖ»úºÅÂë²»ÕıÈ·£¬ÇëÖØĞÂÊäÈë";
+		mobileId.innerHTML="æ‰‹æœºå·ç ä¸æ­£ç¡®ï¼Œè¯·é‡æ–°è¾“å…¥";
 		return false;	
 		}
 		mobileId.innerHTML="";
@@ -156,7 +156,7 @@ function checkBirth(){
 	var birthId=$("birth_prompt");
 	var reg=/^((19\d{2}|(200\d)|201[0-4]))-(0?[1-9]|1[0-2])-(0?[1-9]|[1-2]\d|3[0-1])$/;
 	if(reg.test(birth)==false){
-		birthId.innerHTML="ÉúÈÕ¸ñÊ½²»ÕıÈ·£¬ÀıÈç1980-05-12»ò1988-05-04";
+		birthId.innerHTML="ç”Ÿæ—¥æ ¼å¼ä¸æ­£ç¡®ï¼Œä¾‹å¦‚1980-05-12æˆ–1988-05-04";
 		return false;
 	}
 	birthId.innerHTML="";

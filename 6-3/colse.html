@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>带关闭按钮的滚动广告</title>
+<style type="text/css">
+#main{ text-align:center;}
+#float{
+	position:absolute;
+	left:30px;
+	top:60px; 
+	z-index:1;
+	}
+#close{
+	position:absolute;
+	top:60px;
+	left:134px;
+	z-index:2;
+	cursor:pointer;
+}
+</style>
+<script type="text/javascript">
+var adX,adY,ad,crossX,crossY,cross;
+function getPosition(){
+	ad=document.getElementById("float");
+	cross=document.getElementById("close");
+	if(ad.currentStyle){
+		adX=parseInt(ad.currentStyle.left);
+		adY=parseInt(ad.currentStyle.top);
+		crossX=parseInt(ad.currentStyle.left);
+		crossY=parseInt(ad.currentStyle.top);
+	}else{
+		adX=parseInt(document.defaultView.getComputedStyle(ad,null).left);
+		crossX=parseInt(document.defaultView.getComputedStyle(cross,null).left);
+		adY=parseInt(document.defaultView.getComputedStyle(ad,null).top);
+		crossY=parseInt(document.defaultView.getComputedStyle(cross,null).top);			
+	}	
+}
+function move(){
+	var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+	var scrollLeft = document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft;
+	ad.style.top=adY+parseInt(scrollTop)+"px";//注意区分大小写，IE是不区分的，这个bug花了一小时才找到
+	ad.style.left=adX+parseInt(scrollLeft)+"px";
+	cross.style.top=crossY+parseInt(scrollTop)+"px";//注意区分大小写，IE是不区分的，这个bug花了一小时才找到
+	cross.style.left=crossX+parseInt(scrollLeft)+"px";
+}
+function closeAd(){
+	document.getElementById("close").style.display="none";	
+	document.getElementById("float").style.display="none";	
+
+}
+window.onload=getPosition;
+window.onscroll=move;
+
+
+
+</script>
+</head>
+<body>
+<div id="close" onClick="closeAd()"><img src="images/close.jpg"></div>
+<div id="float"><img src="images/advpic.jpg"></div>
+<div id="main"><img src="images/contentpic.jpg"></div>
+</body>
+</html>

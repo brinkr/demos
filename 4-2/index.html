@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我粉美腻</title>
+    <style type="text/css">
+  
+    </style>
+</head>
+<body>
+<div style="margin:auto;width:1366px;height:577px;background-image:url(meiliMain.jpg)"></div>
+
+<script type="text/javascript">
+  var i=0,title="";
+  var text="很久很久以前我那慈祥和蔼的奶奶的孩子也就是我美丽的妈妈曾经悄悄地告诉我说即便是这个无奇不有的世界也大概不会有会无聊到一个一个字读完另一个超级无聊爱搞怪的人写的加长标题栏";
+  var txtArr=text.split("");
+  function displayTitle(){
+		title+="|"+txtArr[i];
+		document.title=title;
+		x();i++;setTimeout("displayTitle()",500);
+	}
+	  function x(){setTimeout("y()",500)};
+	  function y(){title=title.substring(0,title.length-2);document.title+=title;}	  
+	  window.onload=displayTitle(); 
+</script>
+</body>
+</html>

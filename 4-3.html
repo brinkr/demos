@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>复选框全选</title>
+    <style type="text/css">
+    </style>
+</head>
+<body style="background-color:#999;">
+<div id="checkboxlist" style="width:300px;height:600px;margin:auto; text-align:center; padding-top:50px;background-color:#FFF;"></div>
+<script type="text/javascript">
+for(var i=0;i<=10;i++){
+	
+	document.getElementById("checkboxlist").innerHTML+="<p><input class=\"ckbox\" id=\"ck"+i+"\" type=\"checkbox\">按钮</p>"
+	if(i==10)
+		document.getElementById("checkboxlist").innerHTML+="<p style=\"font-size:18px;font-weight:bold;color:red;\" ><input id=\"ckall\" type=\"checkbox\" onclick=\"check();\">全选</p>"
+
+	}
+	function check(){
+		var oIn=document.getElementsByClassName("ckbox");
+		for(var i=0;i<oIn.length;i++){
+			if(document.getElementById("ckall").checked) oIn[i].checked=true;
+			else oIn[i].checked=false;
+			
+			}
+		
+		}
+
+</script>
+</body>
+</html>

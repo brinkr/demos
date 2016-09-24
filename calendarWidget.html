@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>calendar</title>
+    <style type="text/css">
+	#preMonth:hover,#nextMonth:hover,#preYear:hover,#nextYear:hover{
+		color:#F00;
+		cursor:pointer;
+		}
+	#Calendar{
+		width:190px;
+		text-align:center;
+	}
+	.ttd{	
+	}
+	#DayTable{
+		border:0px #FFFFFF solid;
+		width:190px;
+		font-size:12px;
+		}
+	#DayTable td:hover{color:#06F;cursor:pointer;}
+	#WeekTable{
+		width:190px;
+		height:25px;
+		border:#FFF 0px solid;
+	} 
+    </style>
+</head>
+<body style="background-color:#F5F5F5;">
+<div id="Calendar">
+<div style="font-size:14px;font-weight:bold; padding:8px 0px;"id="NowDate">这里是当前日期</div>
+<div id="WeekList">
+<table id="WeekTable">
+  <tr style="text-align:center; font-size:12px;">
+    <td>日</td>
+    <td class="ttd">一</td>
+    <td class="ttd">二</td>
+    <td class="ttd">三</td>
+    <td class="ttd">四</td>
+    <td class="ttd">五</td>
+    <td class="ttd">六</td>
+  </tr>
+</table>
+</div>
+<div id="DayList"><table id="DayTable"></table></div>
+<div style="font-family:宋体;font-size:13px;text-align:center; margin-top:5px;"><span id="preMonth" onClick="getPreMonth()" style="font-size:16px;">&laquo;</span><span style="margin:0px 5px;">月</span><span id="nextMonth" onClick="getNextMonth()" style="font-size:16px;">&raquo;</span><span id="cusDate" style="margin:0px 12px;font-weight:bold;">2000-01-01</span><span id="preYear" onClick="getPreYear()" style="font-size:16px;">&laquo;</span><span style="margin:0px 5px">年</span><span id="nextYear" onClick="getNextYear()" style="font-size:16px;">&raquo;</span></div>
+</div>
+<script type="text/javascript">
+var today=new Date();
+var year=today.getFullYear();      
+var month=today.getMonth()+1; 
+var day=today.getDate(); 
+var week=new Date(year,month-1,day).getDay();
+function u(elemID){return document.getElementById(elemID);}
+u("NowDate").innerHTML=year+" "+month+"."+day+" "+transWeek(week);
+
+window.onload=getCalendar();
+function transWeek(week){
+	switch(week){
+		case 0:return "Sun";break;
+		case 1:return "Mon";break;
+		case 2:return "Tue";break;
+		case 3:return "Wed";break;
+		case 4:return "Thu";break;
+		case 5:return "Fri";break;
+		case 6:return "Sat";break;
+		}
+	}
+function getCalendar(){
+	var count=1;
+	var FirstDay=new Date(year,month-1,1).getDay();
+	var MonthDays=new Date(year,month,0).getDate();
+	if(day>MonthDays)day=1;else day=today.getDate();
+	
+	
+	getChangedDate();
+	var html="<tr>";
+	for(var i=1;i<=FirstDay;i++){
+		html+="<td style=\"cursor:default;\"></td>";
+		
+		count++;
+	}
+	for(var i=1;i<=MonthDays;i++){
+		if(i==day){
+			html+="<td style=\"background-color:#FF6840;color:#FFFFFF;\">"+i+"</td>";
+			}
+		else{html+="<td id="+i+" onClick=\"getSelectedDay("+i+");\">"+i+"</td>";}
+		if(count==7){
+			
+			html+="<tr>"+"</tr>";
+			count=0;
+			}
+		count++;
+		}u("DayTable").innerHTML=html+"</tr>";
+}
+function getPreMonth(){if(month>1){month--;getCalendar()}}	
+function getNextMonth(){if(month<12){month++;getCalendar()}}	
+function getPreYear(){year--;getCalendar()}	
+function getNextYear(){{year++;getCalendar()}}
+var preday=0;
+function getSelectedDay(yourDay){
+	day=yourDay;
+	getChangedDate();
+	u(day).style.backgroundColor="#C09";
+	if(preday!=0)u(preday).style.backgroundColor="transparent";
+	preday=day;
+}
+function getChangedDate(){u("cusDate").innerHTML=year+"-"+month+"-"+day;}
+	
+
+    </script>
+</body>
+</html>

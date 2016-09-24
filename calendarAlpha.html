@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>calendar</title>
+    <style type="text/css">
+	#Calendar{
+		margin:auto;
+		margin-top:100px;
+		background-color:#FFFBDF;
+		width:350px;
+		border:#666 1px solid;
+		text-align:center;
+		}
+	.ttd{	
+		background-color:#5BB5EC;
+	}
+	#DayTable{
+		border:0px #FFFFFF solid;
+		background-color: #FFF;
+		width:350px;
+		font-size:22px;
+		color:#FFA67E;	
+		}
+	#WeekTable{
+		width:350px;
+		height:45px;
+		border:#FFF 0px solid;
+		background-color: #FFF;
+	} 
+    </style>
+</head>
+<body style="background-color:#F5F5F5;">
+<div id="Calendar">
+<div style="color:#FFAA7E; font-size:21px; padding:8px 0px;"id="NowDate">这里是当前日期</div>
+<div id="WeekList">
+<table id="WeekTable">
+  <tr style="text-align:center; font-size:23px;color:#FFF;">
+    <td style="background-color:#FFF5B4;color:#FFAB68;">日</td>
+    <td class="ttd">一</td>
+    <td class="ttd">二</td>
+    <td class="ttd">三</td>
+    <td class="ttd">四</td>
+    <td class="ttd">五</td>
+    <td class="ttd">六</td>
+  </tr>
+</table>
+</div>
+<div id="DayList"><table id="DayTable"></table></div>
+</div>
+<script type="text/javascript">
+var count=1;
+var today=new Date();
+var year=today.getFullYear();      
+var month=today.getMonth()+1; 
+var day=today.getDate(); 
+var FirstDay=new Date(year,month-1,1).getDay();
+var MonthDays=new Date(year,month,0).getDate();
+function u(elemID){return document.getElementById(elemID);}
+
+u("NowDate").innerHTML=year+"年"+month+"月"+day+"日";
+var html="<tr>";
+for(var i=1;i<=FirstDay;i++){
+	html+="<td style=\"background-color:#F5F5F5;\"></td>";
+	
+	count++;
+}
+for(var i=1;i<=MonthDays;i++){
+	if(i==day){
+		html+="<td style=\"background-color:#FF6840;color:#FFFFFF;\">"+i+"</td>";
+		}
+	else{html+="<td style=\"background-color:#FFFBDF;color:#FFAB68;\">"+i+"</td>";}
+	if(count==7){
+		
+		html+="<tr>"+"</tr>";
+		count=0;
+		}
+	count++;
+	}u("DayTable").innerHTML=html+"</tr>";
+
+    </script>
+</body>
+</html>

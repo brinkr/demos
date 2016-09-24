@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>使用JS动态改变导航栏效果</title>
+    <style type="text/css">
+	#menu{width:770px; margin:auto; margin-top:50px; height:30px; background:#36F; font-size:12px;}
+	li{float:left;padding:0px 20px; cursor:pointer;};
+    </style>
+</head>
+<body style="background-color:#CCC;">
+
+<div id="menu">
+<ul style="list-style:none; line-height:30px; color:#FFF; text-align:center; margin:auto;">
+    <li class="11">首　页</li>
+    <li>家用电器</li>
+    <li>手机数码</li>
+    <li>日用百货</li>
+    <li>书　籍</li>
+    <li>帮组中心</li>
+    <li>免费开店</li>
+    <li>全球咨询</li>
+</ul>
+</div>
+<script type="text/javascript">
+var len=document.getElementsByTagName("li");
+for(var i=0;i<len.length;i++){
+	len[i].onmouseover=function(){
+		this.style.fontSize="14px";
+		this.style.backgroundColor="#F66";
+	}
+	len[i].onmouseout=function(){
+		this.style.fontSize="12px";
+		this.style.backgroundColor="#36F";			
+	}		
+}
+</script>
+</body>
+</html>

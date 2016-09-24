@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>clock</title>
+    <style type="text/css">
+    #clock{text-align:center; font-size:18px;}
+    #timing{text-align:center;}
+    #p{text-align:center;}
+    </style>
+</head>
+<body>
+<div id="title" style="text-align:center;"><h1>Time waits for no one</h1></div>
+<div id="clock"></div>
+<div id="timing" style="padding-top:20px;">Time Keeper<br>
+<button id="record" style="margin:10px 0px 15px 0px;">开始</button>
+</div>
+<div id="timecut" style="text-align:center;"></div>
+<div id="timecutlist" style="text-align:center;"></div>
+<script type="text/javascript">
+var mscount=0,sdcount=0,mtcount=0,hrcount=0,flag=0,out="",display="";
+	function showTime(){
+	  var myDate=new Date();
+	  var hour=myDate.getHours();
+	  var minutes=myDate.getMinutes();
+	  var seconds=myDate.getSeconds();
+	  //var flag=0;
+	  if(hour<10) hour="0"+hour;
+	  if(minutes<10) minutes="0"+minutes;
+	  if(seconds<10) seconds="0"+seconds;
+	  document.getElementById("clock").innerHTML="当前的时间是："+hour+":"+minutes+":"+seconds;	 
+	  setTimeout("showTime()",1000);	  
+	}window.onload=showTime;
+   function recordTime(){
+	   //var time=new Date();
+	   //var ms=time.getMilliseconds();
+	   //ms++;
+	   mscount+=11;
+	   while(mscount/1000>=1){mscount=0;sdcount++;}
+	   while(sdcount/60==1){sdcount=0;mtcount++;}
+	   while(mtcount/60==1){mtcount=0;hrcount++;}
+	   out=hrcount+":"+mtcount+":"+sdcount+":"+mscount;
+	   document.getElementById("timecut").innerHTML=out;
+	   setTimeout("recordTime()",11);
+	   
+	   
+	}
+ 	document.getElementById("record").onclick=function(){
+		document.getElementById("record").innerHTML="计时";
+		if(flag==0){
+			recordTime();
+			//display+="<p>"+out+"</p>";
+			document.getElementById("timecut").innerHTML=out;	
+			flag++;		
+		}else{
+			display+="<p>第"+flag+"次计时："+out+"</p>";
+			flag++;
+			document.getElementById("timecutlist").innerHTML=display;
+			}
+	  };
+  
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>finger-guessing game</title>
+<script type="text/javascript">
+function getPlayerAns(tips){
+	var player=prompt(tips,"石头");
+	if(player.indexOf("剪刀")>-1||player.indexOf(1)>-1) player="剪刀";
+	else if(player.indexOf("石头")>-1||player.indexOf(2)>-1) player="石头";
+	else if(player.indexOf("布")>-1||player.indexOf(3)>-1) player="布";
+	else if(player=="#") player="#";
+	else player=-1;
+	return player;
+}
+function getComputerAns(){
+	if (Math.random()<1/3) computer="剪刀";
+	else if(Math.random()>1/3) computer="石头";
+	else computer="布";
+	return computer;
+}
+function getResult(player,computer){	
+	if(computer==player) alert("你和电脑都出"+player+"，平局。");
+	else if((computer=="剪刀"&&player=="石头")||(computer=="石头"&&player=="布")||(computer=="布"&&player=="剪刀"))
+		alert("电脑出"+computer+"，你却出"+player+"，你赢了！");
+	else alert("电脑出"+computer+"，你却出"+player+"，你输了！");		
+}
+for(;;){
+	var PlayerAns=getPlayerAns("你要出1.剪刀、2.石头还是3.布？输入#退出游戏。");
+	if(PlayerAns=="#") break;
+		else{
+			while(PlayerAns==-1){		
+			PlayerAns=getPlayerAns("输入非法，请重新输入：剪刀、石头或布！");			
+		}getResult(PlayerAns,getComputerAns());
+	}
+}
+</script>
+</head>
+<body>
+</body>
+</html>

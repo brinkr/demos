@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>calendar</title>
+    <style type="text/css">
+	.selectlist{
+		border-width:0px;
+		background-color:#FFFBDF;
+		color:#FFAB68;
+		font-size:21px;
+		}
+	.thisMonth{	
+		background-color:#FFFBDF;
+		color:#FFAB68;
+		border:#FFF 1px solid;
+		}
+	.pastMonth{	
+		background-color:#F5F5F5;
+		border:#FFF 1px solid;
+		}
+	.nextMonth{
+		background-color:#F5F5F5;
+		border:#FFF 1px solid;
+	}
+	td:hover{
+		color:red;
+		background-color:#6CF;
+		}
+	#Calendar{
+		margin:auto;
+		margin-top:100px;
+		background-color:#FFFBDF;
+		width:350px;
+		border:#666 1px solid;
+		text-align:center;
+		}
+	.ttd{	
+		background-color:#5BB5EC;
+		border:#FFF 1px solid;
+	}
+	#DayTable{
+		border:0px #FFFFFF solid;
+		background-color: #FFF;
+		width:350px;
+		font-size:22px;
+		color:#FFA67E;	
+		}
+	#WeekTable{
+		width:350px;
+		height:45px;
+		border:#FFF 0px solid;
+		background-color: #FFF;
+	} 
+    </style>
+</head>
+<body style="background-color:#F5F5F5;">
+<div id="Calendar">
+<div style="color:#FFAA7E; font-size:21px; padding:8px 0px;"id="NowDate">
+<select id="YearList" class="selectlist"></select>年　<select id="MonthList" class="selectlist"></select>月
+</div>
+<div id="WeekList">
+<table cellspacing="0" id="WeekTable">
+  <tr style="text-align:center; font-size:23px;color:#FFF;">
+    <td style="background-color:#FFF5B4;color:#FFAB68;border:#FFF 1px solid;">日</td>
+    <td class="ttd">一</td>
+    <td class="ttd">二</td>
+    <td class="ttd">三</td>
+    <td class="ttd">四</td>
+    <td class="ttd">五</td>
+    <td class="ttd">六</td>
+  </tr>
+</table>
+</div>
+<div id="DayList"><table cellspacing="0" id="DayTable"></table></div>
+</div>
+<script type="text/javascript">
+function u(elemID){return document.getElementById(elemID);}
+var today=new Date();
+var year=today.getFullYear();      
+var month=today.getMonth()+1;
+var YearList=u("YearList");
+var MonthList=u("MonthList");
+//var index=Month.selectedIndex; 
+for(var i=year;i>1969;i--){
+	YearList.add(new Option(i,i));
+}
+for(var i=1;i<13;i++){
+	MonthList.add(new Option(i,i));
+}
+MonthList.options[month-1].selected=true;
+YearList.onchange=function(){year=u("YearList").value;makeCalendar();}
+MonthList.onchange=function(){month=u("MonthList").value;makeCalendar();}
+window.onload=makeCalendar();
+function makeCalendar(){
+	var count=1;
+	var day=today.getDate();
+	var FirstDay=new Date(year,month-1,1).getDay();
+	var MonthDays=new Date(year,month,0).getDate();
+	var LastDays=new Date(year,month-1,0).getDate();
+	if(day>MonthDays)day=1;else day=today.getDate(); 
+
+	//alert(LastDays);
+	var html="<tr>";
+	for(var i=1;i<=FirstDay;i++){html+="<td class=\"pastMonth\">"+(LastDays-FirstDay+i)+"</td>";count++;}
+	for(var i=1;i<=MonthDays;i++){
+		if(i==day){html+="<td style=\"background-color:#FF6840;color:#FFFFFF;\">"+i+"</td>";}
+		else{html+="<td class=\"thisMonth\">"+i+"</td>";}
+		if(count==7){html+="<tr>"+"</tr>";count=0;}
+		count++;
+	}
+	for(var i=1;i<=8-count;i++){html+="<td class=\"nextMonth\">"+(i)+"</td>";}
+	u("DayTable").innerHTML=html+"</tr>";
+	//u("NowDate").innerHTML=year+"年"+month+"月"+day+"日";
+}
+
+    </script>
+</body>
+</html>

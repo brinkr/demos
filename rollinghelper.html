@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>rolling helper</title>
+    <style type="text/css">
+#roll-area{
+	width:300px;
+	height:200px;
+	background-color:#FFF;
+	margin:auto;
+	text-align:center;
+	}
+    </style>
+</head>
+<body style="background-color:#CCC">;
+<div id="roll-area">
+<p id="name" style="font-size:36px; padding-top:50px;">Rolling Area</p>
+<input id="rolling" style="font-size:26px;" type="button" value="开始" onClick="display()"></div>
+<script type="text/javascript">
+
+var namelist = [[1,"徐恩翔"], [2,"许其培"],[3,"曹杰成"],[4,"莫伟浩"],[5,"林伟源"],[6,"何伟健"],[7,"庞扬龙"],[8,"蔡培颖"],[9,"张晓聪"],[10,"周树标"],[11,"何豫年"],[12,"许百富"],[13,"曾沛文"],[14,"罗志祥"],[15,"陈金华"],[16,"严伟森"],[17,"姚恒盼"],[18,"袁东威"],[19,"周春洋"],[20,"李玉升"],[21,"陈晓峰"],[22,"毛浩俊"],[23,"阮成斌"],[24,"黄真强"],[25,"汤绍栩"],[27,"谢志熊"],[28,"陈校培"],[29,"吴伟祥"],[30,"许英汉"],[31,"洪柏瀚"]];
+
+var rolling;
+	function r(){			
+		var r=Math.floor(Math.random()*namelist.length);
+		document.getElementById("name").innerHTML=(namelist[r][0]+" "+namelist[r][1]+" ");
+		rolling=setTimeout("r()",50);
+	}
+function display(){	
+	if(document.getElementById("rolling").value=="开始"){
+		document.getElementById("rolling").value="结束";	
+		r();	
+	}else{
+		document.getElementById("rolling").value="开始"
+		clearTimeout(rolling)
+	}
+}
+</script>
+</body>
+</html>

@@ -6,12 +6,10 @@
     <style type="text/css">
   #area{width:500px; height:500px; margin:auto; background-color:#FFF;position:relative;border-radius:300px;}
   #secLine{width:500px; height:500px; margin:auto; background-color:transparent;position:relative; margin-top:-500px; z-index:9;}  #minLine{width:500px; height:500px; margin:auto; background-color:transparent;position:relative; margin-top:-500px; z-index:6;}  #hurLine{width:500px; height:500px; margin:auto;background-color:transparent;position:relative;margin-top:-500px; z-index:3;}  
-  #scaleLine{width:500px; height:500px; margin:auto;background-color:transparent;position:relative;margin-top:-500px; z-index:12;}  
-  .scale{text-align:left;position:absolute;color:#F00;font-size:12px;width:1px; height:1px;}
-  .secLine{position:absolute;background-color:#000;width:1px;height:2px;}
-  .minLine{position:absolute;background-color:#00F;width:3px;height:4px;}
-  .hurLine{position:absolute;background-color:#F00;width:5px;height:6px;}
-
+  #scaleLine{width:500px; height:500px; margin:auto;background-color:transparent;position:relative;margin-top:-500px; z-index:12;}  .scale{text-align:center;position:absolute;color:#F00;font-size:12px;width:12px; height:12px;}
+  .secLine{position:absolute;background-color:#000;width:2px;height:2px;}
+  .minLine{position:absolute;background-color:#00F;width:4px;height:4px;}
+  .hurLine{position:absolute;background-color:#F00;width:6px;height:6px;}
     </style>
 </head>
 <body style="padding-top:50px; background-color:#FC9;">
@@ -21,12 +19,10 @@
 <div id="hurLine"></div>
 <div id="scaleLine">
 </div>
-
 <script type="text/javascript">
-var seccount=1,hurcount=1;var n;
-function u(elem){return document.getElementById(elem)};
-function drawLine(x,y,r,f,t){
-	var mytime=new Date();seccount++;hurcount++;
+var n;function u(elem){return document.getElementById(elem)};
+function drawLine(x,y,r,w,f,t){
+	var mytime=new Date();
 	var sec=mytime.getSeconds();
 	var mint=mytime.getMinutes();
 	var hur=parseFloat(mytime.getHours()+mint/60);
@@ -37,31 +33,25 @@ function drawLine(x,y,r,f,t){
 	u(t).innerHTML="";
 	for(var i=0;i<=r;i++){
 		theta=parseFloat(n/f);
-		x=Math.sin(theta*2*Math.PI)+x;y=Math.cos(theta*2*Math.PI)+y;
+		x=w*Math.sin(theta*2*Math.PI)+x;y=w*Math.cos(theta*2*Math.PI)+y;
 		u(t).innerHTML+="<div class=\""+t+"\" style=\"left:"+x+"px;top:"+(-y)+"px;\"></div>";					
 	}
-	//if(seccount/10>=1){seccount=1;drawLine(250,-250,100,60,"minLine");}
-	//if(hurcount/100>=1){hurcount=1;drawLine(250,-250,100,24,"hurLine");}
-	//drawLine(250,-250,100,60,"minLine");
 }
-function drawClock(){	//var x=250,y=250;
+function drawClock(){
 		for(var i=0;i<12;i++){
 			if(i==0) t=12;
 			else t=i;
-			theta=parseFloat(i/12);x=250;y=250;
-			x=250+200*Math.sin(theta*2*Math.PI);y=-250+200*Math.cos(theta*2*Math.PI);
-			u("scaleLine").innerHTML+="<div class=\"scale\" style=\"left:"+x+"px;top:"+(-y)+"px;\">"+t+"</div>";			
+			theta=parseFloat(i/12);x=250;y=-250;
+			x+=200*Math.sin(theta*2*Math.PI);y+=200*Math.cos(theta*2*Math.PI);
+			u("scaleLine").innerHTML+="<div class=\"scale\" style=\"left:"+x+"px;top:"+(-y)+"px;\">"+t+"</div>";
+			drawLine(247,-247,50,2,12,"hurLine");drawLine(248,-248,80,2,60,"minLine");drawLine(249,-249,180,1,60,"secLine");	
 		}
-	
 }
 window.onload=drawClock;
-	
-var sectimer=setInterval('drawLine(250,-250,180,60,"secLine"),drawLine(249,-249,150,60,"minLine"),drawLine(248,-248,100,12,"hurLine")',1000);
+var hurtimer=setInterval('drawLine(247,-247,50,2,12,"hurLine")',120000);
+var mintimer=setInterval('drawLine(248,-248,80,2,60,"minLine")',20000);
+var sectimer=setInterval('drawLine(249,-249,180,1,60,"secLine")',1000);
 
-/*
-var mintimer=setInterval('drawLine(250,-250,100,60,"minLine")',30000);
-var hurtimer=setInterval('drawLine(250,-250,100,24,"hurLine")',60000);
-*/  
 </script>
 </body>
 </html>

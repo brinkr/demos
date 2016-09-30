@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>下拉列表框</title>
+    <style type="text/css">
+    </style>
+</head>
+<body>
+<div style="text-align:center; margin-top:50px;font-size:14px;">Locate:广东省
+<select id="city" onChange="showList()">
+</select>
+<select id="district">
+</select></div>
+<script type="text/javascript">
+var citylist=[[1,"珠海市"],[2,"广州市"],[3,"深圳市"]];
+var districtlist=[[1,"香洲区"],[1,"斗门区"],[1,"金湾区"],[2,"越秀区"],[2,"荔湾区"],[2,"珠海区"],[2,"天河区"],[2,"白云区"],[2,"黄埔区"],[2,"番禺区"],[2,"花都区"],[2,"南沙区"],[2,"增城区"],[2,"从化区"],[3,"福田区"],[3,"罗湖区"],[3,"南山区"],[3,"盐田区"],[3,"宝安区"],[3,"龙岗区"]];
+var city=document.getElementById("city");
+var district=document.getElementById("district");
+for(var i=0;i<citylist.length;i++){city.add(new Option(citylist[i][1],i+1));}
+showList();
+function showList(){
+	district.innerHTML="";
+	var cityid=city.value;
+	for(var i=0;i<districtlist.length;i++){
+		if(districtlist[i][0]==cityid)
+			district.add(new Option(districtlist[i][1],i+1));	
+	}
+}
+</script>
+</body>
+</html>

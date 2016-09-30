@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<script type="text/javascript">
+function addRow(){
+	var addTable=document.getElementById("order");
+	var row_index=addTable.rows.length-1;
+	var newRow=addTable.insertRow(row_index);
+	newRow.id="row"+row_index;
+	var col1=newRow.insertCell(0);
+	col1.innerHTML="金克拉狗眼";
+	var col2=newRow.insertCell(1);
+	col2.innerHTML=row_index;
+	var col3=newRow.insertCell(2);
+	col3.innerHTML="&yen;49.00";
+	var col4=newRow.insertCell(3);
+	col4.innerHTML="<input name='del"+row_index+"'type='button' value='删除' onclick=\"delRow('row"+row_index+"')\"/>";		
+}
+function delRow(rowId){
+	var row=document.getElementById(rowId).rowIndex;
+	document.getElementById("order").deleteRow(row);	
+}
+
+
+</script>
+
+    <meta charset="UTF-8">
+    <title>HTML DOM法动态添加表格</title>
+    <style type="text/css">
+    </style>
+</head>
+<body style="background-color:#CCC;">
+<table style="margin:auto; margin-top:30px;" border="0" cellspacing="0" cellpadding="0" id="order">
+<tr class="title" style="text-align: center">
+<td>商品名称</td>
+<td>数量</td>
+<td>价格</td>
+<td>操作</td>
+</tr>
+<tr id="dell" style="text-align: center">
+<td>防滑真皮休闲鞋</td>
+<td>12</td>
+<td>&yen;568.50</td>
+<td><input name="rowdel" type="button" value="删除" onClick='delRow("dell")'/></td>
+</tr>
+<tr style="text-align: center">
+<td colspan="4">
+<input name="addOrder" type="button" value="增加订单" onClick="addRow()"/></td>
+</tr>
+</table>
+</body>
+</html>

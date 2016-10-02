@@ -127,7 +127,7 @@ function showTime(){
 	  document.getElementById("clock").innerHTML="当前的时间是："+hour+":"+minutes+":"+seconds;	 
 	  setTimeout("showTime()",1000);	  
 	}var needToDelete=1;
-function deleteAll(){if(needToDelete==1){document.getElementById("search").value="";needToDelete=0;}}
+function deleteAll(){if(needToDelete==1){document.getElementById("search").value="";needToDelete=0;u("search").style.color="#000";}}
 </script>
 </body>
 </html>

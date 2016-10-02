@@ -14,7 +14,6 @@
 <div style="font-size:14px;text-align:center; margin-top:20px;padding-left:16px;">短歌行的不老歌</div>
 <div style="font-size:11px;color:#666;width:220px;padding:10px 0px 0px 20px;">给我一首歌的时间，最近肠胃不好</div>
 <div id="calendarContainer">
-
 <div id="Calendar">
 <div style="font-size:14px;font-weight:bold; padding:8px 0px;"id="NowDate">这里是当前日期</div>
 <div id="WeekList">
@@ -34,8 +33,7 @@
 <div style="font-family:宋体;font-size:13px;text-align:center; margin-top:5px;"><span id="preMonth" onClick="getPreMonth()" style="font-size:16px;">&laquo;</span><span style="margin:0px 5px;">月</span><span id="nextMonth" onClick="getNextMonth()" style="font-size:16px;">&raquo;</span><span id="cusDate" style="margin:0px 12px;font-weight:bold;">2000-01-01</span><span id="preYear" onClick="getPreYear()" style="font-size:16px;">&laquo;</span><span style="margin:0px 5px">年</span><span id="nextYear" onClick="getNextYear()" style="font-size:16px;">&raquo;</span></div>
 </div></div>
 <div class="widgets">搜寻不老歌</div>
-<div><input type="text" id="search" value="王宝强喜登雷霆崖" style=" float:left;margin:10px 0px 0px 21px; color:#999; display:inline;" size="20" onFocus="selectAll()"><div id="go" style=" float:right;width:22px; height:22px; font-size:14px; padding-left:1px; line-height:20px;color:#FFF; margin:10px 1px 0px 0px; text-align:center; font-weight:300; background-image:url(images/cuzbg2.png)"><a href="#">GO</a></div>
- 
+<div><input type="text" id="search" value="王宝强喜登雷霆崖" style=" float:left;margin:10px 0px 0px 21px; color:#999; display:inline;" size="20" onKeyDown="deleteAll()"><div id="go" style=" float:right;width:22px; height:22px; font-size:14px; padding-left:1px; line-height:20px;color:#FFF; margin:10px 1px 0px 0px; text-align:center; font-weight:300; background-image:url(images/cuzbg2.png)"><a href="#">GO</a></div>
   </div>
   <div><div class="widgets" style="margin-top:45px;">不老歌信息</div><div style="margin:0px 0px 0px 20px;">
   <ul style="font-size:12px; list-style:none; line-height:18px; padding:0px 0px 0px 10px;">
@@ -45,31 +43,20 @@
   </div></div>
 <div class="widgets" style="margin-top:0px;">不老歌虫洞</div><div style="margin:10px 0px 0px 22px; width:185px;"><a onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'" style="color:#000; font-size:13px; font-family:宋体; font-weight:400;" href="http://www.fon.org.cn" target="_blank">自然之友-Friends of Nature</a></div></div>
 <div id="right">
-
 <div style="padding:0px 30px;"><h4><a href="#">旅途风光</a></h4>
 <img src="images/scenery1.jpg" width="500" height="200"></div>
-
 <div class="items"><h4><a href="#">上海老街印象</a></h4>
 <div class="time" style="text-align:right; padding-bottom:5px; font-family:宋体; font-size:12px;">2011-01-28 18:16</div>
 <div class="article">上海老街，又称小东门，这里曾是100年前上海开埠后最早灯火辉煌、万商云集的地方，地处上海市黄浦区老城厢，也就是小东门城门所在地。由于历史原因，城门没有被保留下来，但是老城厢环城的9扇门至今仍深深刻在上海人民心中。上海老街所在的小东门地区，原是上海对外贸易、小商品交易的重要场地，见证了上海的经济社会发展。</div>
 <div id="function" style="text-align:right; font-family:宋体; font-size:12px; padding-top:5px;"><a href="#">阅读全文(27)</a> | <a href="#">回复(0)</a> | <a href="#">推送</a></div>
 </div>
-
 <div class="items"><h4><a href="#">苏州游记之山塘</a></h4>
 <div class="time" style="text-align:right; padding-bottom:5px; font-family:宋体; font-size:12px;">2011-02-20 12:42</div>
 <div class="article">山塘街位于古城苏州的西北部，东连红尘中一二等富贵风流之地阊门，西接吴中第一名胜虎丘，全长3600米，因此被称作七里山塘。山塘街始建于公元825年，为唐朝大诗人白居易来苏州担任刺史时所建。有民歌唱到上有天堂，下有苏杭。杭州有西湖，苏州有山塘。两处好地方，无限好风光。这便是对山塘街的生动写照。</div>
 <div id="function" style="text-align:right; font-family:宋体; font-size:12px; padding-top:5px;"><a href="#">阅读全文(19)</a> | <a href="#">回复(0)</a> | <a href="#">推送</a></div>
 </div>
-
 </div>
-
-
-
-
-
-
 <div id="bottom"><div style="text-align:center; padding-top:30px; font-size:12px;"><p>第三周作业</p><p>版权没有，翻版随便</p></div></div>
-
 </div>
 <script type="text/javascript">
 var today=new Date();
@@ -79,7 +66,6 @@ var day=today.getDate();
 var week=new Date(year,month-1,day).getDay();
 function u(elemID){return document.getElementById(elemID);}
 u("NowDate").innerHTML=year+" "+month+"."+day+" "+transWeek(week);
-
 window.onload=getCalendar();
 function transWeek(week){
 	switch(week){
@@ -97,14 +83,11 @@ function getCalendar(){
 	var count=1;
 	var FirstDay=new Date(year,month-1,1).getDay();
 	var MonthDays=new Date(year,month,0).getDate();
-	if(day>MonthDays)day=1;else day=today.getDate();
-	
-	
+	if(day>MonthDays)day=1;else day=today.getDate();		
 	getChangedDate();
 	var html="<tr>";
 	for(var i=1;i<=FirstDay;i++){
-		html+="<td style=\"cursor:default;\"></td>";
-		
+		html+="<td style=\"cursor:default;\"></td>";		
 		count++;
 	}
 	for(var i=1;i<=MonthDays;i++){
@@ -143,9 +126,8 @@ function showTime(){
 	  if(seconds<10) seconds="0"+seconds;
 	  document.getElementById("clock").innerHTML="当前的时间是："+hour+":"+minutes+":"+seconds;	 
 	  setTimeout("showTime()",1000);	  
-	}	
-	function selectAll(){document.getElementById("search").select();}
-    </script>
-
+	}var needToDelete=1;
+function deleteAll(){if(needToDelete==1){document.getElementById("search").value="";needToDelete=0;}}
+</script>
 </body>
 </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>新世界的卡密</title>
+    <style type="text/css">
+    </style>
+    <script type="text/javascript" src="cities.js"></script> 
+</head>
+<body style="background-color:#000;"><h1 style="color:#F00; text-align:center; margin-top:50px;">欢迎你，新世界的卡密！</h1><h3 style="color:#0F0; text-align:center;">请选择一个地区进行精确打击：</h3>
+<div id="warp" style="text-align:center;margin-top:20px;font-size:14px;"><span style="color:#FFF;font-weight:bold;">LOCATE:</span>
+<select id="province" onChange="showWholeList()"></select>
+<select id="city" onChange="showAreaList()"></select>
+<select id="area"></select><input style="background:#F00; color:#FFF; font-size:20px; font-weight:bold; margin:auto; cursor:pointer;margin-top:20px; display:block; border-width:0px; padding:5px 10px;" type="button" value="RECONSTRUCT" onMouseOver="this.style.color='#F00';this.style.backgroundColor='#0F0'" onMouseOut="this.style.color='#FFF';this.style.backgroundColor='#F00'";><p style="color:#00F;font-size:12px; margin-top:20px;">这个世界已经歪曲，只有被选中之人，才能触发按钮，带领人们进入新世界。</p>
+<img src="nerv.jpg" width="580" height="245"><span style="color:#F00; font-size:12px; line-height:6px;"><p>1984-2016</p><p>人类革新联盟</p><p>人类补完计划委员会</p></span></div>
+
+<script type="text/javascript">
+var province=document.getElementById("province");
+var city=document.getElementById("city");
+var area=document.getElementById("area");
+window.onload=function(){
+	for(var i=0;i<cityJson.length;i++){
+		if(cityJson[i].postcode.substr(2,4)=="0000")
+			province.add(new Option(cityJson[i].name,cityJson[i].postcode));
+	}showWholeList();	
+}
+function showWholeList(){
+	city.innerHTML="";area.innerHTML="";
+	for(var i=0;i<cityJson.length;i++){		
+		if(province.value.substr(0,2)==cityJson[i].postcode.substr(0,2)&&cityJson[i].postcode.substr(2,2)!="00"&&cityJson[i].postcode.substr(4,2)=="00")
+			city.add(new Option(cityJson[i].name,cityJson[i].postcode));
+		else if(city.value.substr(0,4)==cityJson[i].postcode.substr(0,4))
+			area.add(new Option(cityJson[i].name,cityJson[i].postcode));	
+	}
+}
+/*--------------------------------------------------------------------------------------------------
+本来只有一个函数，两句整合在一起了，共用了一个循环，但是有迷之BUG，一整晚都没改出来，深深感受到自己智商捉急，故写成两个了。
+---------------------------------------------------------------------------------------------------*/
+function showAreaList(){
+	area.innerHTML="";
+	for(var i=0;i<cityJson.length;i++){	
+	if(city.value.substr(0,4)==cityJson[i].postcode.substr(0,4)&&city.value.substr(4,2)!=cityJson[i].postcode.substr(4,2))
+			area.add(new Option(cityJson[i].name,cityJson[i].postcode));
+	}
+}
+</script>
+</body>
+</html>

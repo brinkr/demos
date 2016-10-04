@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Scratch Game</title>
+    <style type="text/css">
+	#warp{width:500px;height:600px;background-color:#903;margin:auto;z-index:99;position:relative;}
+    #scratch-area{margin:auto;padding-top:80px;width:200px;height:100px;}
+	.cover{background-color:#999;height:5px;width:8px;float:left;position:relative;z-index:3;}
+	#result{width:500px;height:40px;color:#000;font-size:18px;font-weight:bold;text-align:center;position:absolute;z-index:1;line-height:36px;left:0px;
+	    -moz-user-select:none;/*兼容多浏览器的使文字不可选的CSS方法*/
+      	-webkit-user-select:none;/*实测IE下好像无效*/
+      	user-select:none;}
+	#tips p{color:#FFF;text-align:center;margin:3px 0px;font-size:12px;}
+    </style>
+</head>
+<body style="background-color:#CCC;"><div id="warp" onMouseDown="isLeftButtonDown()" onMouseUp={KeyValue=-1;}><div style="text-align:center;color:#FFF;padding-top:50px;"><h1>搏一搏，单车变摩托！</h1></div>
+<div id="scratch-area"><div id="result"></div></div>
+<div id="tips"><h2 id="showRes" style="text-align:center;margin:-20px 0px 30px 0px;color:#F00;height:20px;"></h2>
+  <p>一等奖：5毛　</p><p>二等奖：5日元</p><p>三等奖：5美分</p><p>参与奖：5韩元</p>
+  <h2 style="text-align:center;color:#FF0;padding-top:80px;">本活动由澳门神话大赌场豪情赞助！</h2></div>
+</div>
+<script type="text/javascript">
+var CoverArea=document.getElementById("scratch-area");
+for(var i=1;i<=200;i++){
+	CoverArea.innerHTML+="<div class=\"cover\" onMouseOver=\"scratch(this)\"></div>";	
+}
+window.onload=function(){result=fetchResult();document.getElementById("result").innerHTML=result;};
+function scratch(obj){
+	if(KeyValue==1){obj.style.backgroundColor="transparent";count++;}
+	obj.style.cursor="pointer";
+	if(count>120&&switcher==1){document.getElementById("showRes").innerHTML="恭喜你喜中"+result+"！";switcher=0;}
+}
+var cover=document.getElementsByClassName("cover");
+var KeyValue=-1,count=0,switcher=1,result="";
+function isLeftButtonDown(){
+	//e=window.event||e;
+	//KeyValue=e.button;
+	KeyValue=1;
+}
+function fetchResult(){
+	var res=Math.random();
+	if(res<0.1) return "一等奖";
+	else if(res>0.1&&res<0.3) return "二等奖";
+	else if(res>0.3&&res<0.6) return "三等奖";
+	else return "参与奖";	
+}
+
+</script>	
+</body>
+</html>

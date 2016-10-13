@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>showmorelist</title>
+    <script src="jquery-3.1.1.min.js"></script>
+    <style type="text/css">
+  * {
+    margin:0;
+	padding:0;
+  }
+  body {
+    font-size:14px;
+    text-align:center;
+    font-family:"黑体";
+  }
+  a {
+    color:#04D;
+    text-decoration:none;
+  }
+  a:hover {
+    color:#F50;
+    text-decoration:underline;
+  }
+  .SubCategoryBox {
+    width:948px;
+    margin:0 auto;
+    text-align:center;
+    margin-top:10px;
+  }
+  .SubCategoryBox ul {
+    list-style:none;
+  }
+  .SubCategoryBox ul li {
+    display:block;
+    float:left;
+    width:200px;
+    line-height:30px;
+  }
+  .showmore {
+    clear:both;
+    text-align:center;
+    padding-top:10px;
+  }
+  .showmore a {
+    display:block;
+    width:120px;
+    margin:0 auto;
+    line-height:24px;
+    border:1px solid #aaa;
+  }
+  .showmore a span {
+    padding-left:15px;
+    background:url(images/down.gif) no-repeat 0 0;
+  }
+  .promoted a {
+    color:#f50;
+  }
+  .head{
+    background:#f2f2f2;
+    padding:5px;
+    height:35px;
+    text-align:left;
+    margin:5px 0px;
+  }
+  .head h3{
+    color:#666;
+    margin-top:10px;
+    margin-left:10px;
+  }
+  .head h3 span {
+    color:#F60;
+  }
+  .promoted {
+    color:#f50;
+  }
+</style>
+</head>
+<body>
+<script type="text/javascript">
+$(document).ready(
+function(){
+	var $category=$("ul li:gt(5):not(:last)");
+	$category.hide();
+	var $toggleBtn=$("div.showmore>a");
+	$toggleBtn.click(
+		function(){
+			if($category.is(":visible")){
+				$category.hide();
+				$(".showmore a span").css("background","url(images/down.gif) no-repeat 0 0").text("显示全部品牌");
+				$("ul li").removeClass("promoted");
+				return false;
+			}else{
+				$category.show();
+				$(".showmore a span").css("background","url(images/up.gif) no-repeat 0 0").text("精简显示品牌");
+				$("ul li:contains('佳能'),ul li:contains('尼康'),ul li:contains('奥林巴斯')").addClass("promoted");
+				return false;
+			}
+		}
+	);
+});
+
+
+</script>
+<div id="nav"><img src="images/xiangji.jpg"/></div>
+  <div class="SubCategoryBox">
+    <div class="head"><h3>商品筛选：<span>热卖相机</span></h3></div>
+    <ul>
+      <li><a href="#">佳能</a></li>
+      <li><a href="#">索尼</a></li>
+      <li><a href="#">三星</a></li>
+      <li><a href="#">尼康</a></li>
+      <li><a href="#">松下</a></li>
+      <li><a href="#">卡西欧</a></li>
+      <li><a href="#">富士</a></li>
+      <li><a href="#">柯达</a></li>
+      <li><a href="#">宾得</a></li>
+      <li><a href="#">理光</a></li>
+      <li><a href="#">奥林巴斯</a></li>
+      <li><a href="#">明基</a></li>
+      <li><a href="#">爱国者</a></li>
+      <li><a href="#">柯达</a></li>
+      <li><a href="#">宾得</a></li>
+      <li><a href="#">理光</a></li>
+      <li><a href="#">奥林巴斯</a></li>
+      <li><a href="#">明基</a></li>
+      <li><a href="#">爱国者</a></li>
+      <li><a href="#">其它品牌相机</a></li>
+	</ul>
+	<div class="showmore"><a href="#"><span>显示全部品牌</span></a></div>
+  </div>
+</body>
+</html>

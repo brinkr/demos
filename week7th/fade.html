@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>FadeIn or FadeOut</title>
+</head>
+<body style="background-color:#CCC;">
+	<div id="content" style="background-color:#333;width:160px;color:#FFF; margin:auto;margin-top:50px;padding:10px 30px;">
+<p>在我的记忆之中</p>
+<p>有一朵紫罗兰熠熠生辉</p>
+<p>这轻狂的姑娘!</p>
+<p>我竟未染指!!</p> 
+<p>妈的,我好不后悔!!!</p>
+</div>
+<div style="text-align:center; margin-top:20px;margin-bottom:50px;">
+<input style="margin-right:50px;" type="button" id="fadein" value="Fade In" onClick="fadeIn()">
+<input type="button" id="fadeout" value="Fade Out" onClick="fadeOut()">
+</div>
+<div align="center">奸容全部浏览器的淡入淡出效果演示</div>
+<script type="text/javascript">
+	var obj=document.getElementById("content");
+	var opaVal1=0,opaVal2=1;;
+	function fadeIn(){	
+		var timer1=setTimeout("fadeIn()",10);	
+		if(opaVal1<1){
+			opaVal1+=0.005;
+			document.getElementById("fadein").disabled="true";
+			document.getElementById("fadeout").disabled="true";
+			obj.style.filter="alpha(opacity="+opaVal1*100+")";
+			obj.style.opacity=opaVal1;
+		}else{			
+			document.getElementById("fadein").removeAttribute("disabled");
+			document.getElementById("fadeout").removeAttribute("disabled");
+			clearTimeout(timer1);
+			opaVal1=0;
+		}		
+	}	
+	function fadeOut(){
+		var timer2=setTimeout("fadeOut()",10);	
+		if(opaVal2>0){
+			opaVal2-=0.005;
+			document.getElementById("fadein").disabled="true";
+			document.getElementById("fadeout").disabled="true";
+			obj.style.filter="alpha(opacity="+opaVal2*100+")";
+			obj.style.opacity=opaVal2;
+		}else{
+			document.getElementById("fadein").removeAttribute("disabled");
+			document.getElementById("fadeout").removeAttribute("disabled");
+			clearTimeout(timer2);
+			opaVal2=1;
+		}
+	}
+	
+
+</script>
+</body>
+</html>

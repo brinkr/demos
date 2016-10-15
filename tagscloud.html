@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tags Cloud</title>
+    <style type="text/css">
+    #tagscontainer{width:300px;height:500px;margin:auto;margin-top:30px;border:#999 solid 1px; position:relative; background-color:#FFF;}
+	.flowingtags:hover{background-color:#CCC;}
+    .flowingtags{position:absolute; padding:0px 0px; margin:0px; left:0px;top:100px; font-size:12px; height:29px; border:#999 solid 0px; line-height:30px;}
+    </style>
+    <script src="jquery-3.1.1.min.js"></script>
+</head>
+<body style="background-color:#333;">
+<div id="tagscontainer"></div>
+
+<script type="text/javascript">
+var tagslist=[["圆明园职业技术学院",2],["积水潭师专",2],["明光村中学附属大学",2],["军都山政法干校",2],["广东应用文理综合学院",2],["广州市广州大学城广州世界一流大学",0],["蓝翔技校",10],["新东方烹饪学校",10],["新华电脑专修学校",12],["东川路男子职业技术学院",2],["闵行女子高等师范专科学院",2],["五道口男子职业技术学院",2],["南七技校",2],["音乃木坂学院",2],["沈阳白塔小学",6],["县立北高校",2],["珠海女子中学",8]];  
+
+var tagscontainer=document.getElementById("tagscontainer");
+var tags=document.getElementsByClassName("flowingtags");
+var tagX=0,tagY=0;var opo=new Array();
+for(var i=0;i<tagslist.length;i++){	
+	tagscontainer.innerHTML+="<div class='flowingtags' style=top:"+(100+i*29)+"px;onMouseOver='test()''> "+tagslist[i][0]+"</div>";
+	tags[i].style.fontSize=12+tagslist[i][1]+"px";
+	tags[i].style.color="rgb("+tagslist[i][1]*(2*tagslist[i][1])+",0,0)";	
+	opo[i]=1;
+	tags[i].style.left=20+Math.random()*80+"px";
+
+}
+function moving(){
+	for(var i=0;i<tagslist.length;i++){
+		fetchPosition(i);
+		var val;
+		if(tagY<100){
+			//val=300;
+			opo[i]-=0.015;
+			tags[i].style.opacity=opo[i];
+			val=tagY-1;
+			if(tagY<10) {
+				val=500;opo[i]=0;
+				tags[i].style.left=20+Math.random()*80+"px";
+ 			}
+		}
+		else if(tagY>400){
+			opo[i]+=0.01;
+		tags[i].style.opacity=opo[i];
+		val=tagY-1;
+		}
+		else	
+			val=tagY-1;		
+		tags[i].style.top=val+"px";		
+	}	
+}
+function fetchPosition(i){
+	if(tags[i].currentStyle){
+		tagX=parseInt(tags[i].currentStyle.left);
+		tagY=parseInt(tags[i].currentStyle.top);		
+	}else{
+		tagX=parseInt(document.defaultView.getComputedStyle(tags[i],null).left);
+		tagY=parseInt(document.defaultView.getComputedStyle(tags[i],null).top);
+		
+	}
+}
+setInterval("moving()",20);
+function test(){alert("a");}
+//tagscontainer.addEventListener('onmouseover', test(), false);
+/*
+function fetchPosition(i){
+	if(tags[i].currentStyle){return parseInt(tags[i].currentStyle.left);}
+	else{
+		return parseInt(document.defaultView.getComputedStyle(tags[i],null).left);
+	}
+}
+var oleft=-90;
+for(var i=0;i<tagslist.length;i++){	
+	
+	//tagscontainer.innerHTML+="<div class='flowingtags' style=top:"+i*20+"px;>"+tagslist[i][0]+"</div>"
+	tagscontainer.innerHTML+="<div class='flowingtags'>"+tagslist[i][0]+"</div>"
+	//if(tags[i].style)
+	oleft+=90;
+	
+
+	
+	tags[i].style.left=oleft+"px";
+	if(fetchPosition(i)>680) {oleft=-90;tags[i].style.top="60px";}
+}*/
+	//var x;
+	//alert(fetchPosition(10));
+  
+/*
+$(document).ready(function(){
+	for(var i=0;i<tags.length;i++){
+		$('#tagscontainer').append("<div class='flowingtags'>"+tags[i][0]+"</div>");    
+		//$('.flowingtags').bind('click',function(){});		
+	} 
+//$('#tagscontainer').animate({top:'150px;'},"slow");
+
+ $('.flowingtags').animate({
+      top:'0px' 
+    },2000,backToBottom);
+
+var flowingtags=document.getElementsByClassName("flowingtags");
+var h;
+for(var i=0;i<flowingtags.length;i++){
+	h-=20*i;
+		 $('.flowingtags:eq('+i+')').animate({
+      top:h+'px' 
+    },2000,backToBottom);	
+}	
+	function backToBottom(){
+		//alert($('.flowingtags').css("top"));
+		if( $('.flowingtags').css("top")=="0px"){
+				$('.flowingtags').css("top","500px");				
+			}		
+	}
+		//alert($('.flowingtags').css("top"));
+});	*/   
+</script>
+</body>
+</html>

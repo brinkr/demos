@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mini cube</title>
+    <style>body{background-color:#333;}
+    #container{width:680px;height:600px;position:relative;margin:auto;margin-top:5px;}
+    #upside{width:120px;height:120px;left:220px;top:100px;position:absolute;}
+	#frontside{width:120px;height:120px;left:220px;top:220px;position:absolute;}
+	#leftside{width:120px;height:120px;left:100px;top:220px;position:absolute;}
+	#rightside{width:120px;height:120px;left:340px;top:220px;position:absolute;}
+	#backside{width:120px;height:120px;left:460px;top:220px;position:absolute;}
+	#downside{width:120px;height:120px;left:220px;top:340px;position:absolute;}
+	#leftcontrolarea{width:100px;height:120px;left:0px;top:220px;position:absolute;}
+	#rightcontrolarea{width:100px;height:120px;left:580px;top:220px;position:absolute;}
+	#topcontrolarea{width:120px;height:100px;left:220px;top:0px;position:absolute;}
+	#bottomcontrolarea{width:120px;height:100px;left:220px;top:460px;position:absolute;}
+	#f1,#f2,#f3,#f4,#r1,#r2,#r3,#r4,#l1,#l2,#l3,#l4,#u1,#u2,#u3,#u4,#b1,#b2,#b3,#b4,#d1,#d2,#d3,#d4{width:56px;height:56px;float:left; border:#CCC solid 1px;text-align:center;line-height:50px;font-size:30px;color:#000;font-weight:bold;}
+	#f1,#f2,#f3,#f4{background-color:blue;}
+	#r1,#r2,#r3,#r4{background-color:orange;}
+	#l1,#l2,#l3,#l4{background-color:red;}
+	#u1,#u2,#u3,#u4{background-color:yellow;}
+	#d1,#d2,#d3,#d4{background-color:white;}
+	#b1,#b2,#b3,#b4{background-color:green;}
+    </style>
+</head>
+<body>
+<div id="container">
+<div><h1 style="color:#FFF;">膜方——暴力膜，每转90度即可给长者续1秒</h1></div>
+<div id="leftcontrolarea">
+<input id="tl1" type="button" style="margin:20px 0px 0px 50px;" value="←" onClick="turnLeft(0,1,1)">
+<input id="tl2" type="button" style="margin:30px 0px 0px 50px;" value="←" onClick="turnLeft(2,3,1)">
+</div>
+<div id="rightcontrolarea">
+<input id="tr1" type="button" style="margin:20px 0px 0px 20px;" value="→" onClick="turnRight(0,1,1)">
+<input id="tr2" type="button" style="margin:30px 0px 0px 20px;" value="→" onClick="turnRight(2,3,1)">
+</div>
+<div id="topcontrolarea">
+<input id="tu1" type="button" style="margin:60px 20px;" value="↑" onClick="turnUp(0,2,1)">
+<input id="tu2" type="button" style="margin:60px 5px;" value="↑" onClick="turnUp(1,3,1)">
+</div>
+<div id="bottomcontrolarea">
+<input id="td1" type="button" style="margin:20px 20px;" value="↓" onClick="turnDown(0,2,1)">
+<input id="td2" type="button" style="margin:20px 5px;" value="↓" onClick="turnDown(1,3,1)">
+</div>
+<div id="upside"><div id="u1"></div><div id="u2"></div><div id="u3"></div><div id="u4"></div></div>
+<div id="frontside"><div id="f1"></div><div id="f2"></div><div id="f3"></div><div id="f4"></div></div>
+<div id="leftside"><div id="l1"></div><div id="l2"></div><div id="l3"></div><div id="l4"></div></div>
+<div id="rightside"><div id="r1"></div><div id="r2"></div><div id="r3"></div><div id="r4"></div></div>
+<div id="backside"><div id="b1"></div><div id="b2"></div><div id="b3"></div><div id="b4"></div></div>
+<div id="downside"><div id="d1"></div><div id="d2"></div><div id="d3"></div><div id="d4"></div></div>
+<input style=" position:absolute; top:520px; left:200px;" type="button" value="打乱膜方" onClick="transForm()">
+<input style=" position:absolute; top:520px; left:300px;" type="button" value="还原膜方" onClick="transBack(0,0)">
+</div>	
+
+
+<script type="text/javascript">
+var upside=["u1","u2","u3","u4"];
+var downside=["d1","d2","d3","d4"];
+var leftside=["l1","l2","l3","l4"];
+var rightside=["r1","r2","r3","r4"];
+var frontside=["f1","f2","f3","f4"];
+var backside=["b1","b2","b3","b4"];
+var tempside=["f","u","c","k"];
+var track=new Array;
+var rolling=["tra","trb","tla","tlb","tua","tub","tda","tdb"];
+function u(elemId){return document.getElementById(elemId);}
+function turnRight(a,b,s){
+	tempside[a]=backside[a];
+	tempside[b]=backside[b];
+	backside[a]=rightside[a];
+	backside[b]=rightside[b];
+	rightside[a]=frontside[a];
+	rightside[b]=frontside[b];
+	frontside[a]=leftside[a];
+	frontside[b]=leftside[b];
+	leftside[a]=tempside[a];
+	leftside[b]=tempside[b];
+	if(a+b==1){
+		tempside[2]=upside[0];
+		upside[0]=upside[1];
+		upside[1]=upside[3];
+		upside[3]=upside[2];
+		upside[2]=tempside[2];
+		if(s==1)track.unshift("tla");	
+	}
+	if(a+b==5){
+		tempside[3]=downside[0];
+		downside[0]=downside[1];
+		downside[1]=downside[3];
+		downside[3]=downside[2];
+		downside[2]=tempside[3];
+		if(s==1)track.unshift("tlb");		
+	}
+	reDraw();
+}
+function turnLeft(a,b,s){
+	tempside[a]=leftside[a];
+	tempside[b]=leftside[b];
+	leftside[a]=frontside[a];
+	leftside[b]=frontside[b];
+	frontside[a]=rightside[a];
+	frontside[b]=rightside[b];
+	rightside[a]=backside[a];
+	rightside[b]=backside[b];
+	backside[a]=tempside[a];
+	backside[b]=tempside[b];
+	if(a+b==1){
+		tempside[2]=upside[0];
+		upside[0]=upside[2];
+		upside[2]=upside[3];
+		upside[3]=upside[1];
+		upside[1]=tempside[2];
+		if(s==1)track.unshift("tra");	
+	}
+	if(a+b==5){
+		tempside[3]=downside[0];
+		downside[0]=downside[2];
+		downside[2]=downside[3];
+		downside[3]=downside[1];
+		downside[1]=tempside[3];	
+		if(s==1)track.unshift("trb");		
+	}
+	reDraw();
+}
+function turnUp(a,b,s){
+	tempside[a]=upside[a];
+	tempside[b]=upside[b];
+	upside[a]=frontside[a];
+	upside[b]=frontside[b];
+	frontside[a]=downside[a];
+	frontside[b]=downside[b];
+	downside[a]=backside[a];
+	downside[b]=backside[b];
+	backside[a]=tempside[a];
+	backside[b]=tempside[b];
+	if(a+b==2){
+		tempside[2]=leftside[0];
+		leftside[0]=leftside[1];
+		leftside[1]=leftside[3];
+		leftside[3]=leftside[2];
+		leftside[2]=tempside[2];
+		if(s==1)track.unshift("tda");	
+	}
+	if(a+b==4){
+		tempside[3]=rightside[0];
+		rightside[0]=rightside[2];
+		rightside[2]=rightside[3];
+		rightside[3]=rightside[1];
+		rightside[1]=tempside[3];	
+		if(s==1)track.unshift("tdb");		
+	}
+	reDraw();
+}
+function turnDown(a,b,s){
+	tempside[a]=upside[a];
+	tempside[b]=upside[b];
+	upside[a]=backside[a];
+	upside[b]=backside[b];
+	backside[a]=downside[a];
+	backside[b]=downside[b];
+	downside[a]=frontside[a];
+	downside[b]=frontside[b];
+	frontside[a]=tempside[a];
+	frontside[b]=tempside[b];
+	if(a+b==2){
+		tempside[2]=leftside[0];
+		leftside[0]=leftside[2];
+		leftside[2]=leftside[3];
+		leftside[3]=leftside[1];
+		leftside[1]=tempside[2];
+		if(s==1)track.unshift("tua");	
+	}
+	if(a+b==4){
+		tempside[3]=rightside[0];
+		rightside[0]=rightside[1];
+		rightside[1]=rightside[3];
+		rightside[3]=rightside[2];
+		rightside[2]=tempside[3];	
+		if(s==1)track.unshift("tub");		
+	}
+	reDraw();
+}
+function reDraw(){
+	u("frontside").innerHTML="";
+	u("backside").innerHTML="";
+	u("leftside").innerHTML="";
+	u("rightside").innerHTML="";
+	u("downside").innerHTML="";
+	u("upside").innerHTML="";
+	for(var i=0;i<4;i++){
+		u("frontside").innerHTML+="<div id=\""+frontside[i]+"\">"+frontside[i]+"</div>";
+		u("backside").innerHTML+="<div id=\""+backside[i]+"\">"+backside[i]+"</div>";
+		u("leftside").innerHTML+="<div id=\""+leftside[i]+"\">"+leftside[i]+"</div>";
+		u("rightside").innerHTML+="<div id=\""+rightside[i]+"\">"+rightside[i]+"</div>";
+		u("downside").innerHTML+="<div id=\""+downside[i]+"\">"+downside[i]+"</div>";
+		u("upside").innerHTML+="<div id=\""+upside[i]+"\">"+upside[i]+"</div>";		
+	}	
+}
+function transBack(z,y){
+	for(var i=0;i<track.length;i++){
+		switch(track[i]){
+			case "tra":turnRight(0,1,z);break;
+			case "trb":turnRight(2,3,z);break;
+			case "tla":turnLeft(0,1,z);break;
+			case "tlb":turnLeft(2,3,z);break;
+			case "tua":turnUp(0,2,z);break;
+			case "tub":turnUp(1,3,z);break;
+			case "tda":turnDown(0,2,z);break;
+			case "tdb":turnDown(1,3,z);	
+		}	
+	}if(y==0)track.length=0;	
+}
+function transForm(){
+	for(var i=0;i<Math.floor(Math.random()*20+10);i++){		
+		track.push(rolling[Math.floor(Math.random()*8)]);	
+	}transBack(0,1);
+	track.reverse();
+	for(var i=0;i<track.length;i++){
+		switch(track[i]){
+			case "tra":track[i]="tla";break;
+			case "trb":track[i]="tlb";break;
+			case "tla":track[i]="tra";break;
+			case "tlb":track[i]="trb";break;
+			case "tua":track[i]="tda";break;
+			case "tub":track[i]="tdb";break;
+			case "tda":track[i]="tua";break;
+			case "tdb":track[i]="tub";			
+		}		
+	}
+}
+</script>
+
+
+
+</body>
+</html>

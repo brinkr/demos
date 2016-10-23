@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>13</title>
+<style type="text/css">
+input,button{margin:2px 10px;}
+td{text-align:center;}
+</style>
+</head>
+<body>
+<table align="center" style="font-size:14px;border-collapse:collapse;" border="1" bordercolor="#CCCCCC" id="order" cellpadding="0" cellspacing="0">
+<tr style="font-size:16px;">
+<td width="150px" align="center">商品名称</td><td width="80px" align="center">数量</td><td align="center" width="80px;">单价</td><td width="120px" colspan="3" align="center">操作</td>
+</tr>
+<!--
+<tr id="rownew">
+<td>玫瑰保湿面膜</td>
+<td>1</td><td>&yen;5</td><td><input type="button" value="修改" onclick="editRow(this)" /><input type="button" value="删除" onclick="delRow(this)" /><input class="chs" type="checkbox" /></td>
+</tr>-->
+<tr>
+<td id="totalprice" colspan="3">合计：</td>
+<td><input type="button" id="add"  value="添加" onclick="addRow('金克拉狗眼','9','998')"/><input type="button" value="删除" onclick="delAll()"/><input id="chsall" type="checkbox" onclick="checkAll()" /></td>
+</tr>
+</table>
+<script type="text/javascript">
+window.onload=function(){
+	addRow("玫瑰保湿睡眠面膜",1,"48");
+	addRow("康师傅方便面",10,"5");
+	getPrice();	
+}
+function checkAll(){
+	var chk=document.getElementsByClassName("chs");	
+	for(var i=0;i<chk.length;i++){
+		if(document.getElementById("chsall").checked)
+			chk[i].checked=true;
+		else chk[i].checked=false;
+	}	
+}
+function getPrice(){
+	var pricelist=document.getElementsByClassName("price");
+	var n=document.getElementsByClassName("quantity");
+	var totalprice=0;
+	for(var i=0;i<pricelist.length;i++){
+		//console.log(n);
+		totalprice+=parseInt(pricelist[i].innerText.substr(1,pricelist[i].length)*parseInt(n[i].innerText));			
+	}
+	document.getElementById("totalprice").innerHTML="合计：&yen;"+totalprice;
+}
+function addRow(name,quantity,price){
+	/*
+	var row=document.getElementById("order");
+	console.log(row.childNodes[1].childNodes[0].innerHTML);
+	
+	row.childNodes[1].childNodes[0].innerHTML+="<tr><td>金克拉狗眼</td><td>5</td><td>998</td><td><button onclick='editRow(this,1)'>修改</button><button onclick='delRow(this)'>删除</button><input class=\"chs\" type=\"checkbox\"></td></tr>"
+	*/
+//var row=document.getElementById("order").insertRow(1);
+//var rowindex=row.rows.length;
+//var col1=row.insertCell(0);
+/*
+var newRow=document.createElement("tr");
+var col1=document.createElement("td");
+col1.innerHTML="钛合金金克拉狗眼!";
+var col2=document.createElement("td");
+col2.innerHTML="5";
+var col3=document.createElement("td");
+col3.innerHTML="998";
+var col4=document.createElement("td");;
+col4.innerHTML="<button onclick='editRow(this,1)'>修改</button><button onclick='delRow(this)'>删除</button><input class=\"chs\" type=\"checkbox\">";	
+newRow.appendChild(col1);
+newRow.appendChild(col2);
+newRow.appendChild(col3);
+newRow.appendChild(col4);
+var frow=document.getElementById("rownew");
+var row=document.getElementById("rownew").parentNode.insertBefore(newRow,frow);
+*/
+	var row=document.getElementById("order").insertRow(1);
+	//var rowindex=row.rows.length;
+	var col1=row.insertCell(0);
+	col1.innerHTML=name;
+	var col2=row.insertCell(1);
+	col2.innerHTML='<span class="quantity">'+quantity+'</span>';
+	var col3=row.insertCell(2);
+	col3.innerHTML='<span class="price">&yen;'+price+'</span>';
+	var col4=row.insertCell(3);
+	col4.innerHTML="<button onclick='editRow(this)'>修改</button><button onclick='delRow(this)'>删除</button><input class='chs' type='checkbox' />";
+	getPrice();	
+}
+function delRow(obj){
+	var row=obj.parentNode;
+	row=row.parentNode;
+	row.parentNode.removeChild(row);
+	getPrice();		
+}
+function editRow(obj){
+	//alert(obj.parentNode.parentNode.childNodes.length);
+	var childs=obj.parentNode.parentNode.childNodes;
+	//console.log(childs,obj.value);
+	
+	if(obj.innerText=="修改"){
+		childs[0].innerHTML="<td><input style='width:120px;text-align:center;' type='text' value="+childs[0].innerText+"></td>"
+		childs[1].innerHTML="<td><input style='width:50px;text-align:center;' type='text' value="+childs[1].innerText+"></td>"
+		childs[2].innerHTML="<td><input style='width:50px;text-align:center;' type='text' value="+childs[2].innerText+"></td>"	
+		obj.innerText="确认"
+	}else{
+		obj.innerHTML="修改";		
+		childs[0].innerHTML="<td>"+childs[0].firstChild.value+"</td>"
+		childs[1].innerHTML="<td><span class='quantity'>"+childs[1].firstChild.value+"</span></td>"
+		childs[2].innerHTML="<td><span class='price'>"+childs[2].firstChild.value+"</span></td>"
+		getPrice();	
+	}
+	
+	//alert(childs[1].innerHTML);
+	//for(var j=0;j<childs.length;j++){
+		//1 商品名 3价格 4数量
+		//console.log(childs[0].firstChild);
+		
+		//}
+	//document.getElementById("add").ch
+}
+function delAll(){
+	//var node=document.getElementById("order");
+	var chk=document.getElementsByClassName("chs");	
+	for(var i=chk.length-1;i>=0;i--){
+		//console.log(chk[i].parentNode.parentNode.innerHTML);
+		if(chk[i].checked==true){
+			//chk[i]=chk[i].parentNode.parentNode;			
+			chk[i].parentNode.parentNode.parentNode.removeChild(chk[i].parentNode.parentNode);
+		}
+	}getPrice();	
+}
+</script>
+</body>
+</html>

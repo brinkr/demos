@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <style type="text/css">
+    	#close:hover{cursor:pointer;}
+    </style>
+</head>
+<body>
+	<div id="warp" style="margin:auto; width:1001px;"><img src="imgs/top.jpg" width="985" height="492"><img src="imgs/content1.jpg" width="1001" height="524"><img src="imgs/content2.jpg" width="998" height="535"><img src="imgs/foot.jpg" width="1000" height="523"></div>
+    <div id="flowingAD" style="position:absolute;top:0px;left:0px;"><img src="imgs/lady_0007.jpg" width="400" height="258"><img id="close" style="position: absolute; top: 0px; left: 300px;" src="imgs/close.gif" width="100" height="14" onClick="closeAD()"></div>
+<script type="application/javascript">
+	var	adX,adY,ad=document.getElementById("flowingAD");var hs=2;vs=2;var timer;var h,w;
+window.onload=move();
+function move(){
+	h=document.documentElement.clientHeight||window.innerHeight;
+	w=document.documentElement.clientWidth||window.innerWidth;
+	getPosition();
+	   	scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+		scrollLeft = document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft; 	
+		if(adX+400>w+scrollLeft) hs=-hs;
+		if(adY+258>h+scrollTop) vs=-vs;
+		if(adX<scrollLeft) hs=-hs;
+		if(adY<scrollTop) vs=-vs;
+		ad.style.left=adX+hs+"px";
+		ad.style.top=adY+vs+"px";	
+		timer=setTimeout("move()",20);	
+}		
+function closeAD(){
+	document.getElementById("flowingAD").style.display="none";
+}		
+		
+function getPosition(){
+	if(ad.currentStyle){
+		adX=parseInt(ad.currentStyle.left);
+		adY=parseInt(ad.currentStyle.top);
+	}else{
+		adX=parseInt(document.defaultView.getComputedStyle(ad,null).left);
+		adY=parseInt(document.defaultView.getComputedStyle(ad,null).top);
+	}	
+}var scrollTop;var scrollLeft;
+   window.onscroll=function(){  
+   //alert("ss");
+  	clearTimeout(timer);
+   	scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+	scrollLeft = document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft; 
+	getPosition();
+	ad.style.top=adY/9+parseInt(scrollTop)+"px";///////////////////////////////////////////////////////////////
+	if(w<1001) ad.style.left=adX/2+parseInt(scrollLeft)+"px";/*有滚动条的情况下获取的浮动广告位置异常增大，且增大倍数随窗口大小而不同，原因不明。*/
+	else ad.style.left=adX+parseInt(scrollLeft)+"px";/////////////////////////////////////////////////////////
+	move();
+}
+    </script>
+</body>
+</html>

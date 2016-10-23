@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	输入绘制的行数：<input id="length" type="text" value="9"><button onClick="drawGeometry()">绘图</button>
+    <script type="text/javascript">  
+	function drawGeometry(){
+		var n=document.getElementById("length").value;
+		document.body.innerHTML="";
+		document.write("<div style='width:100%;margin:auto;text-align:center;'>");
+		document.write('输入绘制的行数：<input id="length" type="text" value="'+n+'"><button onClick="drawGeometry()">绘图</button>');
+	{//figure one
+		document.write("<div style='float:left;'>");
+		document.write("<div>");
+		for(var j=1;j<=n;j++){
+			for(var i=1;i<=n;i++){
+				if(i==j) document.write("<span style='color:red;'>&yen;</span>")
+				else document.write("&yen;");
+			}
+			document.write("<br>");
+		}document.write("</div>");
+	}{//figure two
+		var m=Math.ceil(n/2);
+		document.write("<div>");
+		for(var j=0;j<n;j++){
+			for(var i=1;i<=n;i++){		
+				if((j+1<=m)&&(i<=j||i>n-j)||(j+1>m)&&(i<=n-j-1||i>(j+1)))document.write("<span style='color:transparent;'>.</span>");
+				else document.write("*");		
+			}
+			document.write("<br>");
+		}	
+		document.write("</div>");
+		document.write("</div>");
+	}{//figure three
+		function getOpposite(x,y,m){
+			if(x>m) x=2*m-x;
+			if(y>m) y=2*m-y;
+			if(x+y==m) return('<span style="color:red;">&copy;</span>')
+				return('<span style="color:transparent;">.</span>');
+			}
+			var l=2*n-1,m=n-1;
+			document.write("<div style='float:left;'>");
+			for(var x=0;x<l;x++){
+				for(var y=0;y<l;y++){
+					document.write(getOpposite(x,y,m));	
+				}
+				document.write("<br>");	
+			}document.write("</div>");
+			document.write("</div>");
+		}
+	}   
+    </script>
+</body>
+</html>

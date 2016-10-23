@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>11</title>
+</head>
+
+<script type="text/javascript">
+//var n=parseInt(prompt("请输入你需要绘制的行数：","5"));\
+var n=9;var m=Math.ceil(n/2);
+//alert(m);
+for(var j=0;j<n;j++){
+	for(var i=1;i<=n;i++){		
+		if((j+1<=m)&&(i<=j||i>n-j)||(j+1>m)&&(i<=n-j-1||i>(j+1)))document.write(".");
+		else document.write("*");		
+	}
+	document.write("<br>");
+}
+/*
+if((j+1<=m)&&(i<=j||i>n-j)||(j+1>m)&&(i<=n-j-1||i>(j+1)))
+不能写为if((i<=j||i>n-j)||(j+1>m)&&(i<=n-j-1||i>(j+1)))
+可以拆解为
+for(var j=0;j<n;j++){
+	for(var i=1;i<=n;i++){
+		if(j+1<=m){
+			if(i<=j||i>n-j)document.write(".");
+			else document.write("*");
+		}else{
+			if(i<=n-j-1||i>(j+1))document.write(".");
+			else document.write("*");
+		}
+	}
+	document.write("<br>");
+}
+*/
+</script>
+<body>
+</body>
+</html>

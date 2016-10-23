@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>13</title>
+</head>
+
+<body>
+<div style="background-image:url(imgs/bg.jpg); background-repeat:repeat-y;width:666px;margin:auto;">
+<h2 align="center">魔兽世界八大种族（图）</h2>
+<div align="center">阵营选择<select id="camp" onchange="getRole()">
+  <option value="1">联盟</option>
+  <option value="2">部落</option>
+</select></div>
+<div align="center">角色选择<select id="role" onchange="getPic()"></select></div>
+<div align="center"><img id="rolepic" src="imgs/humans-small.jpg" /></div></div>
+<script type="text/javascript">
+var rolelist=[["人类",1],["暗夜精灵",1],["矮人",1],["侏儒",1],["兽人",2],["牛头人",2],["亡灵",2],["巨魔",2]];
+var rolepics=["humans-small.jpg","nightelves-small.jpg","dwarves-small.jpg","gnomes-small.jpg","orcs-small.jpg","tauren-small.jpg","undead-small.jpg","trolls-small.jpg"];
+
+var cnp=document.getElementById("camp");
+var role=document.getElementById("role");
+window.onload=getRole();
+function getRole(){
+	
+	role.innerHTML="";
+	if(cnp.value=='1'){
+		for(var i=0;i<rolelist.length;i++){
+			if(rolelist[i][1]==1) role.add(new Option(rolelist[i][0],i));
+		}	
+	}
+	if(cnp.value=='2'){
+		for(var i=0;i<rolelist.length;i++){
+			if(rolelist[i][1]==2) role.add(new Option(rolelist[i][0],i));
+		}	
+	}
+	getPic();
+}
+function getPic(){
+	document.getElementById("rolepic").src="imgs/"+rolepics[role.value];
+}
+</script>
+</body>
+</html>

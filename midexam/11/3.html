@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>11</title>
+</head>
+
+<script type="text/javascript">
+var n=parseInt(prompt("请输入你需要绘制的行数：","5"));
+function getOpposite(x,y,m){
+	if(x>m) x=2*m-x;
+	if(y>m) y=2*m-y;
+	if(x+y==m) return('<span style="color:red;">&copy;</span>')
+	return('<span style="color:transparent;">.<span>');
+}
+	var l=2*n-1,m=n-1;
+	for(var x=0;x<l;x++){
+		for(var y=0;y<l;y++){
+			document.write(getOpposite(x,y,m));	
+		}
+		document.write("<br>");	
+	}
+</script>
+<body>
+</body>
+</html>

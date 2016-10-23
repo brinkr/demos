@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>15</title>
+</head>
+<style type="text/css">img,select,button:hover{cursor:pointer;}</style>
+
+<body>
+<table>
+<tr>
+<td><img id="im1" src="imgs/resum1.jpg" width="39" height="67"></td><td rowspan="2"  width="180px;"><div id="page1" style="margin-left:10px;display:block;"><select style="width:160px; margin-top:1px;"><option>选择职位类别</option></select><select style="width:160px;margin-top:5px;"><option>选择职位名称</option></select>
+<select style="width:160px;margin-top:5px;"><option>选择行业名称</option></select><select style="width:160px;margin-top:5px;"><option>选择工作地区</option></select><select style="width:118px;margin-top:5px;"><option>输入公司或职位</option></select><button>搜索</button></div>
+
+<div id="page2" style="display:none;margin-left:10px;margin-top:-5px;"><p style="text-indent:2em;">注册并填写您的简历，然后申请适合您的工作；如果得到您的允许，我们把您的简历推荐给更多的企业。</p><span style="display:block;margin-top:-10px;"><a style="font-size:14px;" href="../12/index.html">新用户注册</a><a href="new.html" style="font-size:14px; padding-left:20px;">填写简历</a></span></div>
+
+</td>
+</tr>
+<tr>
+<td><img id="im2" src="imgs/job1.jpg" width="39" height="67"></td>
+</tr>
+</table>
+<script type="text/javascript">
+im1=document.getElementById("im1");
+im2=document.getElementById("im2");
+page1=document.getElementById("page1");
+page2=document.getElementById("page2");
+im1.onclick=function(){
+	im1.src="imgs/resum2.jpg";
+	im2.src="imgs/job1.jpg";
+	page1.style.display="block";
+	page2.style.display="none";
+}
+im2.onclick=function(){
+	im1.src="imgs/resum1.jpg";
+	im2.src="imgs/job2.jpg";
+	page1.style.display="none";
+	page2.style.display="block";	
+}
+
+/*
+function mon1(){
+	im1.src="imgs/resum2.jpg";
+	im2.src="imgs/job1.jpg";
+}
+function mon2(){
+	im1.src="imgs/resum1.jpg";
+	im2.src="imgs/job2.jpg";
+}
+function mov1(){
+	im1.src="imgs/resum1.jpg";
+	im2.src="imgs/job2.jpg";
+}
+function mov2(){
+	im1.src="imgs/resum2.jpg";
+	im2.src="imgs/job1.jpg";
+}*/
+</script>
+</body>
+</html>

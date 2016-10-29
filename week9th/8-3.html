@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mail box</title>
+	<script src="jquery-1.7.2.min.js"></script>
+</head>
+<body>
+	<div class="warp">
+		<p>收件箱</p>
+<table>
+	<tr><td width="38px;">状态</td><td width="60px;">发件人</td><td>主题</td></tr>
+	<tr>
+    <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>高圆圆</td>
+    <td>我结婚了，你不祝福我么？</td>
+    </tr>
+    <tr>
+    <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>马蓉</td>
+    <td>我不爱宝强，但爱的也不是宋喆。</td>
+    </tr>
+     <tr>
+    <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>林志玲</td>
+    <td>这么多年了，你都不懂我，所以我才一直一个人。</td>
+    </tr>
+     <tr>
+    <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>佟丽娅</td>
+    <td>思成在北影的时候就是流氓。/(ㄒoㄒ)/~~</td>
+    </tr>
+     <tr>
+    <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>林心如</td>
+    <td>霍华健其实就是个千斤顶！</td>
+    </tr>
+     <tr>
+    <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>马云</td>
+    <td>哥，真不是我替赵薇站街，我有口难言，你肯定懂我。</td>
+    </tr>
+         <tr>
+    <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>朱茵</td>
+    <td>明夕何夕，君已陌路……</td>
+    </tr>
+         <tr>
+    <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>黎姿</td>
+    <td>世人都以为我是个生育机器，哎……</td>
+    </tr>
+     <tr>
+    <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>柳岩</td>
+    <td>你若结婚，莫邀我去，你若离婚，你和孩子我都要！</td>
+    </tr>
+     <tr>
+    <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>柳传志</td>
+    <td>你也知道我就是个买办，为何不肯帮兄弟一把？</td>
+    </tr>
+       <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>汤唯</td>
+    <td>那时候我还太小，不懂得什么叫做爱。</td>
+    </tr>
+     <tr>
+    <td><input class="select" name="select" type="checkbox" value="select"></td>
+    <td>Ivanka</td>
+    <td>My father shall save America! Do help him! Please!</td>
+    </tr>
+    
+    </table>
+    <div>
+    <input id="checkall" type="button" value="全选" />
+    <input id="delmail" type="button" value="删除" />
+    </div>
+    </div>
+
+
+</table>
+
+
+	</div>	
+    
+<script type="text/javascript">
+	var allchecked=0;
+ //  $(function(){
+		$("#checkall").click(function(){
+			if(allchecked==0){
+				$("input[name=select]").attr("checked",true);
+				//---哎，被JQ3.1坑了，1.9以后要用prop，换了个1.7用。
+				//$("input[name=select]").prop("checked");
+				$("#checkall").attr("value","清选");
+				allchecked=1;				
+			}else{
+				$("input[name=select]").attr("checked",false);
+				$("#checkall").attr("value","全选");
+				allchecked=0;
+			}	
+		});
+	$("#delmail").click(function(){
+		$(".select").each(function(){			
+			if($(this).attr("checked")){
+				$(this).parent().parent().remove();
+				console.log($(this).attr("checked"));
+			}
+		})
+	});
+ //  });
+    
+    </script>
+    
+    
+</body>
+</html>

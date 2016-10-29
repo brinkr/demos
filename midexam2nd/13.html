@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>13</title>
+<style type="text/css">
+input,button{margin:2px 10px;}
+td{text-align:center;}
+.inputting{color:#999;text-align:center;}
+</style>
+</head>
+<body>
+<table align="center" style="font-size:14px;border-collapse:collapse;" border="1" bordercolor="#CCCCCC" id="order" cellpadding="0" cellspacing="0">
+<tr style="font-size:16px;">
+<td width="150px" align="center">商品名称</td><td width="80px" align="center">数量</td><td align="center" width="80px;">单价</td><td width="120px" colspan="3" align="center">操作</td>
+</tr>
+<tr>
+<td id="totalprice" colspan="3">合计：</td>
+<td><input type="button" id="add"  value="添加" onclick="addRow('待输入','待输入','待输入',1)"/><input type="button" value="删除" onclick="delAll()" /><input id="chsall" type="checkbox" onclick="checkAll()" /></td>
+</tr>
+</table>
+<script type="text/javascript">
+window.onload=function(){
+	addRow("玫瑰保湿睡眠面膜",1,"&yen;48",0);
+	addRow("康师傅方便面",10,"&yen;5",0);
+	getPrice();	
+}
+function checkAll(){
+	var chk=document.getElementsByClassName("chs");	
+	for(var i=0;i<chk.length;i++){
+		if(document.getElementById("chsall").checked)
+			chk[i].checked=true;
+		else chk[i].checked=false;
+	}	
+}
+function getPrice(){
+	var pricelist=document.getElementsByClassName("price");
+	var n=document.getElementsByClassName("quantity");
+	var totalprice=0;
+	for(var i=0;i<pricelist.length;i++){
+		totalprice+=parseInt(pricelist[i].innerText.substr(1,pricelist[i].length)*parseInt(n[i].innerText));			
+	}
+	document.getElementById("totalprice").innerHTML="合计：&yen;"+totalprice;
+}
+function addRow(name,quantity,price,flag){
+	document.getElementById("chsall").checked=false;
+	var row=document.getElementById("order").insertRow(1);
+	//var rowindex=row.rows.length;
+	var col1=row.insertCell(0);
+	col1.innerHTML=name;
+	var col2=row.insertCell(1);
+	col2.innerHTML='<span class="quantity">'+quantity+'</span>';
+	var col3=row.insertCell(2);
+	col3.innerHTML='<span class="price">'+price+'</span>';
+	var col4=row.insertCell(3);
+	col4.innerHTML="<button class='edit' onclick='editRow(this)'>修改</button><button onclick='delRow(this)'>删除</button><input class='chs' type='checkbox' />";
+	if(flag==1){
+		var oBtn=document.getElementsByClassName("edit");
+		oBtn[0].click();	
+	}
+	if(flag==0)getPrice();	
+}
+function delRow(obj){
+	var row=obj.parentNode;
+	row=row.parentNode;
+	row.parentNode.removeChild(row);
+	getPrice();		
+}
+function clearContent(obj){if(obj.value=="待输入") obj.value="";}
+function showTip(obj){if(obj.value=="") obj.value="待输入";}
+function editRow(obj){
+	var childs=obj.parentNode.parentNode.childNodes;
+	if(obj.innerText=="修改"){
+		childs[0].innerHTML="<td><input class='inputting' style='width:120px;' type='text' value="+childs[0].innerText+" onfocus='clearContent(this)' onblur='showTip(this)'></td>"
+		childs[1].innerHTML="<td><input class='inputting' style='width:60px;' type='text' value="+childs[1].innerText+" onfocus='clearContent(this)' onblur='showTip(this)'></td>"
+		var intxt=childs[2].innerText;
+		console.log(intxt);
+		if(intxt!="待输入")
+		intxt=intxt.substr(1,intxt.length)
+		
+		childs[2].innerHTML="<td><input class='inputting' style='width:60px;' type='text' value="+intxt+" onfocus='clearContent(this)' onblur='showTip(this)'></td>"		
+		obj.innerText="确认"
+	}else{
+		if(!isNaN(childs[2].firstChild.value)&&!isNaN(childs[1].firstChild.value)&&childs[0].firstChild.value!="待输入"){	
+			childs[0].innerHTML="<td>"+childs[0].firstChild.value+"</td>"
+			childs[1].innerHTML="<td><span class='quantity'>"+childs[1].firstChild.value+"</span></td>"
+			childs[2].innerHTML="<td><span class='price'>&yen;"+childs[2].firstChild.value+"</span></td>"
+			obj.innerHTML="修改";	
+			getPrice();	
+		}
+	}
+}
+function delAll(){
+	
+	var chk=document.getElementsByClassName("chs");	
+	for(var i=chk.length-1;i>=0;i--){
+		if(chk[i].checked==true){
+			chk[i].parentNode.parentNode.parentNode.removeChild(chk[i].parentNode.parentNode);
+		}
+	}getPrice();	
+	document.getElementById("chsall").checked=false;
+}
+</script>
+</body>
+</html>

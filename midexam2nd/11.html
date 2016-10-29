@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>11</title>
+</head>
+<style>
+span{color:#000;}
+</style>
+<script type="text/javascript">
+document.write("<h3>第11题第1小题：</h3><br />");
+document.write("注意&amp;yen和￥的区别，半角和全角符号的区别，英文符号和中文符号的区别。红色的关键点在于当i=j时，需要改变字符的样式。<br /><br />");
+var n=parseInt(prompt("请输入你需要绘制的行数：","5"));
+document.write("使用&amp;yen的效果：<br />");
+for(var j=1;j<=n;j++){
+	for(var i=1;i<=n;i++){
+		if(i==j) document.write("<span style='color:red;'>&yen;</span>")
+		else document.write("&yen;");
+	}
+	document.write("<br />");
+}
+document.write("<br />使用￥的效果：<br />");
+for(var j=1;j<=n;j++){
+	for(var i=1;i<=n;i++){
+		if(i==j) document.write("<span style='color:red;'>￥</span>")
+		else document.write("￥");
+	}
+	document.write("<br />");
+}
+
+
+
+
+
+document.write("<h3>第11题第2小题：</h3><br />");
+document.write("注意&amp;nbsp;的特殊性。<br /><br />");
+document.write("方法1：<br />");
+
+var m=Math.ceil(n/2);
+//alert(m);
+for(var j=0;j<n;j++){
+	for(var i=1;i<=n;i++){		
+		if((j+1<=m)&&(i<=j||i>n-j)||(j+1>m)&&(i<=n-j-1||i>(j+1)))document.write("<span style='color:transparent;'>.<span>");
+		else document.write("<span style='color:#000;'>*</span>");		
+	}
+	document.write("<br />");
+}
+
+
+
+
+
+document.write("<br />方法2：<br />");
+var i=Math.ceil(n/2);
+var j,h;
+document.write("<div style='width:40px;'>");
+document.write("<center>");
+for(j=i;j>1;j--)
+{
+	for(h=2*j-1;h>0;h--)
+	{
+		document.write("*");
+	}
+	
+	document.write("<br />");
+}
+for(j=1;j<=i;j++)
+{
+	for(h=0;h<2*j-1;h++)
+	{
+		document.write("*");
+	}
+	document.write("<br />");
+}
+document.write("</center>");
+document.write("</div>");
+
+
+
+
+document.write("<h3>第11题第3小题：</h3><br />");
+document.write("注意&amp;nbsp;的特殊性。<br /><br />");
+document.write("方法1：<br />");
+var m=Math.ceil(n/2);
+for(var i=0;i<2*m-1;i++)
+{
+	for(var j=0;j<2*m-1;j++)
+	{
+		document.write(print(i,j,m-1));
+	}
+	document.write("<br />");
+}
+function print(x,y,m){
+	if(x>m)
+		x = 2*m-x;
+	if(y>m)
+		y = 2*m-y;
+	if(x+y==m)
+		return "<span style='color:#f00;'>&copy;<span>";
+	return "<span style='color:transparent;'>.<span>";
+} 
+
+document.write("<br />方法2：<br />");
+var m=Math.ceil(n/2);
+for(i = 0;i<2*m-1;i++){
+	for(j = 0;j<2*m-1;j++){
+		document.write(p(i,j,m-1));
+	}
+	document.write("<br/>");
+}
+function  p(x,y,m){
+	if(x>m){x=2*m-x;}
+	if(y>m){y= 2*m-y;}
+	if(x+y==m){
+		return("<span style='color:#f00;'>&copy;<span>");
+	}
+	return("<span style='color:transparent;'>.<span>");
+}	
+</script>
+<body>
+</body>
+</html>

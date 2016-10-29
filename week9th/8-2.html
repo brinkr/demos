@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>留言板</title>
+    <script src="jquery-3.1.1.min.js"></script>
+    <style type="text/css">
+    .msg{border-radius:15px; background-color:#CCC;margin-right:50px;margin-bottom:5px;padding:10px 0px 2px 10px;}
+    </style>
+</head>
+<body><div style="width:600px;border:#CCC 1px solid;margin:auto;margin-top:50px;">
+ <ul style="list-style:none;"><li><div class="msg">
+ <span>艾薇儿：</span>
+    <p style="margin-top:10px;font-size:12px;">我纹身、抽烟、喝酒、说脏话，但我知道我是好姑娘。</p></div>
+    </li>
+     <div class="msg"><span>王思聪：</span>
+    <p style="margin-top:10px;font-size:12px;">我交朋友不在乎他有钱没钱，反正都没有我有钱。</p></div>
+    </li>
+    <div class="msg"><span>鲁迅：</span>
+    <p style="margin-top:10px;font-size:12px;">十几个人在做微商，你看不起他们；几百个人在做微商，你不理解他们；成千上万的人在做微商，你心动了；所有人都在做微商，你想加入，对不起，已经没你的市场了！2015，再不做微商就晚了！</p></div>
+    </li>
+    </ul>
+    <form method="post">
+    <div style="background-color:#999;color:#fff;font-size:12px;font-weight:bold;margin-bottom:3px;padding-left:10px;"><label for="yourname">昵称</label></div>
+    <input type="text" id="yourname" class="text" value="你的昵称" />
+    <div style="background-color:#999;color:#fff;font-size:12px;font-weight:bold;margin-top:3px;padding-left:10px;"><label for="content">留言内容</label></div>
+    <textarea style="width:595px;" id="content" class="text" rows="4">你要说的话</textarea>
+    <input type="button" value="单击这里提交留言" />
+    </form>  </div> 
+    <script type="text/javascript">
+    $(function(){
+		$(".text").each(function(){
+		var defaultVal=this.value;
+		//-----------------------------
+			$(this).focus(function(){if(this.value==defaultVal) this.value="";});
+			$(this).blur(function(){if(this.value=="") this.value=defaultVal;});
+		//-------------------------------	
+		});
+    	$("input[type='button']").click(function(){
+		//var name=$("input[yourname]").val();书上这一句好像有问题，name一直undefined
+	var name=$("input[type='text']").val();//因为只有一个类型为text的input，故修改成这样
+		var content=$("textarea").val();
+			//console.log(name);
+		if(name=="你的昵称") alert("请输入你的大名！");
+		else if(content=="你要说的话") alert("你究竟要说什么？");
+		else{
+			var msg="<li><div class='msg'><span>"+name+":</span><p style='margin-top:10px;font-size:12px;'>"+content+"</p></li></div>";
+			$("ul").append(msg);
+			$("input[type='text']").val("你的昵称");//同理修改
+			$("textarea").val("你要说的话");			
+			}
+	});
+	});
+    
+    </script>
+</body>
+</html>

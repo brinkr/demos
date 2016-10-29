@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>15</TITLE>
+<SCRIPT language="javascript">
+function InitImage( )
+{
+   document.getElementById("job2").style.display="none";
+   document.getElementById("resum1").style.display="none";
+   document.getElementById("resumtab").style.display="none";
+}
+function TabChange(show,hidden) 
+{
+	document.getElementById(show+"tab" ).style.display="block";
+	document.getElementById(hidden+"tab" ).style.display="none";
+	
+	document.getElementById(show+"2").style.display="none";
+	document.getElementById(show+"1").style.display="block";
+
+	document.getElementById(hidden+"2").style.display="block";
+	document.getElementById(hidden+"1").style.display="none";
+
+	
+}
+</SCRIPT>
+</HEAD>
+
+<BODY onLoad="InitImage()">
+<TABLE width="238" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <TR>
+    <TD width="42"><IMG src="images/job1.jpg"id="job1" ></TD>
+	<TD rowspan="2">
+		<div id="jobtab" style="width:220px;height:130px; padding-left:10px; background:#ff8514;">
+			<select style="width:170px;margin-top:5px;">
+			<option>选择职位类别</option>
+			</select>
+			<select style="width:170px;margin-top:5px;color:#ccc;">
+			<option>选择职位名称</option>
+			</select>
+			<select style="width:170px;margin-top:5px;">
+			<option>选择行业类别</option>
+			</select>
+			<select style="width:170px;margin-top:5px;">
+			<option>选择工作地区（必选）</option>
+			</select>
+			<input id="textbox" type="text" value="输入公司或职位" style="width:118px;margin-top:5px;color:#ccc;" onfocus="document.getElementById('textbox').value='';" />
+			<button>搜索</button>
+		</div>
+	</TD>
+  </TR>
+  <TR>
+    <TD><IMG src="images/resum2.jpg" id="resum2" onMouseOver="TabChange('resum','job')" ></TD>
+  </TR>
+  <TR>
+	<TD><IMG src="images/job2.jpg"  id="job2" onMouseOver="TabChange('job','resum')" ></TD>
+    <TD rowspan="2">
+		<div id="resumtab" style="width:210px; height:110px; padding:10px; background:#ff8514;">
+		<p style="text-indent:2em;">
+			注册并填写您的简历，然后申请适合您的工作；如果得到您的允许，我们把您的简历推荐给更多的企业。
+		</p>
+		<span style="display:block;margin-top:-10px;">
+			<a style="font-size:14px;" href="" onclick="window.open('12.html');">新用户注册</a>&nbsp;&nbsp;
+			<a href="15-2.html" style="font-size:14px; padding-left:20px;">填写简历</a>
+		</span>
+		</div>
+	</TD>
+  </TR>
+  <TR>
+    <TD height="63"><IMG src="images/resum1.jpg" id="resum1"></TD>
+  </TR>
+</TABLE>
+</BODY>
+</HTML>

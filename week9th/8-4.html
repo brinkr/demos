@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>table</title>
+	<style type="text/css">
+	.tableHeader{
+		background: #00a40c;
+		color:#FFF;
+		font-weight: bold;
+	}
+	.evenStyle{
+		background-color: #a5a5aa;
+	}
+	.over{
+		background-color: #ff9;
+	}
+	</style>
+	<script src="jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<h1>学生信息表</h1>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="datalist">
+		<tr>
+		<td>学号</td>
+		<td>姓名</td>
+		<td>性别</td>
+		<td>年龄</td>
+		<td>电话号码</td>
+</tr>
+<tr>
+<td>20141215</td>
+<td>林德佳</td>
+<td>男</td>
+<td>18</td>
+<td>13882424469</td>
+</tr>
+<tr>
+<td>20141215</td>
+<td>林德佳</td>
+<td>男</td>
+<td>18</td>
+<td>13882424469</td>
+</tr>
+<tr>
+<td>20141215</td>
+<td>林德佳</td>
+<td>男</td>
+<td>18</td>
+<td>13882424469</td>
+</tr>
+<tr>
+<td>20141215</td>
+<td>林德佳</td>
+<td>男</td>
+<td>18</td>
+<td>13882424469</td>
+</tr>
+<tr>
+<td>20141215</td>
+<td>林德佳</td>
+<td>男</td>
+<td>18</td>
+<td>13882424469</td>
+</tr>
+<tr>
+<td>20141215</td>
+<td>林德佳</td>
+<td>男</td>
+<td>18</td>
+<td>13882424469</td>
+</tr>
+<tr>
+<td>20141215</td>
+<td>林德佳</td>
+<td>男</td>
+<td>18</td>
+<td>13882424469</td>
+</tr>
+<tr>
+<td>20141215</td>
+<td>林德佳</td>
+<td>男</td>
+<td>18</td>
+<td>13882424469</td>
+</tr>
+</table>
+<script type="text/javascript">
+$(function(){
+	$("table.datalist tr:first").addClass("tableHeader");
+	$("table.datalist tr:even:not(:first)").addClass("evenStyle");
+	$("table.datalist tr:not(:first)").mouseover(function(){
+		$(this).addClass("over");
+		}).mouseout(function(){
+			$(this).removeClass("over");
+
+		});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML> 
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<STYLE type="text/css">
+<!--
+.borderBox {
+	
+	font-size: 15px;
+	border: 1px solid ;
+
+}
+ 
+-->
+</STYLE>
+
+</HEAD>
+
+<BODY >
+
+<div id="content">
+    <!--首页的中间部分-->
+ 
+
+<TABLE width="950" border="0" align="center">
+  <TR>
+    <TD height="75"><h4><br />
+      注册步骤： 1.填写信息　&gt;　 2.收电子邮件　&gt;　3.注册成功 <IMG src="images/reg.gif" width="250" height="50" align="middle"></h4></TD>
+    </TR>
+</TABLE>
+
+<TABLE width="950" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#99CCFF">
+ <FORM name="userfrm" method="post" action="12-2.htm" onSubmit="return validateform( )">
+  <TR class="register_table_line">
+    <TD width="225"  align="right" bgcolor="#E7FBFF">登录名：</TD>
+    <TD width="481" align="left" bordercolor="#E7E3E7"> <INPUT id="username" name="loginName" type="text" class="borderBox"   
+size="24"  onblur="checkUser( ),checkBirth()">
+      <div id="usernametips" style="display:inline">  </div></TD>
+    <TD width="236" align="left" bordercolor="#E7E3E7">（可包含字母和下划线）</TD>
+  </TR>
+  <TR class="register_table_line">
+    <TD width="225" align="right" bgcolor="#E7FBFF" >密码：</TD>
+    <TD align="left" bordercolor="#E7E3E7"> <INPUT name="pass" type="password" class="borderBox"  
+
+id="pass" size="25"  onblur="checkPass( ),checkBirth()"><div id="passwordtips" style="display:inline">  </div></TD>
+    <TD align="left" bordercolor="#E7E3E7">（至少包含 6 个字符） </TD>
+  </TR>
+  <TR class="register_table_line">
+    <TD width="225" height="0" align="right" bgcolor="#E7FBFF">再次输入密码：</TD>
+    <TD height="0" colspan="2" align="left" bordercolor="#E7E3E7"><INPUT name="rpass" type="password" 
+
+class="borderBox"  id="rpass" size="25"   onblur="confirmPsd( ),checkBirth()"><div id="confirmpasswordtips" style="display:inline">  </div></TD>
+  </TR>
+  <TR class="register_table_line">
+    <TD width="225" height="0" align="right" bgcolor="#E7FBFF">电子邮箱：</TD>
+    <TD height="0" align="left" bordercolor="#E7E3E7"><INPUT name="email" type="text" class="borderBox"  
+
+id="email" size="24"  onblur="checkEmail( ),checkBirth()"><div id="mailtips" style="display:inline">  </div></TD>
+    <TD height="0" align="left" bordercolor="#E7E3E7"> （必须包含 @  字符）</TD>
+  </TR>
+  <TR class="register_table_line">
+    <TD width="225" align="right" bgcolor="#E7FBFF">性别：</TD>
+    <TD colspan="2" align="left" bordercolor="#E7E3E7">
+		<INPUT name="gen" type="radio"   value="男" checked>
+	       <IMG src="images/Male.gif" width="23" height="21">男&nbsp; 
+	    <INPUT name="gen" type="radio" value="女" class="input">
+	       <IMG src="images/Female.gif" width="23" height="21">女    </TD>
+  </TR>
+  <TR class="register_table_line">
+    <TD width="225" align="right" bgcolor="#E7FBFF">爱好：</TD>
+    <TD colspan="2" align="left" bordercolor="#E7E3E7">
+	  <LABEL>
+	  	<INPUT type="checkbox" name="checkbox" value="checkbox">
+	  </LABEL>
+		  运动&nbsp;&nbsp;
+	  <LABEL>
+	  <INPUT type="checkbox" name="checkbox2" value="checkbox">
+	  </LABEL>
+		聊天&nbsp;&nbsp;
+	  <LABEL>
+		<INPUT type="checkbox" name="checkbox22" value="checkbox">
+	  </LABEL>
+		玩游戏	</TD>
+  </TR>
+  <TR class="register_table_line">
+    <TD width="225" align="right" bgcolor="#E7FBFF">出生日期：</TD>
+    <TD align="left" bordercolor="#E7E3E7">
+		<select id="year" onchange="fetchDay(1),checkBirth()"></select>
+		<select id="month" onchange="fetchDay(1),checkBirth()"></select>
+		<select id="day" onchange="checkBirth()"></select><TD id="birthtips" height="0" align="left" bordercolor="#E7E3E7">请选择你的出生日期</TD>
+	</TD>
+  </TR>
+  <TR class="register_table_line">
+    <TD width="225" height="35" align="right" bgcolor="#E7FBFF">
+        <INPUT type="reset" name="Reset" value=" 重   填 "></TD>
+    <TD height="35" colspan="2" align="left" bordercolor="#E7E3E7">
+		<INPUT type="submit" id="agreement" disabled="disabled" value="同意以下服务条款，提交注册信息">	</TD>
+  </TR>
+  <TR>
+    <TD colspan="3"><TABLE width="760" border="0">
+      <TR>
+        <TD height="36">
+			<H4><IMG src="images/read.gif" width="35" height="26">阅读淘宝网服务协议 </H4>	    </TD>
+      </TR>
+      <TR>
+        <TD height="120">
+			<TEXTAREA name="textarea" cols="80" rows="6" class="borderBox">
+欢迎阅读服务条款协议，本协议阐述之条款和条件适用于您使用Taobao.com网站的各种工具和服务。
+本服务协议双方为淘宝与淘宝网用户，本服务协议具有合同效力。 
+淘宝的权利和义务
+1.淘宝有义务在现有技术上维护整个网上交易平台的正常运行，并努力提升和改进技术，使用户网上交易活动的顺利。 
+2.对用户在注册使用淘宝网上交易平台中所遇到的与交易或注册有关的问题及反映的情况，淘宝应及时作出回复。 
+3.对于在淘宝网网上交易平台上的不当行为或其它任何淘宝认为应当终止服务的情况，淘宝有权随时作出删除相关信息、终止服务提
+
+供等处理，而无须征得用户的同意。 
+4.因网上交易平台的特殊性，淘宝没有义务对所有用户的注册资料、所有的交易行为以及与交易有关的其他事项进行事先审查。 	
+		  </TEXTAREA>		</TD>
+      </TR>
+    </TABLE></TD>
+  </TR>
+  </FORM>
+</TABLE>
+</div>
+<script type="text/javascript">
+//var sta_bir=0,sta_user=0,sta_pas=0,sta_repas=0,sta_mail=0;
+var timecount=10;
+	function checkBirth(){
+		console.log(checkUser()&&checkPass()&&confirmPsd()&&checkEmail());
+		var birthtips=document.getElementById("birthtips");
+		if(year.value==-1||month.value==-1||day.value==-1){
+			birthtips.innerHTML="请选择你的出生年月";}
+		if((year.value!=-1)&&(month.value!=-1)&&(day.value!=-1)){
+			birthtips.innerHTML="已选择出生年月";
+			timencount=10;	
+			if(checkUser()&&checkPass()&&confirmPsd()&&checkEmail()){
+				readAgreement();				
+			}
+		}
+		
+		}
+		function readAgreement(i){
+			timecount--;
+			var agr=document.getElementById("agreement");
+			agr.value="请先阅读协议，"+timecount+"秒后可以确认";
+			var timer=setTimeout("readAgreement()",1000);
+			if(timecount<=0){
+				clearTimeout(timer);
+				agr.value="同意以下服务条款，提交注册信息";
+				agr.removeAttribute("disabled");
+			}
+		}
+	function checkUser(){
+		var reg=/^[a-zA-Z][a-zA-Z_]{4,9}$/;
+		var user=document.getElementById("username").value;
+		var usertips=document.getElementById("usernametips");
+		if(reg.test(user)==false) {usertips.innerHTML="用户名输入有误！";return false;}
+		else {usertips.innerHTML="用户名输入正确！";return true;}
+	}
+	function checkPass(){
+		//var reg=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[#@!~%^&*/]).{8,10}$/;
+		var reg=/^((?=.*\d)(?=.*\D)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z]))^.{8,16}$/;
+		//var reg=/^.{6,16}$/;
+		var psd=document.getElementById("pass").value;
+		var psdtips=document.getElementById("passwordtips");
+		if(reg.test(psd)==false) {psdtips.innerHTML="密码输入有误！";return false;}
+		else {psdtips.innerHTML="密码输入正确！";return true;}
+	}
+	function confirmPsd(){
+		var psd=document.getElementById("pass").value;
+		var repsd=document.getElementById("rpass").value;
+		var repsdtips=document.getElementById("confirmpasswordtips");
+		if(psd!=repsd) {repsdtips.innerHTML="两次密码不一致！！";return false;}
+		else {repsdtips.innerHTML="两次密码输入一致！";return true;}
+	}
+	function checkEmail(){
+		var reg=/^[a-zA-Z]+[a-zA-Z0-9-_]+@[a-zA-Z0-9-]+\.(com|cn)$/;
+		var mail=document.getElementById("email").value;
+		var mailtips=document.getElementById("mailtips");
+		if(reg.test(mail)==false) {mailtips.innerHTML="邮箱格式有误！";return false;}
+		else {mailtips.innerHTML="邮箱格式正确！";	return true;}
+	}
+	var mydate=new Date();
+		var year=document.getElementById("year");
+		var month=document.getElementById("month");
+		var day=document.getElementById("day");
+	window.onload=function(){
+		year.add(new Option("[出生年]",-1));
+		month.add(new Option("[出生月]",-1));
+		day.add(new Option("[出生日]",-1));
+		getBirth();
+	}
+	//var yflag=1,mflag=1,dflag=1;
+	function getBirth(){
+		//month.innerHTML="";year.innerHTML="";
+		
+			for(var y=mydate.getFullYear()-1;y>=1970;y--){
+				year.add(new Option(y,y));	
+			
+		}
+		
+			for(var m=1;m<=12;m++){
+				//if (m==1)
+				//month.add(new Option(m,m,true,true));	
+				//else 
+				month.add(new Option(m,m));
+			
+		}
+		
+			fetchDay(0);
+		
+	
+	}
+	
+	function fetchDay(i){
+		var monthdays=new Date(year.value,month.value,0).getDate();
+		//day.innerHTML="";
+		for(var d=1;d<=monthdays;d++){	
+		//if(d==mydate.getDate()&&i==0)		
+			//day.add(new Option(d,d,true,true));
+			//else 
+			day.add(new Option(d,d));
+		}checkBirth();
+	}
+	
+</script>
+</BODY>
+ </HTML>

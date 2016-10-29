@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>my girls</title>
+    <script src="jquery-1.7.2.min.js"></script>
+    <style>
+    .menupics{width:57px;height:40px;cursor:pointer;}
+    .alpha{
+		filter:alpha(opacity=20); /* IE */ 
+		-moz-opacity:0.2; /* Moz + FF */ 
+		opacity:0.2; /* 支持CSS3的浏览器（FF 1.5也支持）*/ 	
+	}
+    </style>
+</head>
+<body>
+<img id="girls" title="girls" src="pics/1.jpg"><br>
+<div>
+<img class="menupics" style="margin-left:2px;" src="pics/2.jpg" />
+<img class="menupics" src="pics/3.jpg" />
+<img class="menupics" src="pics/4.jpg" />
+<img class="menupics" src="pics/5.jpg" />
+<img class="menupics" src="pics/6.jpg" />
+<img class="menupics" src="pics/7.jpg" />
+<img class="menupics" src="pics/8.jpg" />
+<img class="menupics" src="pics/1.jpg" />
+<img class="menupics" src="pics/10.jpg" />
+</div>
+<h1>——后宫们的日常</h1>
+<script type="text/javascript">
+$(function(){
+	$("div img").addClass("alpha");
+	$("div img:eq(0)").removeClass("alpha");
+	$("div img").mouseover(function(){
+		var big_src=$(this).attr("src");
+		$("#girls").attr("src",big_src);
+		$(this).removeClass("alpha").siblings().addClass("alpha");
+	});
+});
+
+
+</script>
+</body>
+</html>

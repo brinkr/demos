@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>9-1</title>
+	<script src="jquery-1.7.2.min.js"></script>
+	<style type="text/css">
+		.textColor{color:#C00;}
+		.input{height: 60px;width: 400px;}
+	</style>
+</head>
+<body>
+	<div id="edit_myform">
+		<form action="" method="post">
+			<p id="numtj">你还可以输入<var class="textColor"></var>个字符。</p>
+			<p class="textinput"><label><textarea name="" cols="" rows="" maxlength="150" class="input"></textarea></label></p>
+		</form>
+	</div>
+	<script type="text/javascript">
+		var timer,count;
+		
+		$(function(){
+			
+			var txt=$("#edit_myform textarea").val();
+			count=txt.length;
+			$("#numtj var").text(100-count);
+			//$("#edit_myform textarea").change(function(){alert("test");});
+			$(document).keydown(function(){
+				timer=setTimeout("counting()",10);			
+			});
+			$(document).keyup(function(e){
+				clearTimeout(timer);
+				console.log(e.which);
+				var txt=$("#edit_myform textarea").val();
+				var count=txt.length;
+				if(count>100){				
+					$("#numtj").html("对不起，你的输入超长了入<var class='textColor'>"+(count-100)+"</var>个字！");
+					//$("#numtj var").text((count-101)+"个字！");
+					
+					//$("#edit_myform textarea").focus();
+					$(document).keyup(function(e){		
+						if(e.which==8){
+							$("#edit_myform textarea").removeAttr("readonly");	
+							e = jQuery.Event("keypress");
+							e.which = 8; 
+							$("#edit_myform textarea").trigger(e);						
+						}else
+							 	$("#edit_myform textarea").attr("readonly",true);		
+							
+						});		
+						// $("#edit_myform textarea").blur();							
+				}else //$("#numtj var").text(100-count);
+					$("#numtj").html("还可以输入<var class='textColor'>"+(100-count)+"</var>个字！");
+			});
+		});
+		
+	function counting(){
+		var txt=$("#edit_myform textarea").val();
+		count=txt.length;
+		if(count>100)				
+					$("#numtj").html("对不起，你的输入超长了入<var class='textColor'>"+(count-100)+"</var>个字！");
+		else
+			$("#numtj").html("还可以输入<var class='textColor'>"+(100-count)+"</var>个字！");
+	}
+	</script>
+</body>
+</html>

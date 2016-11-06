@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>9-3</title>
+    <script src="jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<h1>我上过的舰加起来有七八十艘吧——局座</h1>
+<div id="minigallery"><img src="kancolle2.jpg" width="600" height="418"><img src="kancolle3.jpg" height="418"></div>
+<script type="text/javascript">
+	//const OUT_OPACITY=0.4;
+	//const OVER_OPACITY=1.0;
+	$(function(){//div和#之间不能有空格
+		$("div#minigallery img").css("opacity",0.4)
+		.hover(		
+			function(){//alert("sss");
+				$(this).css({opacity:1});
+			},
+			function(){
+				$(this).css({opacity:0.4});
+			}
+		);		
+	});
+</script>
+</body>
+</html>

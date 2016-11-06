@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>9-2</title>
+	<script src="jquery-1.7.2.min.js"></script>
+    <style type="text/css">
+    	#tooltip{position:absolute;border:#000 solid 1px;background-color:#000;color:#FFF;}
+    </style>
+</head>
+<body>
+	<a href="img3.jpg" class="tooltip" title="美女与野兽"><img src="img2.jpg" alt="少女与大神"></a>
+    <script type="text/javascript">
+	var x=10,y=20;
+    	$(function(){			
+			$("a.tooltip").mouseover(function(e){
+					this.myTitle=this.title;
+					this.title="";
+					var imgTitle=this.myTitle?"<br/>"+this.myTitle:"";
+					var tooltip="<div id='tooltip'>"+"<div style='padding:0px 0px 5px 5px;margin-top:-15px;font-size:20px;text-align:center;font-weight:bold;'>"+imgTitle+"</div>"+"<img src='"+this.href+"'alt='预览图'/></div>";
+					$("body").append(tooltip);
+					$("#tooltip").css({
+						"top":(e.pageY+y)+"px",
+						"left":(e.pageX+x)+"px"}).show("fast");
+			}).mouseout(function(){
+				this.title=this.myTitle;
+				$("#tooltip").remove();					
+			}).mousemove(function(e){
+				//alert(e.pageX);
+				//console.log(e.pageX,e.pageY);
+				$("#tooltip")
+				.css({
+					"top":(e.pageY+y)+"px",
+					"left":(e.pageX+x)+"px"				
+			});			
+		});
+	});    
+    </script>   
+</body>
+</html>

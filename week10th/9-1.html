@@ -38,7 +38,7 @@
 					//$("#numtj var").text((count-101)+"个字！");
 					
 					//$("#edit_myform textarea").focus();
-					$(document).keyup(function(e){		
+					
 						if(e.which==8){
 							$("#edit_myform textarea").removeAttr("readonly");	
 							e = jQuery.Event("keypress");
@@ -47,7 +47,7 @@
 						}else
 							 	$("#edit_myform textarea").attr("readonly",true);		
 							
-						});		
+							
 						// $("#edit_myform textarea").blur();							
 				}else //$("#numtj var").text(100-count);
 					$("#numtj").html("还可以输入<var class='textColor'>"+(100-count)+"</var>个字！");

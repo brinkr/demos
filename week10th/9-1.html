@@ -29,7 +29,12 @@
 				timer=setTimeout("counting()",10);			
 			});
 			$(document).keyup(function(e){
-				clearTimeout(timer);
+				typing(e);
+			});
+		});
+		function typing(e){
+			
+			clearTimeout(timer);
 				console.log(e.which);
 				var txt=$("#edit_myform textarea").val();
 				var count=txt.length;
@@ -38,22 +43,27 @@
 					//$("#numtj var").text((count-101)+"个字！");
 					
 					//$("#edit_myform textarea").focus();
-					
+					$("#edit_myform textarea").attr("readonly",true);
 						if(e.which==46){
-							$("#edit_myform textarea").removeAttr("readonly");	
-							e = jQuery.Event("keypress");
-							e.which=46; 
-							$("#edit_myform textarea").trigger(e);						
-						}else
-							 	$("#edit_myform textarea").attr("readonly",true);		
+							
+							var str=$("#edit_myform textarea").val();
+							//alert(str);
+							newstr=str.substring(0,str.length-1);
+							$("#edit_myform textarea").val(newstr);
+							
+							//e = jQuery.Event("keypress");
+							//e.which=8; 
+							//$("#edit_myform textarea").trigger(e);						
+						}
+							 			
 							
 							
 						// $("#edit_myform textarea").blur();							
-				}else //$("#numtj var").text(100-count);
+				}else {//$("#numtj var").text(100-count);
 					$("#numtj").html("还可以输入<var class='textColor'>"+(100-count)+"</var>个字！");
-			});
-		});
-		
+					$("#edit_myform textarea").removeAttr("readonly");	
+				}
+			}
 	function counting(){
 		var txt=$("#edit_myform textarea").val();
 		count=txt.length;

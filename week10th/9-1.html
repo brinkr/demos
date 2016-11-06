@@ -39,10 +39,10 @@
 					
 					//$("#edit_myform textarea").focus();
 					
-						if(e.which==8){
+						if(e.which==46){
 							$("#edit_myform textarea").removeAttr("readonly");	
 							e = jQuery.Event("keypress");
-							e.which = 8; 
+							e.which=46; 
 							$("#edit_myform textarea").trigger(e);						
 						}else
 							 	$("#edit_myform textarea").attr("readonly",true);		

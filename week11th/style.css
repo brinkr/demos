@@ -1,0 +1,45 @@
+body{ margin:0px;padding:0px;}
+a{text-decoration:none; color:#000;}
+a:hover{color:#F00;}
+#function_area a{color:#C66;}
+#function_area a:hover{color:#F00;}
+#main{width:960px;margin:auto;}
+#navi ul{ margin:10px 0px 0px -42px;}
+#navi li{ list-style:none; float:left;font-size:12px; margin-left:4px;}
+#search_bar ul{ margin:10px 0px 0px 0px; padding:0px; float:left;}
+#search_bar li{ list-style:none; float:left;font-size:12px; margin-left:4px;}
+
+#top_mune_mid ul{ margin:0px 10px 0px 0px; padding:0px; float:right;}
+#top_mune_mid li{ list-style:none; float:left;font-size:12px; margin-left:4px;}
+
+.function_mid li ul{display:none; position:relative;}
+.rank_li{background-color:#FC9; border-bottom:#F03 solid 1px; list-style:none; padding-left:10px;}
+
+.function_mid li:hover ul{display:block; width:160px; height:50px; }
+
+
+
+
+
+#top_menu{width:960px; height:26px; margin:0px; padding:0px;font-size:12px; line-height:26px;}
+#top_mune_border{width:1px; height:26px; background-image:url(img/top_mune_border.jpg); float:left;}
+#top_mune_mid{width:958px; height:26px; background-image:url(img/top_mune_mid.jpg); float:left;}
+
+#navi{padding-top:39px; }
+#category_left{width:7px; height:28px; background-image:url(img/category_left.jpg); float:left;}
+#category_mid{height:28px; background-image:url(img/category_mid.jpg); float:left;}
+#category_right{width:7px; height:28px; background-image:url(img/category_right.jpg); float:left;}
+
+#function_area{float:right; padding-right:30px; font-size:13px;line-height:32px;}
+.function_left{width:5px; height:28px; background-image:url(img/function_left.jpg);margin-left:5px;float:left;}
+.function_mid{height:28px; background-image:url(img/function_mid.jpg); float:left;}
+.function_right{width:4px; height:28px; background-image:url(img/function_right.jpg); float:left;}
+
+#book_navi_left{width:7px;height:27px; background-image:url(img/book_navi_left.jpg); float:left;}
+#book_navi_mid{width:949px;height:27px; background-image:url(img/book_navi_mid.jpg); float:left;}
+#book_navi_right{width:4px;height:27px; background-image:url(img/book_navi_right.jpg); float:left;}
+
+#search_bar{width:960px; height:35px; margin:2px 0px 10px 0px;}
+#search_bar_left{width:7px; height:35px; background-image:url(img/search_bar_left.jpg); float:left;}
+#search_bar_mid{width:949px; height:35px; background-image:url(img/search_bar_mid.jpg); float:left;}
+#search_bar_right{width:4px; height:35px; background-image:url(img/search_bar_right.jpg); float:left;}

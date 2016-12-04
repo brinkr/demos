@@ -43,17 +43,17 @@ a:hover{color:#F00;text-align:left;}
 #logo-text{float:left;margin-top:50px;width:260px;text-align:right;};
 #function-area{width:1280px;height:160px;}#function-area div:hover{cursor:pointer;}
 #news-area{height:332px;width:1280px;margin:20px 0px;}
-#college-news{width:758px;height:315px;background-color:#BBC0C4;padding-top:18px;float:left;margin-left:90px;}
-#video-area{width:294px;height:298px;margin-left:0px;background-image:url(../img/vedio-bg.png);float:left;}
+#college-news{width:778px;height:315px;background-color:#BBC0C4;padding-top:18px;float:left;margin-left:80px;}
+#video-area{width:294px;height:298px;margin-left:15px;background-image:url(../img/vedio-bg.png);float:left;}
 #college-news-banner{width:420px;float:left;font-family:"微软雅黑";font-size:18px;font-weight:bold;color:#C91812;margin:12px 0px 10px 15px;}
 #news-list{margin-left:30px;float:left;}
 #news-list ol li{width:430px;margin-left:0px;line-height:32px;font-size:12px;}
 #college-news li{font-size:14px;font-weight:bold;color:#30465B;}
 #college-news a{color:#30465B;}#college-news a:hover{color:#FFF;}
-#scroll-news{width:314px;height:332px;float:right;background-color:#BBC0C4;margin-right:90px;}
-#link{height:280px;width:1280px; background-image:url(../img/link-area-background.jpg);}
+#scroll-news{width:314px;height:332px;float:right;background-color:#BBC0C4;margin-right:80px;}
+#link{height:280px;width:1280px;background-image:url(../img/link-area-background.jpg);}
 #footer{height:100px;width:1280px;background-color:#31475C;}
-.site-link{width:352px;height:166px;background-color:rgba(255,255,255,0.3);float:left;margin:20px 20px 0px 0px;/*filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5;*/}
+.site-link{width:352px;height:166px;background-color:rgba(255,255,255,0.3);float:left;margin:50px 32px 0px 0px;/*filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5;*/}
 /*设置父元素的透明度后，子元素就算重新设置透明度进行样式覆盖也是没有办法的，通过rgba的方法可以让子元素不继承，不过不支持IE6*/
 .link-text{color:#000;font-size:22px;text-align:center;margin-top:20px;line-height:26px;height:90px;}
 .link-button{background-color:#c91812;width:166px;height:40px;margin-left:90px;text-align:center;line-height:40px;font-size:16;/*font-weight:bold;*/}
@@ -61,3 +61,12 @@ a:hover{color:#F00;text-align:left;}
 .news-text{text-align:center;color:#30465B;font-size:12px;padding:0px 8px;line-height:26px; float:left;}
 #first-scroll-news,#second-scroll-news,#third-scroll-news{width:314px;float:left;position:absolute;}
 #circle1,#circle2,#circle3{cursor:pointer;}
+/******CSS3 below******/
+.more-info-button,.link-button{border-radius:3px;box-shadow:3px 3px 2px rgba(50,50,50,0.8);}
+.more-info-button:hover,.link-button:hover{box-shadow:0px 0px 3px 1px rgba(255,0,0,0.8);}
+.site-link,#college-news,#scroll-news{border-radius:5px;box-shadow:3px 2px 2px 1px rgba(50,50,50,0.6);}
+#navigator li li{box-shadow:3px 2px 2px 1px rgba(50,50,50,0.6);}
+#search-bar input{border-radius:2px;}
+.intro-bar{box-shadow:3px 2px 2px 1px rgba(50,50,50,0.6);}
+.intro-bar span{text-shadow:1px 1px 1px rgba(0,0,0,0.8);}
+/******CSS3 above******/

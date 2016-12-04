@@ -1,0 +1,53 @@
+.intro-bar{width:250px;height:250px;float:left;font-size:16px;/*font-weight:bold;*/font-family:"微软雅黑";text-align:left;}
+/*不知道为什么这里的类标签无效，所以用了内联样式--update:移动到第一行就有效了,一开始chrome里调试发现读不到类intro-bar*/
+.intro-bar span{display:inline-block;padding:22px 30px 0px 30px;height:190px;}
+.more-info-button{height:30px; width:112px; background-color:#c91812;margin-left:70px;text-align:center;line-height:28px;font-size:16px;font-weight:bold;}
+#function-area div{width:80px;height:110px;float:left; margin-right:50px;margin-top:30px;}
+/*初始化部分样式：全局默认字体为雅黑，链接选中为红色，去除下划线*/
+*{margin:0;padding:0;font-family:"微软雅黑","Regular";}
+body{background-color:#EEF3FA;color:#FFF;}
+a{text-decoration:none;color:#FFF;}
+a:hover{color:#F00;}
+/*初始化全局样式完*/
+#warp{width:1280px;margin:auto;}/*最外层框架*/
+/*banner及导航部分样式开始*/
+#banner{width:1280px;height:145px;background-color:#31475C; /*background-image:url(../img/banner.png);*/margin-bottom:2px;}
+#language-switcher{width:1250px;text-align:right;color:#FFF;position:absolute;top:10px;left:0px;font-family:"微软雅黑","Regular";font-size:14px;}
+#navigator{width:1280px;height:40px;background-color:#31475C;}
+#navigator ul li{float:left;list-style:none;height:40px;text-align:center;line-height:42px;margin-top:-2px;font-size:12px;font-family:"微软雅黑","Regular";/*letter-spacing:-1px;*/padding:0px 10px;}
+
+/*.long{width:160px;}.mid{width:112px;}.short{width:72px;}*/
+/*.long ul li{width:160px;}.mid ul li{width:112px;}.short ul li{width:72px;}*/
+#navigator img{height:0px; margin:0px 0px 2px 2px;}
+#navigator span{color:#31475C;position:absolute;left:175px;font-size:14px;line-height:15px;}
+/*banner及导航部分样式结束*/
+/*三级导航菜单样式设置开始*/
+#navigator ul li ul{display:none;/*width:180px;*/position:relative;top:-1px;}
+#navigator ul ul ul li{display:none;position:relative;border-left:#CCC solid 1px;}/*三级菜单*/
+#navigator li ul li{width:180px;height:36px;background-color:#FFF;text-align:left;line-height:38px;padding-left:10px;margin:0; border-bottom:#31475C solid 1px;font-size:16px;}#navigator a{color:#31475C;}#navigator a:hover{color:#FFF;}
+/*因英文菜单不方便设置统一长度，放弃纯CSS下来菜单，改用JS*/
+#navigator li:hover ul{display:block;/*这个属性有点奇怪*/width:55px;/*这个长度控制导航块大小*/border-top:#000 solid 0px;margin-top:-1px; position:relative;left:-8px;}/*二级弹出菜单属性*/
+#navigator ul li:hover ul li:hover li{display:block;width:105px;float:right;position:relative;left:261px;top:-36px;}/*三级弹出菜单属性*/
+
+#navigator li:hover{border-top:#036 solid 2px;cursor:default;}
+#navigator li ul li:hover{background-color:#999;border-top:0px;}
+
+/*三级导航菜单样式设置结束*/
+
+#intro-area{background-image:url(../img/bg.png);height:444px;}
+#intro-area-text{font-size:16px;/*font-weight:bold;*/font-family:"微软雅黑"; padding:20px 80px;}#intro-area-text p{text-indent:2em;}
+#logo-text{float:left;margin-top:50px;width:260px;text-align:right;};
+#function-area{width:1280px;height:150px;}
+#news-area{height:332px;width:1280px;}
+#college-news{width:898px;height:315px;background-color:#BBC0C4;padding-top:18px;float:left;margin-left:0px;}
+#video-area{width:294px;height:298px;margin-left:15px;background-image:url(../img/vedio-bg.png); float:left;}
+#college-news-banner{width:560px;float:left;font-family:"微软雅黑";font-size:18px;font-weight:bold;color:#C91812;margin-left:20px;margin-top:16px;}
+#news-list{width:560px;}
+#college-news li{font-size:14px;font-weight:bold;font-family:"微软雅黑";color:#30465B;}
+#scroll-news{width:314px;height:332px;float:right;background-color:#BBC0C4;margin-right:0px;}
+#link{height:280px;width:1280px; background-image:url(../img/link-area-background.jpg);}
+#footer{height:100px;width:1280px;background-color:#31475C;}
+.site-link{width:352px;height:166px;background-color:rgba(255,255,255,0.3);float:left;margin:20px 20px 0px 0px;/*filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5;*/}
+/*设置父元素的透明度后，子元素就算重新设置透明度进行样式覆盖也是没有办法的，通过rgba的方法可以让子元素不继承，不过不支持IE6*/
+.link-text{color:#000;font-size:22px;text-align:center;margin-top:20px;line-height:26px;height:90px;}
+.link-button{background-color:#c91812;width:166px;height:40px;margin-left:90px;text-align:center;line-height:40px;font-size:16;/*font-weight:bold;*}

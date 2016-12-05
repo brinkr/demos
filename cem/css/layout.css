@@ -26,7 +26,7 @@ a:hover{color:#F00;text-align:left;}
 #search-bar input{height:30px;width:176px;font-size:16px;padding-left:10px;padding-right:30px;border:#c91812 2px solid;color:#CCC;}
 /*IE8一下不支持focus伪类，改为JQ实现 更新：妈的，怎么用JQ在IE6下还是一样没效果？
 #search-bar input:focus{outline:solid #FFF 2px;color:#000;border-color:#FFF;}*/
-.input-focus{outline:solid #FFF 2px;color:#000;border-color:#FFF;}
+.input-focus{outline:solid #FFF 2px;color:#000;}
 /*banner及导航部分样式结束*/
 /*三级导航菜单样式设置开始*/
 #navigator ul li ul{display:none;/*width:180px;position:relative;top:-1px;*/position:absolute;top:-1px;}
@@ -66,7 +66,7 @@ a:hover{color:#F00;text-align:left;}
 .more-info-button:hover,.link-button:hover{box-shadow:0px 0px 3px 1px rgba(255,0,0,0.8);}
 .site-link,#college-news,#scroll-news{border-radius:5px;box-shadow:3px 2px 2px 1px rgba(50,50,50,0.6);}
 #navigator li li{box-shadow:3px 2px 2px 1px rgba(50,50,50,0.6);}
-#search-bar input{border-radius:2px;}
+#search-bar input{border-radius:5px;}#search-bar input:focus{border-radius:1px;border-color:#FFF;}
 .intro-bar{box-shadow:3px 2px 2px 1px rgba(50,50,50,0.6);}
 .intro-bar span{text-shadow:1px 1px 1px rgba(0,0,0,0.8);}
 /******CSS3 above******/

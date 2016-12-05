@@ -1,0 +1,9 @@
+var listnews= [
+	{'title':'Our hospital undertakes the second Guangdong financial  ......','source':'#'},
+	{'title':'Prof. H. N. Nagaraja from Ohio State University was invited to ......','source':'#'},
+	{'title':'[Bi-weekly study] I focus on the school to watch learning ......','source':'#'},
+	{'title':'Party members and cadres of our hospital to Zhongshan to ......','source':'#'},
+	{'title':'Professor Luo Biliang hosted the national key projects of the ......','source':'#'},
+	{'title':'Our hospital successfully held "supply side reform and rural ......','source':'#'},
+	{'title':'Party members and cadres of our hospital to Zhongshan to ......','source':'#'}
+]

@@ -3,13 +3,25 @@ $(document).ready(function(e) {
 	var SwitchTime=2000;
 	var ScrollNewsTimer;
 	displayFirstScrollNews();
+	$('#chinese').css('opacity','0.5');
+
+	var ListNewsHtml='';
+	//var a='<li><a href='+'\"'+listnews[0].source+'\"'+'>'+listnews[0].title+'</a></li>';
+	//alert(a);
+	for(var i=0;i<listnews.length;i++){
+		ListNewsHtml+='<li><a href='+'\"'+listnews[i].source+'\"'+'>'+listnews[i].title+'</a></li>';	
+	}
+	$('#news-list ol').html(ListNewsHtml);
+	
+	
+	//alert(
 	//$('#second-scroll-news,#third-scroll-news').css('opacity','0');
 	/*初始化完*/
 //$('#circle1').css('visibility','visible');
 	/*修复浏览器兼容性*/
 	/*如果是IE6、7、8增加一个float:left以免产生错位*/
 	if($.browser.msie&&($.browser.version=="6.0"||$.browser.version=="7.0"||$.browser.version=="8.0")&&!$.support.style){ 
-		$('#navigator li ul').css('float','left');
+		//$('#navigator li ul').css('float','left');
 	} 
 	if($.browser.msie&&($.browser.version=="9.0"||$.browser.version=="10.0"||$.browser.version=="11.0")){ 
 		$('#navigator ul li ul').css('top','41px');
@@ -63,12 +75,49 @@ $(document).ready(function(e) {
 	}
 	/*滚动新闻动态效果完*/	
 	/*为圆形滑块添加手动控制效果*/
-	
 	$('#circle1,#circle2,#circle3').mouseover(function(){clearTimeout(ScrollNewsTimer);});
 	$('#circle1,#circle2,#circle3').mouseleave(function(){displayThirdScrollNews();});
 	$('#circle1').mousedown(displayFirstScrollNews);
 	$('#circle2').mousedown(displaySecondScrollNews);
 	$('#circle3').mousedown(displayThirdScrollNews);
-	
 	/*手动控制效果添加完毕*/
+	//$(document).scroll(function(){$('#back-to-top').css({'top':'+=parseInt($(document).scrollTop())+"px"'});});
+	//不支持IE6	更新：支持IE6，注意是$(window).scroll()不是document
+	//if($(document).scrollTop()>200) $('#back-to-top').css('opacity','0'); else $('#back-to-top').css('opacity','1');
+	//$('#back-to-top').fadeOut('fast');
+	$('#back-to-top').css({'top':$(window).height()+$(document).scrollTop()-$('#back-to-top').height()-50});
+	var y=parseInt($('#back-to-top').css('top'));
+	$('#back-to-top').mousedown(function(){$(document).scrollTop(0);});
+	$(window).scroll(function(){
+		var v_top=$(document).scrollTop()+y;
+		$('#back-to-top').css('top',v_top);	
+		if($(document).scrollTop()>200) $('#back-to-top').fadeIn('slow');
+		else $('#back-to-top').fadeOut('slow');		
+	});  
+	
+	/*
+ 
+var Y,h,scrollTop; 
+	
+	
+	var backToTop=document.getElementById("back-to-top");
+	if(backToTop.currentStyle){		
+		Y=parseInt(backToTop.currentStyle.top);
+	}else{		
+		Y=parseInt(document.defaultView.getComputedStyle(backToTop,null).top);			
+	}	
+	
+	
+	
+function move(){
+	scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+	backToTop.style.top=Y+parseInt(scrollTop)+"px";
+	
+	//console.log($(window).height()+$(document).scrollTop()-$('#back-to-top').height());
+}
+//window.onload=getPosition;
+//window.onscroll=move;
+//alert(listnews[1].title);
+	$(window).scroll()
+	*/	
 });

@@ -5,28 +5,25 @@
 .more-info-button:hover{background-color:#DE0E6F;cursor:pointer;}
 .intro-bar:hover{border-top:#DE0E6F 6px solid;height:244px;}
 .intro-bar:hover span{margin:16px 30px 0px 30px;}
+#function-area div{width:80px;height:110px;float:left; margin-right:50px;margin-top:30px;}
 /*初始化部分样式：全局默认字体为雅黑，链接选中为红色，去除下划线*/
 *{margin:0;padding:0;font-family:"微软雅黑","Regular";}
 body{background-color:#EEF3FA;color:#FFF;}
 a{text-decoration:none;color:#FFF;}
 a:hover{color:#F00;text-align:left;}
 /*初始化全局样式完*/
-#warp{width:100%;margin:auto;}/*最外层框架*/
+#warp{width:1280px;margin:auto;}/*最外层框架*/
 /*banner及导航部分样式开始*/
-#banner{width:100%;height:145px;background-color:#31475C; /*background-image:url(../img/banner.png);*/margin-bottom:2px;}
-#banner img{float:left;margin:5px 80px;}
-#english-name{font-size:9px;line-height:20px;font-family:幼圆;}
-#school-motto{text-align:left;width:150px;margin-left:126px;padding-left:8px;}
-#language-switcher{width:176px;text-align:right;color:#FFF;position:absolute;top:20px;right:8%;font-size:14px;}
-#navigator{width:100%;height:40px;background-color:#31475C;}
-#navigator ul li{float:left;list-style:none;height:40px;text-align:center;line-height:42px;margin-top:-2px;font-size:12px;/*letter-spacing:-1px;*/padding:0px 4px;display:inline-block;}
+#banner{width:1280px;height:145px;background-color:#31475C; /*background-image:url(../img/banner.png);*/margin-bottom:2px;}
+#language-switcher{width:1250px;text-align:right;color:#FFF;position:absolute;top:10px;left:0px;font-size:14px;}
+#navigator{width:1280px;height:40px;background-color:#31475C;}
+#navigator ul li{float:left;list-style:none;height:40px;text-align:center;line-height:42px;margin-top:-2px;font-size:12px;/*letter-spacing:-1px;*/padding:0px 4px;}
 /*.long{width:160px;}.mid{width:112px;}.short{width:72px;}*/
 /*.long ul li{width:160px;}.mid ul li{width:112px;}.short ul li{width:72px;}*/
 #navigator img{height:6px; margin:0px 0px 2px 2px;}
 #navigator span{color:#31475C;float:right;margin:10px;font-size:14px;line-height:15px;}/*三级菜单箭头*/
-#search-bar{position:absolute;top:77px;right:10%;width:176px;height:30px;line-height:28px;float:left;background-color:#903;}
+#search-bar{margin:77px 0px 0px 450px;float:left;}
 #search-bar input{height:30px;width:176px;font-size:16px;padding-left:10px;padding-right:30px;border:#c91812 2px solid;color:#CCC;}
-#search-bar img{position:relative;top:-32px;right:-110px;width:20px;height:20px;};
 /*IE8一下不支持focus伪类，改为JQ实现 更新：妈的，怎么用JQ在IE6下还是一样没效果？
 #search-bar input:focus{outline:solid #FFF 2px;color:#000;border-color:#FFF;}*/
 .input-focus{outline:solid #FFF 2px;color:#000;}
@@ -41,22 +38,21 @@ a:hover{color:#F00;text-align:left;}
 #navigator li:hover{border-top:#c91812 solid 2px;cursor:default;}
 #navigator li ul li:hover{background-color:#999;border-top:0px;}
 /*三级导航菜单样式设置结束*/
-#intro-area{width:100%;/*background-image:url(../img/bg.png);*/height:444px;}
+#intro-area{background-image:url(../img/bg.png);height:444px;}
 #intro-area-text{font-size:16px;/*font-weight:bold;*/font-family:"微软雅黑"; padding:20px 80px;}#intro-area-text p{text-indent:2em;}
-#logo-text{float:left;margin-top:50px;width:276px;text-align:right;};
-#function-area{width:100%;height:160px;text-align:center;}#function-area div:hover{cursor:pointer;}
-#function-area div{width:80px;height:110px;float:left;margin:0px 25px;margin-top:30px;}
+#logo-text{float:left;margin-top:50px;width:260px;text-align:right;};
+#function-area{width:1280px;height:160px;}#function-area div:hover{cursor:pointer;}
 #news-area{height:332px;width:1280px;margin:20px 0px;}
 #college-news{width:778px;height:315px;background-color:#BBC0C4;padding-top:18px;float:left;margin-left:80px;}
 #video-area{width:294px;height:298px;margin-left:15px;background-image:url(../img/vedio-bg.png);float:left;}
 #college-news-banner{width:420px;float:left;font-family:"微软雅黑";font-size:18px;font-weight:bold;color:#C91812;margin:12px 0px 10px 15px;}
-#news-list{margin-left:30px;float:left; text-align:left;}
+#news-list{margin-left:30px;float:left;}
 #news-list ol li{width:430px;margin-left:0px;line-height:32px;font-size:12px;}
 #college-news li{font-size:14px;font-weight:bold;color:#30465B;}
 #college-news a{color:#30465B;}#college-news a:hover{color:#FFF;}
 #scroll-news{width:314px;height:332px;float:right;background-color:#BBC0C4;margin-right:80px;}
-#link{height:280px;width:100%;text-align:center;background-image:url(../img/link-area-background.jpg);}
-#footer{height:100px;width:100%;background-color:#31475C;}
+#link{height:280px;width:1280px;background-image:url(../img/link-area-background.jpg);}
+#footer{height:100px;width:1280px;background-color:#31475C;}
 .site-link{width:352px;height:166px;background-color:rgba(255,255,255,0.3);float:left;margin:50px 32px 0px 0px;/*filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5;*/}
 /*设置父元素的透明度后，子元素就算重新设置透明度进行样式覆盖也是没有办法的，通过rgba的方法可以让子元素不继承，不过不支持IE6*/
 .link-text{color:#000;font-size:22px;text-align:center;margin-top:20px;line-height:26px;height:90px;}
@@ -65,9 +61,7 @@ a:hover{color:#F00;text-align:left;}
 .news-text{text-align:center;color:#30465B;font-size:12px;padding:0px 8px;line-height:26px; float:left;}
 #first-scroll-news,#second-scroll-news,#third-scroll-news{width:314px;float:left;position:absolute;}
 #circle1,#circle2,#circle3{cursor:pointer;}
-/******CSS3 style below******/
-#intro-area{/*background-size:cover;*/}
-#link{background-size:cover;}
+/******CSS3 below******/
 .more-info-button,.link-button{border-radius:3px;box-shadow:3px 3px 2px rgba(50,50,50,0.8);}
 .more-info-button:hover,.link-button:hover{box-shadow:0px 0px 3px 1px rgba(255,0,0,0.8);}
 .site-link,#college-news,#scroll-news{border-radius:5px;box-shadow:3px 2px 2px 1px rgba(50,50,50,0.6);}
@@ -75,9 +69,4 @@ a:hover{color:#F00;text-align:left;}
 #search-bar input{border-radius:5px;}#search-bar input:focus{border-radius:1px;border-color:#FFF;}
 .intro-bar{box-shadow:3px 2px 2px 1px rgba(50,50,50,0.6);}
 .intro-bar span{text-shadow:1px 1px 1px rgba(0,0,0,0.8);}
-/******CSS3 style above******/
-@media screen and (max-width: 1280px) { /*当浏览器最大宽度低于1280px时*/
-	#banner,#navigator,#intro-area,#function-area,#link,#footer{width:1280px;}
-} 
-/***for JQ***/
-.navi-fix{top:0px;position:fixed;z-index:99;}
+/******CSS3 above******/

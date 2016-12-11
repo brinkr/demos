@@ -4,20 +4,12 @@ $(document).ready(function(e) {
 	var ScrollNewsTimer;
 	displayFirstScrollNews();
 	$('#chinese').css('opacity','0.5');
-
 	var ListNewsHtml='';
-	//var a='<li><a href='+'\"'+listnews[0].source+'\"'+'>'+listnews[0].title+'</a></li>';
-	//alert(a);
 	for(var i=0;i<listnews.length;i++){
 		ListNewsHtml+='<li><a href='+'\"'+listnews[i].source+'\"'+'>'+listnews[i].title+'</a></li>';	
 	}
 	$('#news-list ol').html(ListNewsHtml);
-	
-	
-	//alert(
-	//$('#second-scroll-news,#third-scroll-news').css('opacity','0');
 	/*初始化完*/
-//$('#circle1').css('visibility','visible');
 	/*修复浏览器兼容性*/
 	/*如果是IE6、7、8增加一个float:left以免产生错位*/
 	if($.browser.msie&&($.browser.version=="6.0"||$.browser.version=="7.0"||$.browser.version=="8.0")&&!$.support.style){ 
@@ -88,36 +80,113 @@ $(document).ready(function(e) {
 	$('#back-to-top').css({'top':$(window).height()+$(document).scrollTop()-$('#back-to-top').height()-50});
 	var y=parseInt($('#back-to-top').css('top'));
 	$('#back-to-top').mousedown(function(){$(document).scrollTop(0);});
+	
+	/***若是刷新过页面，且滚动条预先有滚动，亦置顶导航栏***/
+	if ($(document).scrollTop()>$("#intro-area").offset().top-20){
+			$("#navigator").css('position','fixed');	
+				$("#navigator").addClass("navi-fix");/*不要加点*/	
+				//$("#cover-bg").css({'top':'+=$(document).scrollTop()'});	
+				//$("#cover-bg").css({'top':'40'});	
+			}
 	$(window).scroll(function(){
 		var v_top=$(document).scrollTop()+y;
 		$('#back-to-top').css('top',v_top);	
 		if($(document).scrollTop()>200) $('#back-to-top').fadeIn('slow');
-		else $('#back-to-top').fadeOut('slow');		
-	});  
+		else $('#back-to-top').fadeOut('slow');
+		//alert($(window).scrollTop());
+			if ($(document).scrollTop()>$("#intro-area").offset().top-20){
+				$("#navigator").addClass("navi-fix");/*不要加点*/	
+				//$("#cover-bg").css({'top':'+=$(document).scrollTop()'});	
+				//$("#cover-bg").css('margin-top','0');		
+			}else{
+				//$("#navigator").css('opacity','0.5');
+				
+				//$("#navigator").animate({opacity:'+=0.1'},100);
+				$("#navigator").removeClass("navi-fix");
+				//$("#cover-bg").css({'top':'-=$(document).scrollTop()-40'});	
+				//$("#cover-bg").css({'margin-top':'-40'});
+				/***fixed会干扰后续绝对定位层的位置控制，故先设置为absolute，等后续层位置确定后，再设置其为fixed，以保持位置***/
+				/*以上描述可能有误*/
+				//$("#navigator").css({'position':'fixed'});			
+			}
+	});  	
 	
-	/*
- 
-var Y,h,scrollTop; 
+	var scrpic=['img/scr1.jpg','img/scr2.jpg','img/scr3.jpg','img/scr4.jpg'];
+	var ScrPreOrder=0,ScrCurOrder=1,ScrNextOrder=2;var ScrTimer;
+	var p_right="100%",p_left="-100%";
+	function nextPic(){
+		$("#pre-scroll-bg").attr('src',scrpic[ScrPreOrder]);
+		$("#cur-scroll-bg").attr('src',scrpic[ScrCurOrder]);
+		$("#next-scroll-bg").attr('src',scrpic[ScrNextOrder]);
+		ScrPreOrder--;ScrCurOrder--;ScrNextOrder--;
+		if(ScrPreOrder<0) ScrPreOrder=4;
+		if(ScrCurOrder<0) ScrCurOrder=4;
+		if(ScrNextOrder<0) ScrNextOrder=4;
+		$('#pre-scroll-bg').animate({'left':'0%'},2000,function(){//前图顶替当前图位置
+			$('#next-scroll-bg').css('left','-100%');//左右俩图交换位置
+			$('#next-scroll-bg').attr('src',scrpic[ScrPreOrder]);
+			//$('#pre-scroll-bg').css({'right':'100%'}).attr('src',scrpic[ScrPreOrder]);
+			//$('#cur-scroll-bg').css({'right':'100%'}).attr('src',$('#pre-scroll-bg').attr('src'));				
+		});
+		$('#cur-scroll-bg').animate({'left':'100%'},2000,function(){//当前图移动到右边不可见位置
+			$('#cur-scroll-bg').css('left','-100%');
+			/*当前图滑动到右边不可见位置后*/
+			//$('#cur-scroll-bg').css({'left':'0%'}).attr('src',$('#pre-scroll-bg').attr('src'));
+			//$('#pre-scroll-bg').attr('src',scrpic[ScrPreOrder]);
+			//$('#cur-scroll-bg').css({'right':'100%'}).attr('src',srcpic[ScrPreOrder]);//预先载入前前图，并置入左边不可见位置等待切换			
+		});	
+		
+		
+		
+		
+		
+		//$('#next-scroll-bg').animate({'left':'-100%'},2000,function(){
+				
+			
+		//});
+		
+			
+		//$('#pre-scroll-bg');
+		//$('#cur-scroll-bg').css({'left':'0%'});
+		//$('#pre-scroll-bg').css({'right':'100%'}).attr('src',scrpic[ScrPreOrder]);
+		//$('#cur-scroll-bg').css({'left':'0%'}).attr('src',scrpic[ScrCurOrder]);	
+	}
+	//nextPic();
+	//ScrTimer=setInterval(nextPic,2500);
+	//时间有限，晕过去了，先不写了，用插件吧。
+	$('.scroll').unslider({
+	speed: 1000,               //  The speed to animate each slide (in milliseconds)
+	delay: 2000,              //  The delay between slide animations (in milliseconds)
+	complete: function() {},  //  A function that gets called after every slide animation
+	keys: true,               //  Enable keyboard (left, right) arrow shortcuts
+	dots: true,               //  Display dot navigation
+	fluid: false              //  Support responsive design. May break non-responsive designs
+});
+	$(function() {
+    $('.scroll').unslider();
+	});
+	//ScrTimer=setInterval(nextPic,2500);
+	var unslider = $('.scroll').unslider();
+
+    $('.unslider-arrow').click(function() {
+        var fn = this.className.split(' ')[1];
+
+        //  Either do unslider.data('unslider').next() or .prev() depending on the className
+        unslider.data('unslider')[fn]();
+    });
 	
-	
-	var backToTop=document.getElementById("back-to-top");
-	if(backToTop.currentStyle){		
-		Y=parseInt(backToTop.currentStyle.top);
-	}else{		
-		Y=parseInt(document.defaultView.getComputedStyle(backToTop,null).top);			
-	}	
-	
-	
-	
-function move(){
-	scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-	backToTop.style.top=Y+parseInt(scrollTop)+"px";
-	
-	//console.log($(window).height()+$(document).scrollTop()-$('#back-to-top').height());
-}
-//window.onload=getPosition;
-//window.onscroll=move;
-//alert(listnews[1].title);
-	$(window).scroll()
-	*/	
+	var slidey = $('.scroll').unslider();
+    var data = slidey.data('unslider');
+	$('#prePic').css('opacity','0.2');$('#nextPic').css('opacity','0.2');
+	$('#prePic').mouseover(function(){$('#prePic').css('opacity','1');});
+	$('#prePic').mouseout(function(){$('#prePic').css('opacity','0.2');});
+	$('#nextPic').mouseover(function(){$('#nextPic').css('opacity','1');});
+	$('#nextPic').mouseout(function(){$('#nextPic').css('opacity','0.2');});
+
+/*
+	$('#prePic').mouseover(function(){clearInterval(ScrTimer);});
+	$('#prePic').mouseout(function(){ScrTimer=setInterval(nextPic,500);});
+	$('#nextPic').mouseover(function(){clearInterval(ScrTimer);});
+	$('#nextPic').mouseout(function(){ScrTimer=setInterval(nextPic,500);});
+*/
 });

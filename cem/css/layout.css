@@ -1,10 +1,10 @@
 .intro-bar{width:250px;height:250px;float:left;font-size:16px;/*font-weight:bold;*/font-family:"微软雅黑";text-align:left;}
 /*不知道为什么这里的类标签无效，所以用了内联样式--update:移动到第一行就有效了,一开始chrome里调试发现读不到类intro-bar*/
 .intro-bar span{display:inline-block;margin:22px 30px 0px 30px;height:190px;}
-.more-info-button{height:30px; width:112px; background-color:#c91812;margin-left:70px;text-align:center;line-height:30px;font-size:16px;/*font-weight:bold;*/}
+.more-info-button{bottom:20px;float:left;height:30px;width:112px;background-color:#c91812;margin-left:70px;text-align:center;line-height:30px;font-size:16px;/*font-weight:bold;*/}
 .more-info-button:hover{background-color:#DE0E6F;cursor:pointer;}
-.intro-bar:hover{border-top:#DE0E6F 6px solid;height:244px;}
-.intro-bar:hover span{margin:16px 30px 0px 30px;}
+.intro-bar:hover{/*border-top:#DE0E6F 6px solid;height:244px;*/}
+.intro-bar:hover span{/*margin:16px 30px 0px 30px;*/}
 /*初始化部分样式：全局默认字体为雅黑，链接选中为红色，去除下划线*/
 *{margin:0;padding:0;font-family:"微软雅黑","Regular";}
 body{background-color:#EEF3FA;color:#FFF;}
@@ -36,15 +36,18 @@ a:hover{color:#F00;text-align:left;}
 #navigator ul ul ul li{display:none;position:relative;border-left:#CCC solid 1px;}/*三级菜单*/
 #navigator li ul li{width:180px;height:36px;background-color:#FFF;text-align:left;line-height:38px;margin:0;padding-left:10px;border-bottom:#31475C solid 1px;font-size:16px;}#navigator a{color:#31475C;}#navigator a:hover{color:#FFF;}
 /*因英文菜单不方便设置统一长度，放弃纯CSS下来菜单，改用JS*/
-#navigator li:hover ul{display:block;/*这个属性有点奇怪*/width:25px;/*这个长度控制导航块大小*/border-top:#000 solid 0px; position:relative;margin:-1px 0px 0px -2px;/*更新:要添加float:left，上一个width是这个块的长度，设为较小值配合float实现换行，且解决了在IE6下错位的问题--更新：加了float在非ie6下又不正常了*/}/*二级弹出菜单属性*/
+
+#navigator li:hover ul{/*display:block;*//*这个属性有点奇怪*/width:25px;/*这个长度控制导航块大小*/border-top:#000 solid 0px; position:relative;z-index:100;margin:-1px 0px 0px -2px;/*更新:要添加float:left，上一个width是这个块的长度，设为较小值配合float实现换行，且解决了在IE6下错位的问题--更新：加了float在非ie6下又不正常了*/}/*二级弹出菜单属性*/
+
+
 #navigator ul li:hover ul li:hover li{display:block;width:180px;float:left;position:relative;left:186px;top:-36px;}/*三级弹出菜单属性*/
 #navigator li:hover{border-top:#c91812 solid 2px;cursor:default;}
 #navigator li ul li:hover{background-color:#999;border-top:0px;}
 /*三级导航菜单样式设置结束*/
 #intro-area{width:100%;/*background-image:url(../img/bg.png);*/height:444px;}
-#intro-area-text{font-size:16px;/*font-weight:bold;*/font-family:"微软雅黑"; padding:20px 80px;}#intro-area-text p{text-indent:2em;}
+#intro-area-text{font-size:18px;/*font-weight:bold;*/font-family:"微软雅黑";padding:12px 80px;height:128px;line-height:30px;float:left;display:inline-block;}#intro-area-text p{text-indent:2em;width:100%}
 #logo-text{float:left;margin-top:50px;width:276px;text-align:right;};
-#function-area{width:100%;height:160px;text-align:center;}#function-area div:hover{cursor:pointer;}
+#function-area{width:100%;height:160px;text-align:center;/*background-color:#EEF3FA;z-index:80;position:absolute;*/}#function-area div:hover{cursor:pointer;}
 #function-area div{width:80px;height:110px;float:left;margin:0px 25px;margin-top:30px;}
 #news-area{height:332px;width:1280px;margin:20px 0px;}
 #college-news{width:778px;height:315px;background-color:#BBC0C4;padding-top:18px;float:left;margin-left:80px;}
@@ -76,8 +79,10 @@ a:hover{color:#F00;text-align:left;}
 .intro-bar{box-shadow:3px 2px 2px 1px rgba(50,50,50,0.6);}
 .intro-bar span{text-shadow:1px 1px 1px rgba(0,0,0,0.8);}
 /******CSS3 style above******/
+#intro-area ul img{width:100%}
 @media screen and (max-width: 1280px) { /*当浏览器最大宽度低于1280px时*/
-	#banner,#navigator,#intro-area,#function-area,#link,#footer{width:1280px;}
+	#banner,#navigator,#intro-area,#intro-area-text,#function-area,#link,#footer{width:1280px;}
+	#intro-area ul img{width:1280px;}
 } 
 /***for JQ***/
 .navi-fix{top:0px;position:fixed;z-index:99;}

@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/layout.css">
     <!--<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">-->
     <script src="datesource/listnews.json" type="text/javascript"></script>
+    <script src="datesource/introtext.json" type="text/javascript"></script>
     <script src="js/jquery-1.7.2.min.js"></script>
     <!--<script src="js/bootstrap.min.js"></script>-->
 <!--注意先引入JQ再引入BS-->
@@ -19,12 +20,10 @@
 <!--[if lt IE 9]> 
 <script src="js/css3-mediaqueries.js"></script>
 <![endif]-->
-	<script src="js/unslider.min.js"></script>
+<!--
+	<script src="js/unslider.min.js"></script>-->
 <style type="text/css">
-	.scroll { position: relative; overflow: auto; }
-    .scroll li { list-style: none; }
-        .scroll ul li { float: left; }
-
+	
 </style>
 
 </head>
@@ -57,8 +56,9 @@
 <!--导航部分开始-->
 <div style="clear:both;"></div>
 <div id="navigator" style="text-align:center;">
-<ul style="width:100%;display:inline-block; text-align:center;">															<!--给img加入float，可以独立控制位置，不和home一起移动-->
-<li style="margin-left:9px;"><img style="height:12px;width:12px;float:left;margin:13px 5px 0px 0px;" src="img/home.png">HOME</li>
+<div style="display:inline-block;width:auto;"><!--不要给容器设置宽度，让他自适应内容宽度，否则设为100%，内容左浮动，则不会有居中效果。更新：IE6下无法居中-->
+<ul style="text-align:center;">															<!--给img加入float，可以独立控制位置，不和home一起移动-->
+<li><img style="height:12px;width:12px;float:left;margin:13px 5px 0px 0px;" src="img/home.png">HOME</li>
 <li class="long">COLLEGE SUMMARY<img src="img/down_arrow.png">
 	<ul class="hovered-menu">
     	<li><a href="#">学院简介</a></li><li><a href="#">历史沿革</a></li><li><a href="#">院徽院训</a></li><li><a href="#">现任领导</a></li><li><a href="#">组织架构</a></li><li><a href="#">学术委员会</a></li><li><a href="#">办事指南</a></li><li><a href="#">院务公开</a></li>
@@ -96,41 +96,48 @@
 <li class="long">CONTINUING EDUCATION<img src="img/down_arrow.png">
 <ul><li><a href="#">在职农推硕士</a></li><li><a href="#">干部培训</a></li><li><a href="#">职业培训</a></li></ul>
 </li>
+<!--
 <li class="mid">BOOKS DATA<img src="img/down_arrow.png">
 <ul><li><a href="#">图书室简介</a></li><li><a href="#">查询系统</a></li><li><a href="#">相关规章</a></li><li><a href="#">通知通告</a></li></ul>
 </li>
+
 <li class="long">VARIOUS DOWNLOADS<img src="img/down_arrow.png">
 <ul><li><a href="#">表格下载</a></li><li><a href="#">课件下载</a></li><li><a href="#">视频下载</a></li><li><a href="#">其他</a></li></ul>
 </li>
+-->
 </ul>
+</div>
 </div>
 <!--导航部分结束-->
 <!--学学院介绍部分开始-->
-<div id="intro-area">
-	<div class="scroll" style="width:100%;height:444px;position:absolute;z-index:-2; overflow:hidden;">
-    <ul>
-    <!--
-    <li><img id="pre-scroll-bg" style="width:100%;position:absolute;left:-100%;" src="img/scr1.jpg"></li>
-    <li><img id="cur-scroll-bg" style="width:100%; position:absolute;left:0%;" src="img/scr2.jpg"></li>
-    <li><img id="next-scroll-bg" style="width:100%;position:absolute;left:100%;" src="img/scr3.jpg"></li>
-    -->
-     <li><img id="pre-scroll-bg" style="width:100%;" src="img/scr1.jpg"></li>
-    <li><img id="cur-scroll-bg" style="width:100%;" src="img/scr2.jpg"></li>
-    <li><img id="next-scroll-bg" style="width:100%;" src="img/scr3.jpg"></li>
-    </ul>
-    </div>
+<div id="intro-area" style="overflow:hidden;">	
+        <ul style="float:left;width:100%;width:100%;height:444px; position:absolute;z-index:-2;overflow:hidden;">
+            
+            <!--<li><img id="pre-scroll-bg" style="width:100%;position:absolute;left:-100%;top:0px;" src="img/scr1.jpg"></li>-->
+            <li id="cur-list"><img id="cur-scroll-bg" style="position:absolute;left:0%;top:0px;" src="img/scr2.jpg"></li>
+          <!--  <li><img id="next-scroll-bg" style="width:100%;" src="img/scr3.jpg"></li>-->
+            <!--li添加内联样式width:100%覆盖下，开发者工具里才发现，这里宽度是1280，应该是选择器没写好，因为一开始是正常的，后来改来改去不正常了。-->
+		<!--
+            <li style="width:100%"><img id="pre-scroll-bg" style="width:100%;" src="img/scr1.jpg"></li>
+            <li style="width:100%"><img id="cur-scroll-bg" style="width:100%;" src="img/scr2.jpg"></li>
+            <li style="width:100%"><img id="next-scroll-bg" style="width:100%;" src="img/scr3.jpg"></li>
+            <li style="width:100%"><img id="next-scroll-bg" style="width:100%;" src="img/scr4.jpg"></li>
+            -->
+        </ul>
+   
     <!--由于背景图片要保持自适应比例，但高度要恒定，意味着需要自适应截取下面一部分，故采取遮罩的方式，用另一个层将其覆盖。
     更新：因为一开始overflow属性放错位置了，导致没法裁边，故采用遮罩，现已经修正，放弃使用遮罩层。注意img本身不能被视为容器。
     <div id="cover-bg" style="width:100%;height:500px;top:630px !important;position:absolute !important;z-index:-1;background-color:#EEF3FA;"></div>-->
 	<img class="unslider-arrow prev" id="prePic" style="float:left;margin-top:260px;margin-left:20px;cursor:pointer;" src="img/left_arrow.png" width="30px" height="57px">
     <img class="unslider-arrow next" id="nextPic" style="float:right;margin-top:260px;margin-right:20px;cursor:pointer;" src="img/right_arrow_next.png" width="30px" height="57px">
-    <div id="intro-area-text"><!--文字介绍部分开始-->
-    <p>Ding Ying Entrepreneurship Training Forum No. 22 report notice
-    About the speaker: graduated from the South China Agricultural University School of Economics and Management Economics, worked in Maersk sea and land, Vanke and other large enterprises.</p><p>More than 12 years experience in consulting firm and real estate planning, investment and operation. Has set up six companies, including consulting industry, the real estate industry, retail brands.</p><p> At present, it focuses on the investment, innovation and incubation of traditional Chinese medicine industry, and strives to promote the industrialization of traditional Chinese medicine and share the economic practice. </p><!--<p>Currently, he is the co-executive director of Xie Yu. 2, Guangdong Zhen real estate investment; 3, a groundbreaking new real estate consulting; 4, the remaining configuration of creative advice.</p>-->
+    <div id="intro-area-text" style="position:absolute;"><!--文字介绍部分开始--><p>Ding Ying Entrepreneurship Training Forum No. 22 report notice
+    About the speaker: graduated from the South China Agricultural University School of Economics and Management Economics, worked in Maersk sea and land, Vanke and other large enterprises.</p><p>More than 12 years experience in consulting firm and real estate planning, investment and operation. Has set up six companies, including consulting industry, the real estate industry, retail brands.</p>
+    <!--<p>Ding Ying Entrepreneurship Training Forum No. 22 report notice
+    About the speaker: graduated from the South China Agricultural University School of Economics and Management Economics, worked in Maersk sea and land, Vanke and other large enterprises.</p><p>More than 12 years experience in consulting firm and real estate planning, investment and operation. Has set up six companies, including consulting industry, the real estate industry, retail brands.</p><p> At present, it focuses on the investment, innovation and incubation of traditional Chinese medicine industry, and strives to promote the industrialization of traditional Chinese medicine and share the economic practice. </p>--><!--<p>Currently, he is the co-executive director of Xie Yu. 2, Guangdong Zhen real estate investment; 3, a groundbreaking new real estate consulting; 4, the remaining configuration of creative advice.</p>-->
     </div><!--文字介绍部分结束-->
 <!--块状图文部分介绍开始-->
-<div style="width:100%;text-align:center;"><div style="display:inline-block;"><!---此容器用来包含栏目并设置为行内块元素，通过父容器的text-alin使其居中--->
-    <div class="intro-bar" style="background-image:url(img/navinfo1.jpg);"><span>　</span>
+<div style="width:100%;text-align:center; margin-top:170px;"><div style="display:inline-block;"><!---此容器用来包含栏目并设置为行内块元素，通过父容器的text-alin使其居中--->
+    <div class="intro-bar" style="background-image:url(img/navinfo1.jpg);"><span>South China Agricultural University School of Economics and Management Economics, worked in Maersk sea and land, Vanke and other large enterprises.</span>
         <div class="more-info-button">MORE <img style="width:12px;height:12px;margin-left:10px;" src="img/right_arrow2.png"></div></div>
     <div class="intro-bar" style="background-image:url(img/navinfo2.jpg);">
         <span>School of Economics and Management 2017 Doctoral Admissions Rules School of Economics and Management, South China Agricultural University</span>

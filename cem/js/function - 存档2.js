@@ -1,4 +1,3 @@
-
 $(document).ready(function(e) {	
 	/*初始化*/
 	var SwitchTime=2000;
@@ -83,81 +82,84 @@ $(document).ready(function(e) {
 	$('#back-to-top').mousedown(function(){$(document).scrollTop(0);});
 	
 	/***若是刷新过页面，且滚动条预先有滚动，亦置顶导航栏***/
-	/*
 	if ($(document).scrollTop()>$("#intro-area").offset().top-20){
 			$("#navigator").css('position','fixed');	
-				$("#navigator").addClass("navi-fix");//不要加点	
+				$("#navigator").addClass("navi-fix");/*不要加点*/	
+				//$("#cover-bg").css({'top':'+=$(document).scrollTop()'});	
+				//$("#cover-bg").css({'top':'40'});	
 			}
-			*/
 	$(window).scroll(function(){
-		//console.log($('#getYourFuckingPosition'));
-		
 		var v_top=$(document).scrollTop()+y;
 		$('#back-to-top').css('top',v_top);	
 		if($(document).scrollTop()>200) $('#back-to-top').fadeIn('slow');
 		else $('#back-to-top').fadeOut('slow');
+		//alert($(window).scrollTop());
 			if ($(document).scrollTop()>$("#intro-area").offset().top-20){
-				$("#navigator").addClass("navi-fix");//不要加点
+				$("#navigator").addClass("navi-fix");/*不要加点*/	
+				//$("#cover-bg").css({'top':'+=$(document).scrollTop()'});	
+				//$("#cover-bg").css('margin-top','0');		
 			}else{
+				//$("#navigator").css('opacity','0.5');
+				
+				//$("#navigator").animate({opacity:'+=0.1'},100);
 				$("#navigator").removeClass("navi-fix");
+				//$("#cover-bg").css({'top':'-=$(document).scrollTop()-40'});	
+				//$("#cover-bg").css({'margin-top':'-40'});
+				/***fixed会干扰后续绝对定位层的位置控制，故先设置为absolute，等后续层位置确定后，再设置其为fixed，以保持位置***/
+				/*以上描述可能有误*/
+				//$("#navigator").css({'position':'fixed'});			
 			}
+	});  	
+	var scrpic=['img/scr1.jpg','img/scr2.jpg','img/scr3.jpg','img/scr4.jpg'];
+	var ScrPreOrder=0,ScrCurOrder=1,ScrNextOrder=2;var ScrTimer;	
+	function nextPic(){
+		$("#pre-scroll-bg").attr('src',scrpic[ScrPreOrder]);
+		$("#cur-scroll-bg").attr('src',scrpic[ScrCurOrder]);
+		$("#next-scroll-bg").attr('src',scrpic[ScrNextOrder]);
+		ScrPreOrder--;ScrCurOrder--;ScrNextOrder--;
+		if(ScrPreOrder<0) ScrPreOrder=4;
+		if(ScrCurOrder<0) ScrCurOrder=4;
+		if(ScrNextOrder<0) ScrNextOrder=4;
+		$('#pre-scroll-bg').animate({'left':'0%'},2000,function(){//前图顶替当前图位置
+			$('#next-scroll-bg').css('left','-100%');//左右俩图交换位置
+			$('#next-scroll-bg').attr('src',scrpic[ScrPreOrder]);
+			//$('#pre-scroll-bg').css({'right':'100%'}).attr('src',scrpic[ScrPreOrder]);
+			//$('#cur-scroll-bg').css({'right':'100%'}).attr('src',$('#pre-scroll-bg').attr('src'));				
+		});
+		$('#cur-scroll-bg').animate({'left':'100%'},2000,function(){//当前图移动到右边不可见位置
+			$('#cur-scroll-bg').css('left','-100%');
+			/*当前图滑动到右边不可见位置后*/
+			//$('#cur-scroll-bg').css({'left':'0%'}).attr('src',$('#pre-scroll-bg').attr('src'));
+			//$('#pre-scroll-bg').attr('src',scrpic[ScrPreOrder]);
+			//$('#cur-scroll-bg').css({'right':'100%'}).attr('src',srcpic[ScrPreOrder]);//预先载入前前图，并置入左边不可见位置等待切换			
+		});	
 		
-	}); 
-	
-	$('#navigator li:visible').mousemove(function(){
-		$(this).children("ul").css('display','block').css('opacity','0').animate({opacity:1},'slow');
-	});
-	$('#navigator li:visible').mouseout(function(){
-		$(this).children("ul").css('opacity','0').css({display:'none'});
-	});
-	
-	var preOrder=1;var scrpic=['img/scr1.jpg','img/scr2.jpg','img/scr3.jpg','img/scr4.jpg'];
-function prePic(){
-	
-	if(preOrder==0) preOrder=4;
-	preOrder--;
-	//var preHtml='<img id="pre-scroll-bg" style="width:100%;position:absolute;left:-100%;top:0px;" src="'+scrpic[preOrder]+'">';
-	var preHtml='<li><img id="pre-scroll-bg" style="position:absolute;left:-100%;top:0px;" src="'+scrpic[preOrder]+'"></li>';
-	//$('preHtml').insertBefore('#cur-list');
-	$("#intro-area li:first").before(preHtml);
-	//$(preHtml).insertBefore("#intro-area li>:first");
-	$('#cur-scroll-bg').stop(false,true).animate({left:'100%'},1500,function(){$(this).parent().remove();});
-	$('#pre-scroll-bg').stop(false,true).animate({left:'0%'},1500,function(){$(this).attr('id','cur-scroll-bg');});
-	//console.log($('#pre-scroll-bg').attr('src'),preOrder);
+		
+		
+		
+		
+		//$('#next-scroll-bg').animate({'left':'-100%'},2000,function(){
+				
+			
+		//});
+		
+			
+		//$('#pre-scroll-bg');
+		//$('#cur-scroll-bg').css({'left':'0%'});
+		//$('#pre-scroll-bg').css({'right':'100%'}).attr('src',scrpic[ScrPreOrder]);
+		//$('#cur-scroll-bg').css({'left':'0%'}).attr('src',scrpic[ScrCurOrder]);	
+	}
+	//nextPic();
+	//ScrTimer=setInterval(nextPic,2500);
+	//时间有限，晕过去了，先不写了，用插件吧。
 
-}
+	
+	
 
-function nextPic(){
-	if(preOrder==3) preOrder=-1;
-	preOrder++;
-	var preHtml='<li><img id="next-scroll-bg" style="position:absolute;left:100%;top:0px;" src="'+scrpic[preOrder]+'"></li>';
-	$("#intro-area li:last").after(preHtml);
-	$('#cur-scroll-bg').stop(false,true).animate({left:'-100%'},1500,function(){$(this).parent().remove();});
-	$('#next-scroll-bg').stop(false,true).animate({left:'0%'},1500,function(){$(this).attr('id','cur-scroll-bg');});
-
-}
-//setInterval("nextPic()",3500);
-	
-	
-	//var ScrPreOrder=0,ScrCurOrder=1,ScrNextOrder=2;var ScrTimer;	
-	$('.intro-bar').mouseover(function(){
-		//$('#pre-scroll-bg').attr('src',scrpic[$(this).index()]).fadeIn('slow');		
-		$('#intro-area-text').html(introtext[$(this).index()].text).fadeIn('slow');	
-		//$('#cur-scroll-bg').fadeOut('slow');
-		$('#cur-scroll-bg').attr('src',scrpic[$(this).index()]).fadeIn("slow");
-		preOrder=$(this).index();
-		//$(this).css('opacity','0.3');
-		$(this).children("span").css('visibility','hidden');
-		//$('.more-info-button').css('opacity','1').css('background-color','rgba(0,0,0,1)');
-		//nextPic();
-	});
-	$('.intro-bar').mouseout(function(){
-		//$(this).css('opacity','1');
-		$(this).children("span").css('visibility','visible');
-	});
-	
-	$('#nextPic').click(function(){nextPic();});
-	$('#prePic').click(function(){prePic();});
-	
+/*
+	$('#prePic').mouseover(function(){clearInterval(ScrTimer);});
+	$('#prePic').mouseout(function(){ScrTimer=setInterval(nextPic,500);});
+	$('#nextPic').mouseover(function(){clearInterval(ScrTimer);});
+	$('#nextPic').mouseout(function(){ScrTimer=setInterval(nextPic,500);});
+*/
 });
-
